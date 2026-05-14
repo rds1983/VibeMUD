@@ -1,7 +1,7 @@
 {
   "projectName": "Vibe MUD",
-  "version": "0.4.0",
-  "status": "progression_system_implemented",
+  "version": "0.5.0",
+  "status": "npc_behavior_system_implemented",
   "lastUpdated": "2026-05-15",
   "description": "A text-based fantasy medieval Multi-User Dungeon built with C# and .NET 8.0",
 
@@ -23,7 +23,7 @@
       "movement_system": true,
       "combat_system": true,
       "progression_system": true,
-      "npc_behavior_system": false,
+      "npc_behavior_system": true,
       "loot_system": false,
       "data_loading": true,
       "save_system": true,
@@ -50,7 +50,7 @@
     }
   },
 
-  "currentPhase": "Phase 4 Complete - Ready for Phase 5",
+  "currentPhase": "Phase 5 Complete - Ready for Phase 6",
   "nextSteps": [
     "Implement progression system (Phase 4)",
     "Implement experience and leveling (Phase 4)",
@@ -82,7 +82,7 @@
   },
 
   "notes": {
-    "phase4Completion": "✓ Phase 4 complete with progression system and 195 passing tests",
+    "phase5Completion": "✓ Phase 5 complete with NPC behavior system and 220 passing tests",
     "accomplishments": [
       "✓ Phase 1: Core models and data systems (94 tests)",
       "✓ Phase 2: Game engine with commands (139 tests)",
@@ -100,7 +100,14 @@
       "✓ Experience scaling: 10% XP increase per level",
       "✓ Level difference modifiers: +10% per level above, -5% per level below",
       "✓ Automatic XP awards on NPC defeat",
-      "✓ Character initialization with class-specific starting stats"
+      "✓ Character initialization with class-specific starting stats",
+      "✓ Phase 5: NPC AI behavior system (220 tests)",
+      "✓ Three behavior types: Wandering (random movement), Patrol (predefined paths), Aggressive (combat-focused)",
+      "✓ Intelligent pathfinding: NPCs find directions to target rooms",
+      "✓ NPC respawn system: Configurable respawn times with cooldowns",
+      "✓ Behavior validation: Ensures NPC configurations are valid",
+      "✓ Dynamic behavior: NPCs hunt, patrol, or wander based on configuration",
+      "✓ 25 comprehensive behavior tests covering all systems"
     ],
     "designDecisions": [
       "JSON for all game content enables easy modification and distribution",
