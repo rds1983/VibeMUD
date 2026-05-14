@@ -35,6 +35,8 @@
       "shops": false
     },
     "features": {
+      "unit_tests": false,
+      "integration_tests": false,
       "multiplayer_support": false
     }
   },
@@ -55,6 +57,7 @@
     "language": "C#",
     "framework": ".NET 8.0",
     "dataFormat": "JSON",
+    "testFramework": "xUnit",
     "license": "MIT"
   },
 
