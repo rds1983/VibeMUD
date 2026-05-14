@@ -562,7 +562,6 @@ Final Damage = Base Damage × Stat Multiplier - Armor Reduction ± Resistances
 
 ## Future Enhancements
 
-- PvP combat system
 - Player guilds and faction systems
 - Custom NPC quest generation
 - Dynamic weather and day/night cycles
