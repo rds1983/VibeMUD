@@ -521,7 +521,7 @@ Final Damage = Base Damage × Stat Multiplier - Armor Reduction ± Resistances
 - **Fire**: Weak to ice, strong against plants
 - **Ice**: Weak to fire, strong against undead
 - **Lightning**: Weak to nothing specific, strong against metal armor
-- **Light**: Weak to darkness/shadow, strong against undead and ethereal
+- **Light**: Weak to darkness/shadow, strong against undead
 
 ### Resistances
 - Each NPC and player has resistance values (0.0 - 1.0)
