@@ -1,0 +1,79 @@
+{
+  "areas": [
+    {
+      "id": "forest_of_whispers",
+      "name": "Forest of Whispers",
+      "description": "An ancient woodland filled with mysterious creatures and magic",
+      "levelRange": { "min": 10, "max": 20 },
+      "spawnPoint": { "roomId": "forest_edge" },
+      "hasShop": false,
+      "shopId": null,
+      "rooms": [
+        {
+          "id": "forest_edge",
+          "title": "Forest Edge",
+          "description": "The boundary between the goblin caves and the deep forest",
+          "terrain": "forest",
+          "exits": {
+            "north": { "areaId": "goblin_caves", "roomId": "deep_cavern" },
+            "south": { "areaId": "forest_of_whispers", "roomId": "forest_center" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["forest_sprite"],
+          "items": []
+        },
+        {
+          "id": "forest_center",
+          "title": "Heart of the Forest",
+          "description": "The deepest part of the forest where ancient trees tower above and magical creatures roam",
+          "terrain": "forest",
+          "exits": {
+            "north": { "areaId": "forest_of_whispers", "roomId": "forest_edge" },
+            "south": { "areaId": "forest_of_whispers", "roomId": "ancient_grove" },
+            "east": { "areaId": "forest_of_whispers", "roomId": "moonlit_clearing" },
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["forest_sprite"],
+          "items": []
+        },
+        {
+          "id": "ancient_grove",
+          "title": "Ancient Grove",
+          "description": "A sacred grove of incredibly old trees, their bark carved with ancient runes",
+          "terrain": "forest",
+          "exits": {
+            "north": { "areaId": "forest_of_whispers", "roomId": "forest_center" },
+            "south": null,
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": { "areaId": "crumbling_ruins", "roomId": "ruins_entrance" }
+          },
+          "npcs": [],
+          "items": []
+        },
+        {
+          "id": "moonlit_clearing",
+          "title": "Moonlit Clearing",
+          "description": "A beautiful clearing where moonlight filters through the leaves",
+          "terrain": "forest",
+          "exits": {
+            "north": null,
+            "south": null,
+            "east": null,
+            "west": { "areaId": "forest_of_whispers", "roomId": "forest_center" },
+            "up": null,
+            "down": null
+          },
+          "npcs": ["forest_sprite"],
+          "items": []
+        }
+      ]
+    }
+  ]
+}

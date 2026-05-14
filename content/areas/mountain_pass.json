@@ -1,0 +1,63 @@
+{
+  "areas": [
+    {
+      "id": "mountain_pass",
+      "name": "Mountain Pass",
+      "description": "High altitude paths through snowy mountains with dwarven settlements",
+      "levelRange": { "min": 20, "max": 30 },
+      "spawnPoint": { "roomId": "pass_entrance" },
+      "hasShop": true,
+      "shopId": "mountain_shop",
+      "rooms": [
+        {
+          "id": "pass_entrance",
+          "title": "Mountain Pass Entrance",
+          "description": "The beginning of a winding mountain path with steep cliffs on either side",
+          "terrain": "mountain",
+          "exits": {
+            "north": { "areaId": "crumbling_ruins", "roomId": "lower_catacombs" },
+            "south": { "areaId": "mountain_pass", "roomId": "alpine_path" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": []
+        },
+        {
+          "id": "alpine_path",
+          "title": "Alpine Path",
+          "description": "A snow-covered path winding through the high mountains",
+          "terrain": "mountain",
+          "exits": {
+            "north": { "areaId": "mountain_pass", "roomId": "pass_entrance" },
+            "south": { "areaId": "mountain_pass", "roomId": "summit" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": []
+        },
+        {
+          "id": "summit",
+          "title": "Mountain Summit",
+          "description": "The peak of the mountain with breathtaking views of the world below",
+          "terrain": "mountain",
+          "exits": {
+            "north": { "areaId": "mountain_pass", "roomId": "alpine_path" },
+            "south": { "areaId": "swamplands", "roomId": "swamp_entrance" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": []
+        }
+      ]
+    }
+  ]
+}

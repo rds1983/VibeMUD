@@ -85,6 +85,45 @@ public class JsonDataLoader
     public Dictionary<string, Area> LoadAreas(string filename = "areas.json")
     {
         var areas = new Dictionary<string, Area>();
+        var areasDir = Path.Combine(_contentPath, "areas");
+
+        // Try to load from areas subdirectory first
+        if (Directory.Exists(areasDir))
+        {
+            try
+            {
+                var areaFiles = Directory.GetFiles(areasDir, "*.json", SearchOption.TopDirectoryOnly);
+                foreach (var areaFile in areaFiles)
+                {
+                    try
+                    {
+                        var json = File.ReadAllText(areaFile);
+                        var root = JsonDocument.Parse(json).RootElement;
+
+                        if (root.TryGetProperty("areas", out var areasArray))
+                        {
+                            foreach (var areaElement in areasArray.EnumerateArray())
+                            {
+                                var area = ParseArea(areaElement);
+                                if (area != null && !string.IsNullOrEmpty(area.Id))
+                                    areas[area.Id] = area;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new InvalidOperationException($"Failed to load area from {Path.GetFileName(areaFile)}", ex);
+                    }
+                }
+                return areas;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Failed to load areas from subdirectory", ex);
+            }
+        }
+
+        // Fall back to single file if subdirectory doesn't exist
         var path = Path.Combine(_contentPath, filename);
 
         if (!File.Exists(path))

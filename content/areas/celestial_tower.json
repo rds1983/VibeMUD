@@ -1,0 +1,47 @@
+{
+  "areas": [
+    {
+      "id": "celestial_tower",
+      "name": "Celestial Tower",
+      "description": "A floating tower suspended among the clouds with celestial beings",
+      "levelRange": { "min": 60, "max": 70 },
+      "spawnPoint": { "roomId": "tower_entrance" },
+      "hasShop": false,
+      "shopId": null,
+      "rooms": [
+        {
+          "id": "tower_entrance",
+          "title": "Tower Entrance",
+          "description": "The gateway to a floating tower in the heavens",
+          "terrain": "celestial",
+          "exits": {
+            "north": { "areaId": "abyssal_chasm", "roomId": "portal_chamber" },
+            "south": { "areaId": "celestial_tower", "roomId": "tower_interior" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": []
+        },
+        {
+          "id": "tower_interior",
+          "title": "Tower Interior",
+          "description": "The interior of the celestial tower glowing with holy light",
+          "terrain": "celestial",
+          "exits": {
+            "north": { "areaId": "celestial_tower", "roomId": "tower_entrance" },
+            "south": { "areaId": "liches_tomb", "roomId": "tomb_entrance" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": []
+        }
+      ]
+    }
+  ]
+}

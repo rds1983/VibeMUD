@@ -1,0 +1,47 @@
+{
+  "areas": [
+    {
+      "id": "void_realm",
+      "name": "Void Realm",
+      "description": "The ultimate challenge with ancient evils and reality-bending horrors",
+      "levelRange": { "min": 80, "max": 100 },
+      "spawnPoint": { "roomId": "void_entrance" },
+      "hasShop": false,
+      "shopId": null,
+      "rooms": [
+        {
+          "id": "void_entrance",
+          "title": "Void Entrance",
+          "description": "The boundary between the mortal world and an alien realm",
+          "terrain": "void",
+          "exits": {
+            "north": { "areaId": "liches_tomb", "roomId": "burial_chamber" },
+            "south": { "areaId": "void_realm", "roomId": "abyss_core" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["dragon"],
+          "items": []
+        },
+        {
+          "id": "abyss_core",
+          "title": "Core of the Void",
+          "description": "A reality-warping chamber at the heart of the void",
+          "terrain": "void",
+          "exits": {
+            "north": { "areaId": "void_realm", "roomId": "void_entrance" },
+            "south": null,
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["dragon"],
+          "items": []
+        }
+      ]
+    }
+  ]
+}

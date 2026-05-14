@@ -1,0 +1,95 @@
+{
+  "areas": [
+    {
+      "id": "starter_city",
+      "name": "Starter City",
+      "description": "A welcoming city for new adventurers with shops, taverns, and friendly NPCs",
+      "levelRange": { "min": 1, "max": 10 },
+      "spawnPoint": { "roomId": "city_center" },
+      "hasShop": true,
+      "shopId": "starter_shop",
+      "rooms": [
+        {
+          "id": "city_center",
+          "title": "City Center",
+          "description": "The bustling heart of the city where merchants peddle their wares and adventurers gather",
+          "terrain": "city",
+          "exits": {
+            "north": { "areaId": "starter_city", "roomId": "temple" },
+            "south": { "areaId": "starter_city", "roomId": "market" },
+            "east": { "areaId": "starter_city", "roomId": "tavern" },
+            "west": { "areaId": "starter_city", "roomId": "guild_hall" },
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": []
+        },
+        {
+          "id": "temple",
+          "title": "Temple of Light",
+          "description": "A grand temple where clerics and paladins gather to heal the wounded",
+          "terrain": "city",
+          "exits": {
+            "north": null,
+            "south": { "areaId": "starter_city", "roomId": "city_center" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": []
+        },
+        {
+          "id": "market",
+          "title": "Market Square",
+          "description": "A vast open square filled with vendor stalls and merchant shops",
+          "terrain": "city",
+          "exits": {
+            "north": { "areaId": "starter_city", "roomId": "city_center" },
+            "south": { "areaId": "goblin_caves", "roomId": "cave_entrance" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": []
+        },
+        {
+          "id": "tavern",
+          "title": "The Adventurer's Tavern",
+          "description": "A lively tavern filled with stories of adventure and the smell of ale",
+          "terrain": "city",
+          "exits": {
+            "north": null,
+            "south": null,
+            "east": null,
+            "west": { "areaId": "starter_city", "roomId": "city_center" },
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": []
+        },
+        {
+          "id": "guild_hall",
+          "title": "Adventurer's Guild",
+          "description": "The headquarters of the Adventurer's Guild where quests are posted and legends are born",
+          "terrain": "city",
+          "exits": {
+            "north": null,
+            "south": null,
+            "east": { "areaId": "starter_city", "roomId": "city_center" },
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": []
+        }
+      ]
+    }
+  ]
+}

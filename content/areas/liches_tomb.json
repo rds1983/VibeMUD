@@ -1,0 +1,47 @@
+{
+  "areas": [
+    {
+      "id": "liches_tomb",
+      "name": "Lich's Tomb",
+      "description": "An ancient necromancer's lair with powerful undead and dark magic",
+      "levelRange": { "min": 70, "max": 80 },
+      "spawnPoint": { "roomId": "tomb_entrance" },
+      "hasShop": false,
+      "shopId": null,
+      "rooms": [
+        {
+          "id": "tomb_entrance",
+          "title": "Tomb Entrance",
+          "description": "The entrance to an ancient tomb, carved with warnings and curses",
+          "terrain": "tomb",
+          "exits": {
+            "north": { "areaId": "celestial_tower", "roomId": "tower_interior" },
+            "south": { "areaId": "liches_tomb", "roomId": "burial_chamber" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["lich"],
+          "items": []
+        },
+        {
+          "id": "burial_chamber",
+          "title": "Burial Chamber",
+          "description": "A grand chamber with stone sarcophagi and the stench of death",
+          "terrain": "tomb",
+          "exits": {
+            "north": { "areaId": "liches_tomb", "roomId": "tomb_entrance" },
+            "south": { "areaId": "void_realm", "roomId": "void_entrance" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["lich"],
+          "items": []
+        }
+      ]
+    }
+  ]
+}

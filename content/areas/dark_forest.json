@@ -1,0 +1,47 @@
+{
+  "areas": [
+    {
+      "id": "dark_forest",
+      "name": "Dark Forest",
+      "description": "A dangerous and ancient forest where sunlight barely reaches the ground",
+      "levelRange": { "min": 30, "max": 40 },
+      "spawnPoint": { "roomId": "dark_forest_entrance" },
+      "hasShop": false,
+      "shopId": null,
+      "rooms": [
+        {
+          "id": "dark_forest_entrance",
+          "title": "Dark Forest Entrance",
+          "description": "The boundary between the swamp and the ancient dark forest",
+          "terrain": "forest",
+          "exits": {
+            "north": { "areaId": "swamplands", "roomId": "deep_marsh" },
+            "south": { "areaId": "dark_forest", "roomId": "shadowed_grove" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": []
+        },
+        {
+          "id": "shadowed_grove",
+          "title": "Shadowed Grove",
+          "description": "A dark clearing where even sound seems muffled",
+          "terrain": "forest",
+          "exits": {
+            "north": { "areaId": "dark_forest", "roomId": "dark_forest_entrance" },
+            "south": { "areaId": "underground_mines", "roomId": "mines_entrance" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "areas": [
+    {
+      "id": "haunted_castle",
+      "name": "Haunted Castle",
+      "description": "A cursed fortress filled with wraiths and dark magic",
+      "levelRange": { "min": 50, "max": 60 },
+      "spawnPoint": { "roomId": "castle_entrance" },
+      "hasShop": false,
+      "shopId": null,
+      "rooms": [
+        {
+          "id": "castle_entrance",
+          "title": "Castle Entrance",
+          "description": "The grand gates of an ancient castle, now crumbling and covered in vines",
+          "terrain": "castle",
+          "exits": {
+            "north": { "areaId": "ice_caverns", "roomId": "frozen_hall" },
+            "south": { "areaId": "haunted_castle", "roomId": "grand_hall" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": []
+        },
+        {
+          "id": "grand_hall",
+          "title": "Grand Hall",
+          "description": "A vast hall with towering columns and a throne at the end",
+          "terrain": "castle",
+          "exits": {
+            "north": { "areaId": "haunted_castle", "roomId": "castle_entrance" },
+            "south": { "areaId": "haunted_castle", "roomId": "tower" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": []
+        },
+        {
+          "id": "tower",
+          "title": "Dark Tower",
+          "description": "A spiral tower ascending into darkness",
+          "terrain": "castle",
+          "exits": {
+            "north": { "areaId": "haunted_castle", "roomId": "grand_hall" },
+            "south": { "areaId": "abyssal_chasm", "roomId": "chasm_entrance" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": []
+        }
+      ]
+    }
+  ]
+}

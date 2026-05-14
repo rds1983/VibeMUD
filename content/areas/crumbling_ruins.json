@@ -1,0 +1,79 @@
+{
+  "areas": [
+    {
+      "id": "crumbling_ruins",
+      "name": "Crumbling Ruins",
+      "description": "Ancient structures from a long-forgotten civilization, now inhabited by undead",
+      "levelRange": { "min": 15, "max": 25 },
+      "spawnPoint": { "roomId": "ruins_entrance" },
+      "hasShop": false,
+      "shopId": null,
+      "rooms": [
+        {
+          "id": "ruins_entrance",
+          "title": "Ruins Entrance",
+          "description": "The crumbling entrance to an ancient structure, half-buried in stone and earth",
+          "terrain": "ruins",
+          "exits": {
+            "north": { "areaId": "forest_of_whispers", "roomId": "ancient_grove" },
+            "south": { "areaId": "crumbling_ruins", "roomId": "main_chamber" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["skeleton"],
+          "items": []
+        },
+        {
+          "id": "main_chamber",
+          "title": "Main Chamber",
+          "description": "A vast hall filled with fallen pillars and the bones of the ancient dead",
+          "terrain": "ruins",
+          "exits": {
+            "north": { "areaId": "crumbling_ruins", "roomId": "ruins_entrance" },
+            "south": { "areaId": "crumbling_ruins", "roomId": "lower_catacombs" },
+            "east": { "areaId": "crumbling_ruins", "roomId": "treasury_room" },
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["skeleton", "zombie"],
+          "items": []
+        },
+        {
+          "id": "treasury_room",
+          "title": "Treasure Room",
+          "description": "An ornate chamber that once held great treasures, now picked clean and desolate",
+          "terrain": "ruins",
+          "exits": {
+            "north": null,
+            "south": null,
+            "east": null,
+            "west": { "areaId": "crumbling_ruins", "roomId": "main_chamber" },
+            "up": null,
+            "down": null
+          },
+          "npcs": ["skeleton"],
+          "items": []
+        },
+        {
+          "id": "lower_catacombs",
+          "title": "Lower Catacombs",
+          "description": "Tunnels carved into rock, with burial niches along the walls",
+          "terrain": "ruins",
+          "exits": {
+            "north": { "areaId": "crumbling_ruins", "roomId": "main_chamber" },
+            "south": { "areaId": "mountain_pass", "roomId": "pass_entrance" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["zombie"],
+          "items": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "areas": [
+    {
+      "id": "volcanic_wastes",
+      "name": "Volcanic Wastes",
+      "description": "A hellish landscape of lava fields and volcanic activity",
+      "levelRange": { "min": 40, "max": 50 },
+      "spawnPoint": { "roomId": "volcanic_entrance" },
+      "hasShop": false,
+      "shopId": null,
+      "rooms": [
+        {
+          "id": "volcanic_entrance",
+          "title": "Volcanic Wastes Entrance",
+          "description": "The boundary between the mines and the volcanic wastes, with heat waves rising",
+          "terrain": "volcanic",
+          "exits": {
+            "north": { "areaId": "underground_mines", "roomId": "deep_mines" },
+            "south": { "areaId": "volcanic_wastes", "roomId": "lava_fields" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["fire_elemental"],
+          "items": []
+        },
+        {
+          "id": "lava_fields",
+          "title": "Lava Fields",
+          "description": "A landscape of molten lava and obsidian rocks",
+          "terrain": "volcanic",
+          "exits": {
+            "north": { "areaId": "volcanic_wastes", "roomId": "volcanic_entrance" },
+            "south": { "areaId": "ice_caverns", "roomId": "ice_cavern_entrance" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["fire_elemental"],
+          "items": []
+        }
+      ]
+    }
+  ]
+}

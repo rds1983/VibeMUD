@@ -1,0 +1,47 @@
+{
+  "areas": [
+    {
+      "id": "swamplands",
+      "name": "Swamplands",
+      "description": "Murky marshes and wetlands filled with dangerous creatures",
+      "levelRange": { "min": 25, "max": 35 },
+      "spawnPoint": { "roomId": "swamp_entrance" },
+      "hasShop": false,
+      "shopId": null,
+      "rooms": [
+        {
+          "id": "swamp_entrance",
+          "title": "Swamp Entrance",
+          "description": "The beginning of the vast marshlands, with murky water and twisted trees",
+          "terrain": "swamp",
+          "exits": {
+            "north": { "areaId": "mountain_pass", "roomId": "summit" },
+            "south": { "areaId": "swamplands", "roomId": "deep_marsh" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": []
+        },
+        {
+          "id": "deep_marsh",
+          "title": "Deep Marsh",
+          "description": "The heart of the swamplands, thick with fog and the sounds of unknown creatures",
+          "terrain": "swamp",
+          "exits": {
+            "north": { "areaId": "swamplands", "roomId": "swamp_entrance" },
+            "south": { "areaId": "dark_forest", "roomId": "dark_forest_entrance" },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": []
+        }
+      ]
+    }
+  ]
+}
