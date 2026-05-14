@@ -83,7 +83,6 @@ VibeMUD/
 ├── docs/
 │   ├── DESIGN.md
 │   ├── DEVELOPMENT_PLAN.md
-│   ├── AGENTS.md
 │   ├── User Guide.md
 │   ├── Developer Guide.md
 ├── saves/
@@ -95,6 +94,7 @@ VibeMUD/
 │   ├── NPCBehaviorTests.cs
 ├── README.md
 ├── state.json (Project state: phases, completion status, test coverage)
+├── AGENTS.md (Guide for AI agents to understand and continue the project)
 ├── CLAUDE.md (Project context for AI agents)
 └── LICENSE
 ```
