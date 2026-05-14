@@ -1,0 +1,78 @@
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio cache/options
+.vs/
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Rider
+.idea/
+*.sln.iml
+*.swp
+*.swo
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build folder
+[Bb]uild/
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+
+# dotnet
+project.lock.json
+project.fragment.lock.json
+artifacts/
+.dotnet/
+
+# Test Results
+TestResults/
+*.trx
+*.coverage
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Local environment
+.env
+.env.local
+*.local
+
+# Game state
+saves/
+*.log
+
+# IDE
+*.sublime-project
+*.sublime-workspace
+
+# Misc
+.vscode/settings.json
+launch.json
+tasks.json

@@ -1,0 +1,103 @@
+namespace VibeMUD.Data;
+
+using System.Text.Json;
+using VibeMUD.Models;
+
+/// <summary>
+/// Manages saving and loading character data
+/// </summary>
+public class SaveManager
+{
+    private readonly string _savePath;
+    private static readonly JsonSerializerOptions JsonOptions = new()
+    {
+        PropertyNameCaseInsensitive = true,
+        WriteIndented = true
+    };
+
+    public SaveManager(string savePath)
+    {
+        _savePath = savePath;
+        Directory.CreateDirectory(_savePath);
+    }
+
+    public void SaveCharacter(Character character)
+    {
+        if (string.IsNullOrEmpty(character.Id))
+            throw new ArgumentException("Character must have an ID to save");
+
+        try
+        {
+            var filePath = Path.Combine(_savePath, $"{character.Id}.json");
+            var json = JsonSerializer.Serialize(character, JsonOptions);
+            File.WriteAllText(filePath, json);
+        }
+        catch (Exception ex)
+        {
+            throw new InvalidOperationException($"Failed to save character {character.Id}", ex);
+        }
+    }
+
+    public Character? LoadCharacter(string characterId)
+    {
+        try
+        {
+            var filePath = Path.Combine(_savePath, $"{characterId}.json");
+
+            if (!File.Exists(filePath))
+                return null;
+
+            var json = File.ReadAllText(filePath);
+            return JsonSerializer.Deserialize<Character>(json, JsonOptions);
+        }
+        catch (Exception ex)
+        {
+            throw new InvalidOperationException($"Failed to load character {characterId}", ex);
+        }
+    }
+
+    public bool CharacterExists(string characterId)
+    {
+        var filePath = Path.Combine(_savePath, $"{characterId}.json");
+        return File.Exists(filePath);
+    }
+
+    public List<string> GetAllCharacterIds()
+    {
+        try
+        {
+            if (!Directory.Exists(_savePath))
+                return new List<string>();
+
+            var characterIds = new List<string>();
+            var files = Directory.GetFiles(_savePath, "*.json");
+
+            foreach (var file in files)
+            {
+                var fileName = Path.GetFileNameWithoutExtension(file);
+                characterIds.Add(fileName);
+            }
+
+            return characterIds;
+        }
+        catch (Exception ex)
+        {
+            throw new InvalidOperationException("Failed to get character list", ex);
+        }
+    }
+
+    public void DeleteCharacter(string characterId)
+    {
+        try
+        {
+            var filePath = Path.Combine(_savePath, $"{characterId}.json");
+
+            if (File.Exists(filePath))
+                File.Delete(filePath);
+        }
+        catch (Exception ex)
+        {
+            throw new InvalidOperationException($"Failed to delete character {characterId}", ex);
+        }
+    }
+}
