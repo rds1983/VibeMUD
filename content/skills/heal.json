@@ -1,0 +1,13 @@
+﻿{
+    "id":  "heal",
+    "name":  "Heal",
+    "description":  "Restore health to self or an ally",
+    "manaCost":  30,
+    "cooldownSeconds":  2,
+    "damage":  0,
+    "damageType":  "physical",
+    "isOffensive":  false,
+    "isHealing":  true,
+    "healAmount":  40,
+    "requiredLevel":  5
+}

@@ -1,0 +1,17 @@
+﻿{
+    "id":  "fire_amulet",
+    "name":  "Fire Amulet",
+    "type":  "accessory",
+    "subtype":  "amulet",
+    "slot":  "amulet",
+    "weight":  0.2,
+    "value":  200,
+    "requiredLevel":  25,
+    "stats":  {
+                  "bonus_intelligence":  2
+              },
+    "resistances":  {
+                        "fire":  -0.2
+                    },
+    "damageType":  null
+}

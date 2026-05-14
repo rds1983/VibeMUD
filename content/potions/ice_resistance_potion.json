@@ -1,0 +1,17 @@
+﻿{
+    "id":  "ice_resistance_potion",
+    "name":  "Ice Resistance Potion",
+    "type":  "consumable",
+    "subtype":  "potion",
+    "slot":  null,
+    "weight":  0.3,
+    "value":  80,
+    "requiredLevel":  10,
+    "stats":  {
+
+              },
+    "resistances":  {
+                        "ice":  0.3
+                    },
+    "damageType":  null
+}

@@ -1,0 +1,18 @@
+﻿{
+    "id":  "scroll_entangle",
+    "name":  "Scroll of Entangle",
+    "type":  "consumable",
+    "subtype":  "scroll",
+    "slot":  null,
+    "weight":  0.1,
+    "value":  45,
+    "requiredLevel":  7,
+    "stats":  {
+                  "spell":  "entangle",
+                  "damage":  20
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  "physical"
+}

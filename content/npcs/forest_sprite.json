@@ -1,0 +1,48 @@
+﻿{
+    "id":  "forest_sprite",
+    "name":  "Forest Sprite",
+    "description":  "A magical woodland creature that glows softly",
+    "level":  6,
+    "health":  15,
+    "maxHealth":  15,
+    "mana":  25,
+    "maxMana":  25,
+    "strength":  7,
+    "dexterity":  14,
+    "constitution":  8,
+    "intelligence":  11,
+    "wisdom":  10,
+    "charisma":  9,
+    "behavior":  "wander",
+    "patrolPath":  [
+
+                   ],
+    "skillIds":  [
+                     "frostbolt",
+                     "entangle"
+                 ],
+    "specialAttackIds":  [
+
+                         ],
+    "flags":  [
+
+              ],
+    "goldMin":  10,
+    "goldMax":  30,
+    "lootTable":  {
+                      "staff":  0.1,
+                      "minor_mana_potion":  0.2
+                  },
+    "resistances":  {
+                        "physical":  -0.1,
+                        "fire":  0.2,
+                        "ice":  0,
+                        "lightning":  0,
+                        "light":  0
+                    },
+    "damageTypes":  [
+                        "physical",
+                        "ice"
+                    ],
+    "respawnTimeSeconds":  400
+}

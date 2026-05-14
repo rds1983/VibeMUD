@@ -1,0 +1,45 @@
+﻿{
+    "id":  "stable_master",
+    "name":  "Stable Master",
+    "description":  "A weathered stable master with the bearing of someone who has spent a lifetime with animals",
+    "level":  1,
+    "health":  14,
+    "maxHealth":  14,
+    "mana":  0,
+    "maxMana":  0,
+    "strength":  12,
+    "dexterity":  10,
+    "constitution":  11,
+    "intelligence":  9,
+    "wisdom":  12,
+    "charisma":  11,
+    "behavior":  "wander",
+    "patrolPath":  [
+
+                   ],
+    "skillIds":  [
+
+                 ],
+    "specialAttackIds":  [
+
+                         ],
+    "flags":  [
+
+              ],
+    "goldMin":  0,
+    "goldMax":  0,
+    "lootTable":  {
+
+                  },
+    "resistances":  {
+                        "physical":  0,
+                        "fire":  0,
+                        "ice":  0,
+                        "lightning":  0,
+                        "light":  0
+                    },
+    "damageTypes":  [
+
+                    ],
+    "respawnTimeSeconds":  0
+}

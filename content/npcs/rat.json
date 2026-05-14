@@ -1,0 +1,45 @@
+﻿{
+    "id":  "rat",
+    "name":  "Giant Rat",
+    "description":  "A large, nasty rat with sharp teeth",
+    "level":  1,
+    "health":  8,
+    "maxHealth":  8,
+    "mana":  0,
+    "maxMana":  0,
+    "strength":  8,
+    "dexterity":  10,
+    "constitution":  8,
+    "intelligence":  3,
+    "wisdom":  5,
+    "charisma":  2,
+    "behavior":  "wander",
+    "patrolPath":  [
+
+                   ],
+    "skillIds":  [
+
+                 ],
+    "specialAttackIds":  [
+
+                         ],
+    "flags":  [
+                  "beast"
+              ],
+    "goldMin":  1,
+    "goldMax":  5,
+    "lootTable":  {
+                      "rusty_sword":  0.05
+                  },
+    "resistances":  {
+                        "physical":  0,
+                        "fire":  0,
+                        "ice":  0,
+                        "lightning":  0,
+                        "light":  0
+                    },
+    "damageTypes":  [
+                        "physical"
+                    ],
+    "respawnTimeSeconds":  300
+}

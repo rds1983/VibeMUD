@@ -1,0 +1,17 @@
+﻿{
+    "id":  "iron_shield",
+    "name":  "Iron Shield",
+    "type":  "armor",
+    "subtype":  "shield",
+    "slot":  "off-hand",
+    "weight":  4.5,
+    "value":  80,
+    "requiredLevel":  10,
+    "stats":  {
+                  "armor":  12
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

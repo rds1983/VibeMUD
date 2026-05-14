@@ -1,0 +1,17 @@
+﻿{
+    "id":  "ring_of_protection",
+    "name":  "Ring of Protection",
+    "type":  "accessory",
+    "subtype":  "ring",
+    "slot":  "ring",
+    "weight":  0.1,
+    "value":  150,
+    "requiredLevel":  20,
+    "stats":  {
+                  "armor":  5
+              },
+    "resistances":  {
+                        "physical":  0.05
+                    },
+    "damageType":  null
+}

@@ -1,0 +1,47 @@
+﻿{
+    "id":  "goblin_warrior",
+    "name":  "Goblin Warrior",
+    "description":  "A heavily armed goblin with club and shield",
+    "level":  3,
+    "health":  20,
+    "maxHealth":  20,
+    "mana":  5,
+    "maxMana":  5,
+    "strength":  12,
+    "dexterity":  10,
+    "constitution":  11,
+    "intelligence":  7,
+    "wisdom":  8,
+    "charisma":  5,
+    "behavior":  "aggressive",
+    "patrolPath":  [
+
+                   ],
+    "skillIds":  [
+                     "power_strike"
+                 ],
+    "specialAttackIds":  [
+
+                         ],
+    "flags":  [
+
+              ],
+    "goldMin":  10,
+    "goldMax":  25,
+    "lootTable":  {
+                      "club":  0.15,
+                      "leather_helm":  0.1,
+                      "shield":  0.08
+                  },
+    "resistances":  {
+                        "physical":  0,
+                        "fire":  0,
+                        "ice":  0,
+                        "lightning":  0,
+                        "light":  0
+                    },
+    "damageTypes":  [
+                        "physical"
+                    ],
+    "respawnTimeSeconds":  400
+}

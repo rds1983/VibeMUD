@@ -1,0 +1,17 @@
+﻿{
+    "id":  "steel_sword",
+    "name":  "Steel Sword",
+    "type":  "weapon",
+    "subtype":  "sword",
+    "slot":  "main-hand",
+    "weight":  4.0,
+    "value":  150,
+    "requiredLevel":  15,
+    "stats":  {
+                  "damage":  22
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  "physical"
+}

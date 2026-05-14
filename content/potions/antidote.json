@@ -1,0 +1,17 @@
+﻿{
+    "id":  "antidote",
+    "name":  "Antidote",
+    "type":  "consumable",
+    "subtype":  "potion",
+    "slot":  null,
+    "weight":  0.2,
+    "value":  40,
+    "requiredLevel":  5,
+    "stats":  {
+                  "cure_poison":  1
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

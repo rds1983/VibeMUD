@@ -1,0 +1,46 @@
+﻿{
+    "id":  "goblin_scout",
+    "name":  "Goblin Scout",
+    "description":  "A sneaky goblin wearing tattered armor",
+    "level":  2,
+    "health":  12,
+    "maxHealth":  12,
+    "mana":  5,
+    "maxMana":  5,
+    "strength":  10,
+    "dexterity":  12,
+    "constitution":  9,
+    "intelligence":  8,
+    "wisdom":  7,
+    "charisma":  6,
+    "behavior":  "wander",
+    "patrolPath":  [
+
+                   ],
+    "skillIds":  [
+                     "shadow_strike"
+                 ],
+    "specialAttackIds":  [
+
+                         ],
+    "flags":  [
+
+              ],
+    "goldMin":  5,
+    "goldMax":  15,
+    "lootTable":  {
+                      "dagger":  0.1,
+                      "leather_armor":  0.05
+                  },
+    "resistances":  {
+                        "physical":  0,
+                        "fire":  0,
+                        "ice":  0,
+                        "lightning":  0,
+                        "light":  0
+                    },
+    "damageTypes":  [
+                        "physical"
+                    ],
+    "respawnTimeSeconds":  300
+}

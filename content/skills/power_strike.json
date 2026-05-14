@@ -1,0 +1,13 @@
+﻿{
+    "id":  "power_strike",
+    "name":  "Power Strike",
+    "description":  "A powerful melee attack with increased damage",
+    "manaCost":  20,
+    "cooldownSeconds":  2,
+    "damage":  60,
+    "damageType":  "physical",
+    "isOffensive":  true,
+    "isHealing":  false,
+    "healAmount":  0,
+    "requiredLevel":  10
+}

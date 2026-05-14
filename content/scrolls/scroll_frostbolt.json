@@ -1,0 +1,17 @@
+﻿{
+    "id":  "scroll_frostbolt",
+    "name":  "Scroll of Frostbolt",
+    "type":  "consumable",
+    "subtype":  "scroll",
+    "slot":  null,
+    "weight":  0.1,
+    "value":  50,
+    "requiredLevel":  6,
+    "stats":  {
+                  "spell":  "frostbolt"
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  "ice"
+}

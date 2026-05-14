@@ -1,0 +1,17 @@
+﻿{
+    "id":  "club",
+    "name":  "Wooden Club",
+    "type":  "weapon",
+    "subtype":  "club",
+    "slot":  "main-hand",
+    "weight":  2.5,
+    "value":  10,
+    "requiredLevel":  1,
+    "stats":  {
+                  "damage":  6
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  "physical"
+}

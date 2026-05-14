@@ -1,0 +1,18 @@
+﻿{
+    "id":  "scroll_heal",
+    "name":  "Scroll of Healing",
+    "type":  "consumable",
+    "subtype":  "scroll",
+    "slot":  null,
+    "weight":  0.1,
+    "value":  50,
+    "requiredLevel":  5,
+    "stats":  {
+                  "spell":  "heal",
+                  "heal":  40
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

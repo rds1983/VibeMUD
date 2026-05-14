@@ -1,0 +1,18 @@
+﻿{
+    "id":  "dagger",
+    "name":  "Iron Dagger",
+    "type":  "weapon",
+    "subtype":  "dagger",
+    "slot":  "main-hand",
+    "weight":  1.0,
+    "value":  20,
+    "requiredLevel":  1,
+    "stats":  {
+                  "damage":  8,
+                  "bonus_dexterity":  1
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  "physical"
+}

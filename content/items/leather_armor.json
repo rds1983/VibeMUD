@@ -1,0 +1,17 @@
+﻿{
+    "id":  "leather_armor",
+    "name":  "Leather Armor",
+    "type":  "armor",
+    "subtype":  "chest",
+    "slot":  "chest",
+    "weight":  5.0,
+    "value":  40,
+    "requiredLevel":  1,
+    "stats":  {
+                  "armor":  8
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

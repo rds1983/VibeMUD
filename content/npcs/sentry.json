@@ -1,0 +1,45 @@
+﻿{
+    "id":  "sentry",
+    "name":  "Sentry",
+    "description":  "A vigilant guard keeping watch at the city gate",
+    "level":  1,
+    "health":  18,
+    "maxHealth":  18,
+    "mana":  0,
+    "maxMana":  0,
+    "strength":  14,
+    "dexterity":  10,
+    "constitution":  12,
+    "intelligence":  9,
+    "wisdom":  11,
+    "charisma":  9,
+    "behavior":  "wander",
+    "patrolPath":  [
+
+                   ],
+    "skillIds":  [
+
+                 ],
+    "specialAttackIds":  [
+
+                         ],
+    "flags":  [
+
+              ],
+    "goldMin":  0,
+    "goldMax":  0,
+    "lootTable":  {
+
+                  },
+    "resistances":  {
+                        "physical":  0,
+                        "fire":  0,
+                        "ice":  0,
+                        "lightning":  0,
+                        "light":  0
+                    },
+    "damageTypes":  [
+
+                    ],
+    "respawnTimeSeconds":  0
+}

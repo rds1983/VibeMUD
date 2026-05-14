@@ -1,0 +1,17 @@
+﻿{
+    "id":  "rusty_sword",
+    "name":  "Rusty Sword",
+    "type":  "weapon",
+    "subtype":  "sword",
+    "slot":  "main-hand",
+    "weight":  3.5,
+    "value":  15,
+    "requiredLevel":  1,
+    "stats":  {
+                  "damage":  5
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  "physical"
+}

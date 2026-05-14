@@ -1,0 +1,13 @@
+﻿{
+    "id":  "greater_heal",
+    "name":  "Greater Heal",
+    "description":  "Restore significant health",
+    "manaCost":  60,
+    "cooldownSeconds":  4,
+    "damage":  0,
+    "damageType":  "physical",
+    "isOffensive":  false,
+    "isHealing":  true,
+    "healAmount":  80,
+    "requiredLevel":  15
+}

@@ -1,49 +1,16 @@
 {
-  "shops": [
-    {
-      "id": "starter_shop",
+  "shopsIndex": "Individual shops are stored in the 'shops/' subdirectory. Each shop has its own JSON file named after the shop ID.",
+  "totalShops": 2,
+  "shops": {
+    "starter_shop": {
       "name": "Starter's Emporium",
-      "description": "A welcoming shop for new adventurers with basic equipment and supplies",
-      "areaId": "starter_city",
-      "buyMargin": 1.3,
-      "sellMargin": 0.7,
-      "inventory": [
-        "rusty_sword",
-        "dagger",
-        "club",
-        "leather_armor",
-        "leather_helm",
-        "leather_gloves",
-        "leather_boots",
-        "shield",
-        "minor_healing_potion",
-        "minor_mana_potion",
-        "antidote"
-      ],
-      "restockInterval": 300
+      "area": "starter_city",
+      "levelRange": "1-10"
     },
-    {
-      "id": "mountain_shop",
+    "mountain_shop": {
       "name": "Mountain Trader",
-      "description": "A sturdy dwarven shop with quality equipment and supplies",
-      "areaId": "mountain_pass",
-      "buyMargin": 1.4,
-      "sellMargin": 0.65,
-      "inventory": [
-        "iron_sword",
-        "warhammer",
-        "iron_chestplate",
-        "iron_helm",
-        "iron_gauntlets",
-        "iron_boots",
-        "iron_shield",
-        "healing_potion",
-        "mana_potion",
-        "fire_resistance_potion",
-        "ice_resistance_potion",
-        "lightning_resistance_potion"
-      ],
-      "restockInterval": 400
+      "area": "mountain_pass",
+      "levelRange": "20-30"
     }
-  ]
+  }
 }

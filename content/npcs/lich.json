@@ -1,0 +1,55 @@
+﻿{
+    "id":  "lich",
+    "name":  "Lich",
+    "description":  "An ancient sorcerer bound to undeath",
+    "level":  20,
+    "health":  60,
+    "maxHealth":  60,
+    "mana":  80,
+    "maxMana":  80,
+    "strength":  8,
+    "dexterity":  10,
+    "constitution":  11,
+    "intelligence":  18,
+    "wisdom":  14,
+    "charisma":  10,
+    "behavior":  "aggressive",
+    "patrolPath":  [
+
+                   ],
+    "skillIds":  [
+                     "fireball",
+                     "lightning_strike",
+                     "frostbolt",
+                     "holy_bolt"
+                 ],
+    "specialAttackIds":  [
+
+                         ],
+    "flags":  [
+                  "undead",
+                  "undying"
+              ],
+    "goldMin":  100,
+    "goldMax":  200,
+    "lootTable":  {
+                      "mithril_sword":  0.15,
+                      "arcane_staff":  0.2,
+                      "ring_of_intelligence":  0.15,
+                      "superior_mana_potion":  0.25
+                  },
+    "resistances":  {
+                        "physical":  0.2,
+                        "fire":  0.1,
+                        "ice":  0.1,
+                        "lightning":  0.1,
+                        "light":  -0.5
+                    },
+    "damageTypes":  [
+                        "physical",
+                        "fire",
+                        "ice",
+                        "lightning"
+                    ],
+    "respawnTimeSeconds":  1200
+}

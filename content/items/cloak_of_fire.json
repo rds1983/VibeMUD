@@ -1,0 +1,17 @@
+﻿{
+    "id":  "cloak_of_fire",
+    "name":  "Cloak of Fire",
+    "type":  "armor",
+    "subtype":  "cloak",
+    "slot":  "back",
+    "weight":  2.0,
+    "value":  150,
+    "requiredLevel":  20,
+    "stats":  {
+                  "bonus_intelligence":  2
+              },
+    "resistances":  {
+                        "fire":  -0.2
+                    },
+    "damageType":  null
+}

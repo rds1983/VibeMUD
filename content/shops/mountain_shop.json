@@ -1,0 +1,23 @@
+﻿{
+    "id":  "mountain_shop",
+    "name":  "Mountain Trader",
+    "description":  "A sturdy dwarven shop with quality equipment and supplies",
+    "areaId":  "mountain_pass",
+    "buyMargin":  1.4,
+    "sellMargin":  0.65,
+    "inventory":  [
+                      "iron_sword",
+                      "warhammer",
+                      "iron_chestplate",
+                      "iron_helm",
+                      "iron_gauntlets",
+                      "iron_boots",
+                      "iron_shield",
+                      "healing_potion",
+                      "mana_potion",
+                      "fire_resistance_potion",
+                      "ice_resistance_potion",
+                      "lightning_resistance_potion"
+                  ],
+    "restockInterval":  400
+}

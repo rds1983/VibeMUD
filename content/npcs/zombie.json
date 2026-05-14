@@ -1,0 +1,46 @@
+﻿{
+    "id":  "zombie",
+    "name":  "Zombie",
+    "description":  "A rotting undead corpse",
+    "level":  9,
+    "health":  30,
+    "maxHealth":  30,
+    "mana":  5,
+    "maxMana":  5,
+    "strength":  13,
+    "dexterity":  6,
+    "constitution":  14,
+    "intelligence":  2,
+    "wisdom":  4,
+    "charisma":  2,
+    "behavior":  "aggressive",
+    "patrolPath":  [
+
+                   ],
+    "skillIds":  [
+
+                 ],
+    "specialAttackIds":  [
+
+                         ],
+    "flags":  [
+                  "undead"
+              ],
+    "goldMin":  20,
+    "goldMax":  50,
+    "lootTable":  {
+                      "iron_sword":  0.1,
+                      "healing_potion":  0.15
+                  },
+    "resistances":  {
+                        "physical":  0.15,
+                        "fire":  0,
+                        "ice":  0.15,
+                        "lightning":  0.05,
+                        "light":  -0.4
+                    },
+    "damageTypes":  [
+                        "physical"
+                    ],
+    "respawnTimeSeconds":  600
+}

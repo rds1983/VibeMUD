@@ -1,0 +1,17 @@
+﻿{
+    "id":  "scroll_fireball",
+    "name":  "Scroll of Fireball",
+    "type":  "consumable",
+    "subtype":  "scroll",
+    "slot":  null,
+    "weight":  0.1,
+    "value":  60,
+    "requiredLevel":  8,
+    "stats":  {
+                  "spell":  "fireball"
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  "fire"
+}

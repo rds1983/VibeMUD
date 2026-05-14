@@ -1,0 +1,17 @@
+﻿{
+    "id":  "healing_potion",
+    "name":  "Healing Potion",
+    "type":  "consumable",
+    "subtype":  "potion",
+    "slot":  null,
+    "weight":  0.3,
+    "value":  50,
+    "requiredLevel":  5,
+    "stats":  {
+                  "heal":  60
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

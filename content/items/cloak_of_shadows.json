@@ -1,0 +1,17 @@
+﻿{
+    "id":  "cloak_of_shadows",
+    "name":  "Cloak of Shadows",
+    "type":  "armor",
+    "subtype":  "cloak",
+    "slot":  "back",
+    "weight":  2.0,
+    "value":  150,
+    "requiredLevel":  20,
+    "stats":  {
+                  "bonus_dexterity":  2
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

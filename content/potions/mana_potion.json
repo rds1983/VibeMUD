@@ -1,0 +1,17 @@
+﻿{
+    "id":  "mana_potion",
+    "name":  "Mana Potion",
+    "type":  "consumable",
+    "subtype":  "potion",
+    "slot":  null,
+    "weight":  0.3,
+    "value":  60,
+    "requiredLevel":  10,
+    "stats":  {
+                  "mana":  60
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

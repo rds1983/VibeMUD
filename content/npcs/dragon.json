@@ -1,0 +1,51 @@
+﻿{
+    "id":  "dragon",
+    "name":  "Ancient Dragon",
+    "description":  "A massive dragon with scales of ancient power",
+    "level":  50,
+    "health":  200,
+    "maxHealth":  200,
+    "mana":  100,
+    "maxMana":  100,
+    "strength":  20,
+    "dexterity":  12,
+    "constitution":  18,
+    "intelligence":  16,
+    "wisdom":  15,
+    "charisma":  14,
+    "behavior":  "aggressive",
+    "patrolPath":  [
+
+                   ],
+    "skillIds":  [
+                     "fireball",
+                     "whirlwind"
+                 ],
+    "specialAttackIds":  [
+
+                         ],
+    "flags":  [
+                  "beast",
+                  "giant"
+              ],
+    "goldMin":  500,
+    "goldMax":  1000,
+    "lootTable":  {
+                      "mithril_plate":  0.3,
+                      "ring_of_protection":  0.2,
+                      "superior_healing_potion":  0.4,
+                      "superior_mana_potion":  0.3
+                  },
+    "resistances":  {
+                        "physical":  0.3,
+                        "fire":  0.4,
+                        "ice":  0,
+                        "lightning":  0.2,
+                        "light":  0
+                    },
+    "damageTypes":  [
+                        "physical",
+                        "fire"
+                    ],
+    "respawnTimeSeconds":  1800
+}

@@ -1,0 +1,45 @@
+﻿{
+    "id":  "high_priest",
+    "name":  "High Priest",
+    "description":  "A venerable cleric in white and gold robes, radiating divine wisdom",
+    "level":  1,
+    "health":  12,
+    "maxHealth":  12,
+    "mana":  20,
+    "maxMana":  20,
+    "strength":  8,
+    "dexterity":  9,
+    "constitution":  9,
+    "intelligence":  13,
+    "wisdom":  16,
+    "charisma":  14,
+    "behavior":  "wander",
+    "patrolPath":  [
+
+                   ],
+    "skillIds":  [
+
+                 ],
+    "specialAttackIds":  [
+
+                         ],
+    "flags":  [
+
+              ],
+    "goldMin":  0,
+    "goldMax":  0,
+    "lootTable":  {
+
+                  },
+    "resistances":  {
+                        "physical":  0,
+                        "fire":  0,
+                        "ice":  0,
+                        "lightning":  0,
+                        "light":  0
+                    },
+    "damageTypes":  [
+
+                    ],
+    "respawnTimeSeconds":  0
+}

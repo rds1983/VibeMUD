@@ -1,0 +1,17 @@
+﻿{
+    "id":  "iron_sword",
+    "name":  "Iron Sword",
+    "type":  "weapon",
+    "subtype":  "sword",
+    "slot":  "main-hand",
+    "weight":  3.8,
+    "value":  50,
+    "requiredLevel":  5,
+    "stats":  {
+                  "damage":  12
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  "physical"
+}

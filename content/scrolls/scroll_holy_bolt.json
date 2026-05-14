@@ -1,0 +1,17 @@
+﻿{
+    "id":  "scroll_holy_bolt",
+    "name":  "Scroll of Holy Bolt",
+    "type":  "consumable",
+    "subtype":  "scroll",
+    "slot":  null,
+    "weight":  0.1,
+    "value":  65,
+    "requiredLevel":  10,
+    "stats":  {
+                  "spell":  "holy_bolt"
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  "light"
+}

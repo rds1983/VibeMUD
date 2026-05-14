@@ -1,0 +1,18 @@
+﻿{
+    "id":  "leather_boots",
+    "name":  "Leather Boots",
+    "type":  "armor",
+    "subtype":  "feet",
+    "slot":  "feet",
+    "weight":  1.2,
+    "value":  15,
+    "requiredLevel":  1,
+    "stats":  {
+                  "armor":  2,
+                  "bonus_dexterity":  1
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

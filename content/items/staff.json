@@ -1,0 +1,18 @@
+﻿{
+    "id":  "staff",
+    "name":  "Wooden Staff",
+    "type":  "weapon",
+    "subtype":  "staff",
+    "slot":  "main-hand",
+    "weight":  3.0,
+    "value":  40,
+    "requiredLevel":  5,
+    "stats":  {
+                  "damage":  10,
+                  "bonus_intelligence":  1
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  "physical"
+}

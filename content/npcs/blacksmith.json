@@ -1,0 +1,45 @@
+﻿{
+    "id":  "blacksmith",
+    "name":  "Blacksmith",
+    "description":  "A burly blacksmith with a soot-covered face and powerful arms",
+    "level":  1,
+    "health":  18,
+    "maxHealth":  18,
+    "mana":  0,
+    "maxMana":  0,
+    "strength":  16,
+    "dexterity":  9,
+    "constitution":  13,
+    "intelligence":  10,
+    "wisdom":  11,
+    "charisma":  10,
+    "behavior":  "wander",
+    "patrolPath":  [
+
+                   ],
+    "skillIds":  [
+
+                 ],
+    "specialAttackIds":  [
+
+                         ],
+    "flags":  [
+
+              ],
+    "goldMin":  0,
+    "goldMax":  0,
+    "lootTable":  {
+
+                  },
+    "resistances":  {
+                        "physical":  0,
+                        "fire":  0,
+                        "ice":  0,
+                        "lightning":  0,
+                        "light":  0
+                    },
+    "damageTypes":  [
+
+                    ],
+    "respawnTimeSeconds":  0
+}

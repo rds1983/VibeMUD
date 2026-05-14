@@ -1,0 +1,13 @@
+﻿{
+    "id":  "whirlwind",
+    "name":  "Whirlwind",
+    "description":  "Spin rapidly attacking all around you",
+    "manaCost":  35,
+    "cooldownSeconds":  3,
+    "damage":  45,
+    "damageType":  "physical",
+    "isOffensive":  true,
+    "isHealing":  false,
+    "healAmount":  0,
+    "requiredLevel":  12
+}

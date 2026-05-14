@@ -1,0 +1,45 @@
+﻿{
+    "id":  "cave_spider",
+    "name":  "Cave Spider",
+    "description":  "A large arachnid with venomous fangs",
+    "level":  4,
+    "health":  16,
+    "maxHealth":  16,
+    "mana":  0,
+    "maxMana":  0,
+    "strength":  9,
+    "dexterity":  13,
+    "constitution":  10,
+    "intelligence":  2,
+    "wisdom":  4,
+    "charisma":  1,
+    "behavior":  "wander",
+    "patrolPath":  [
+
+                   ],
+    "skillIds":  [
+
+                 ],
+    "specialAttackIds":  [
+
+                         ],
+    "flags":  [
+                  "beast"
+              ],
+    "goldMin":  5,
+    "goldMax":  20,
+    "lootTable":  {
+                      "dagger":  0.1
+                  },
+    "resistances":  {
+                        "physical":  0,
+                        "fire":  0,
+                        "ice":  -0.1,
+                        "lightning":  0,
+                        "light":  0
+                    },
+    "damageTypes":  [
+                        "physical"
+                    ],
+    "respawnTimeSeconds":  350
+}

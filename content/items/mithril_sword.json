@@ -1,0 +1,18 @@
+﻿{
+    "id":  "mithril_sword",
+    "name":  "Mithril Sword",
+    "type":  "weapon",
+    "subtype":  "sword",
+    "slot":  "main-hand",
+    "weight":  3.0,
+    "value":  500,
+    "requiredLevel":  40,
+    "stats":  {
+                  "damage":  45,
+                  "bonus_dexterity":  2
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  "physical"
+}

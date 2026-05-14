@@ -1,0 +1,18 @@
+﻿{
+    "id":  "short_bow",
+    "name":  "Short Bow",
+    "type":  "weapon",
+    "subtype":  "bow",
+    "slot":  "main-hand",
+    "weight":  2.0,
+    "value":  60,
+    "requiredLevel":  10,
+    "stats":  {
+                  "damage":  15,
+                  "bonus_dexterity":  2
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  "physical"
+}

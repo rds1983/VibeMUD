@@ -1,0 +1,48 @@
+﻿{
+    "id":  "ice_elemental",
+    "name":  "Ice Elemental",
+    "description":  "A crystalline form of pure frozen water",
+    "level":  13,
+    "health":  32,
+    "maxHealth":  32,
+    "mana":  40,
+    "maxMana":  40,
+    "strength":  9,
+    "dexterity":  10,
+    "constitution":  12,
+    "intelligence":  13,
+    "wisdom":  8,
+    "charisma":  6,
+    "behavior":  "aggressive",
+    "patrolPath":  [
+
+                   ],
+    "skillIds":  [
+                     "frostbolt"
+                 ],
+    "specialAttackIds":  [
+
+                         ],
+    "flags":  [
+
+              ],
+    "goldMin":  30,
+    "goldMax":  60,
+    "lootTable":  {
+                      "steel_sword":  0.1,
+                      "ice_amulet":  0.08,
+                      "superior_healing_potion":  0.12
+                  },
+    "resistances":  {
+                        "physical":  0,
+                        "fire":  -0.3,
+                        "ice":  0.5,
+                        "lightning":  0.1,
+                        "light":  0
+                    },
+    "damageTypes":  [
+                        "physical",
+                        "ice"
+                    ],
+    "respawnTimeSeconds":  700
+}

@@ -1,0 +1,45 @@
+﻿{
+    "id":  "merchant",
+    "name":  "Merchant",
+    "description":  "A shrewd merchant in fine clothes hawking his wares",
+    "level":  1,
+    "health":  12,
+    "maxHealth":  12,
+    "mana":  0,
+    "maxMana":  0,
+    "strength":  9,
+    "dexterity":  11,
+    "constitution":  9,
+    "intelligence":  12,
+    "wisdom":  10,
+    "charisma":  13,
+    "behavior":  "wander",
+    "patrolPath":  [
+
+                   ],
+    "skillIds":  [
+
+                 ],
+    "specialAttackIds":  [
+
+                         ],
+    "flags":  [
+
+              ],
+    "goldMin":  0,
+    "goldMax":  0,
+    "lootTable":  {
+
+                  },
+    "resistances":  {
+                        "physical":  0,
+                        "fire":  0,
+                        "ice":  0,
+                        "lightning":  0,
+                        "light":  0
+                    },
+    "damageTypes":  [
+
+                    ],
+    "respawnTimeSeconds":  0
+}

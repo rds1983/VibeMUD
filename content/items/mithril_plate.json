@@ -1,0 +1,18 @@
+﻿{
+    "id":  "mithril_plate",
+    "name":  "Mithril Plate Armor",
+    "type":  "armor",
+    "subtype":  "chest",
+    "slot":  "chest",
+    "weight":  7.0,
+    "value":  500,
+    "requiredLevel":  40,
+    "stats":  {
+                  "armor":  35,
+                  "bonus_constitution":  3
+              },
+    "resistances":  {
+                        "physical":  0.1
+                    },
+    "damageType":  null
+}

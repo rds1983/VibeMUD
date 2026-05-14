@@ -1,0 +1,45 @@
+﻿{
+    "id":  "town_crier",
+    "name":  "Town Crier",
+    "description":  "A cheerful man in colorful clothes announcing news from atop a platform",
+    "level":  1,
+    "health":  10,
+    "maxHealth":  10,
+    "mana":  0,
+    "maxMana":  0,
+    "strength":  8,
+    "dexterity":  10,
+    "constitution":  8,
+    "intelligence":  10,
+    "wisdom":  12,
+    "charisma":  14,
+    "behavior":  "wander",
+    "patrolPath":  [
+
+                   ],
+    "skillIds":  [
+
+                 ],
+    "specialAttackIds":  [
+
+                         ],
+    "flags":  [
+
+              ],
+    "goldMin":  0,
+    "goldMax":  0,
+    "lootTable":  {
+
+                  },
+    "resistances":  {
+                        "physical":  0,
+                        "fire":  0,
+                        "ice":  0,
+                        "lightning":  0,
+                        "light":  0
+                    },
+    "damageTypes":  [
+
+                    ],
+    "respawnTimeSeconds":  0
+}

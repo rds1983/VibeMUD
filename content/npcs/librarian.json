@@ -1,0 +1,45 @@
+﻿{
+    "id":  "librarian",
+    "name":  "Librarian",
+    "description":  "A quiet, scholarly librarian with spectacles and ink-stained fingers",
+    "level":  1,
+    "health":  10,
+    "maxHealth":  10,
+    "mana":  15,
+    "maxMana":  15,
+    "strength":  7,
+    "dexterity":  8,
+    "constitution":  8,
+    "intelligence":  15,
+    "wisdom":  13,
+    "charisma":  10,
+    "behavior":  "wander",
+    "patrolPath":  [
+
+                   ],
+    "skillIds":  [
+
+                 ],
+    "specialAttackIds":  [
+
+                         ],
+    "flags":  [
+
+              ],
+    "goldMin":  0,
+    "goldMax":  0,
+    "lootTable":  {
+
+                  },
+    "resistances":  {
+                        "physical":  0,
+                        "fire":  0,
+                        "ice":  0,
+                        "lightning":  0,
+                        "light":  0
+                    },
+    "damageTypes":  [
+
+                    ],
+    "respawnTimeSeconds":  0
+}

@@ -1,0 +1,18 @@
+﻿{
+    "id":  "scroll_greater_heal",
+    "name":  "Scroll of Greater Healing",
+    "type":  "consumable",
+    "subtype":  "scroll",
+    "slot":  null,
+    "weight":  0.1,
+    "value":  100,
+    "requiredLevel":  15,
+    "stats":  {
+                  "spell":  "greater_heal",
+                  "heal":  80
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

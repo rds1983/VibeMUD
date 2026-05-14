@@ -1,0 +1,45 @@
+﻿{
+    "id":  "innkeeper",
+    "name":  "Innkeeper",
+    "description":  "A rotund, welcoming innkeeper with a warm smile and ample mead belly",
+    "level":  1,
+    "health":  15,
+    "maxHealth":  15,
+    "mana":  0,
+    "maxMana":  0,
+    "strength":  10,
+    "dexterity":  8,
+    "constitution":  12,
+    "intelligence":  9,
+    "wisdom":  11,
+    "charisma":  13,
+    "behavior":  "wander",
+    "patrolPath":  [
+
+                   ],
+    "skillIds":  [
+
+                 ],
+    "specialAttackIds":  [
+
+                         ],
+    "flags":  [
+
+              ],
+    "goldMin":  0,
+    "goldMax":  0,
+    "lootTable":  {
+
+                  },
+    "resistances":  {
+                        "physical":  0,
+                        "fire":  0,
+                        "ice":  0,
+                        "lightning":  0,
+                        "light":  0
+                    },
+    "damageTypes":  [
+
+                    ],
+    "respawnTimeSeconds":  0
+}

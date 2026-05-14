@@ -1,0 +1,49 @@
+﻿{
+    "id":  "skeleton",
+    "name":  "Skeleton",
+    "description":  "An ancient skeletal warrior",
+    "level":  8,
+    "health":  25,
+    "maxHealth":  25,
+    "mana":  10,
+    "maxMana":  10,
+    "strength":  11,
+    "dexterity":  9,
+    "constitution":  12,
+    "intelligence":  5,
+    "wisdom":  6,
+    "charisma":  3,
+    "behavior":  "patrol",
+    "patrolPath":  [
+                       "ruins_hall_1",
+                       "ruins_hall_2",
+                       "ruins_hall_3"
+                   ],
+    "skillIds":  [
+                     "power_strike"
+                 ],
+    "specialAttackIds":  [
+
+                         ],
+    "flags":  [
+                  "undead"
+              ],
+    "goldMin":  15,
+    "goldMax":  40,
+    "lootTable":  {
+                      "iron_sword":  0.12,
+                      "iron_helm":  0.08,
+                      "minor_healing_potion":  0.1
+                  },
+    "resistances":  {
+                        "physical":  0.1,
+                        "fire":  0,
+                        "ice":  0.2,
+                        "lightning":  0,
+                        "light":  -0.3
+                    },
+    "damageTypes":  [
+                        "physical"
+                    ],
+    "respawnTimeSeconds":  500
+}

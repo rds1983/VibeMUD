@@ -1,0 +1,17 @@
+﻿{
+    "id":  "iron_chestplate",
+    "name":  "Iron Chestplate",
+    "type":  "armor",
+    "subtype":  "chest",
+    "slot":  "chest",
+    "weight":  8.0,
+    "value":  100,
+    "requiredLevel":  10,
+    "stats":  {
+                  "armor":  16
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

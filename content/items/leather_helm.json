@@ -1,0 +1,17 @@
+﻿{
+    "id":  "leather_helm",
+    "name":  "Leather Helm",
+    "type":  "armor",
+    "subtype":  "head",
+    "slot":  "head",
+    "weight":  1.5,
+    "value":  20,
+    "requiredLevel":  1,
+    "stats":  {
+                  "armor":  4
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

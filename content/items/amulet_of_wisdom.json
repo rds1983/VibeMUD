@@ -1,0 +1,17 @@
+﻿{
+    "id":  "amulet_of_wisdom",
+    "name":  "Amulet of Wisdom",
+    "type":  "accessory",
+    "subtype":  "amulet",
+    "slot":  "amulet",
+    "weight":  0.2,
+    "value":  120,
+    "requiredLevel":  15,
+    "stats":  {
+                  "bonus_wisdom":  3
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

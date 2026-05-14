@@ -1,0 +1,17 @@
+﻿{
+    "id":  "scroll_lightning",
+    "name":  "Scroll of Lightning Strike",
+    "type":  "consumable",
+    "subtype":  "scroll",
+    "slot":  null,
+    "weight":  0.1,
+    "value":  70,
+    "requiredLevel":  12,
+    "stats":  {
+                  "spell":  "lightning_strike"
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  "lightning"
+}

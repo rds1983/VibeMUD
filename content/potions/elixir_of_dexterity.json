@@ -1,0 +1,17 @@
+﻿{
+    "id":  "elixir_of_dexterity",
+    "name":  "Elixir of Dexterity",
+    "type":  "consumable",
+    "subtype":  "potion",
+    "slot":  null,
+    "weight":  0.3,
+    "value":  100,
+    "requiredLevel":  15,
+    "stats":  {
+                  "bonus_dexterity":  4
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

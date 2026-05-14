@@ -1,0 +1,17 @@
+﻿{
+    "id":  "greater_mana_potion",
+    "name":  "Greater Mana Potion",
+    "type":  "consumable",
+    "subtype":  "potion",
+    "slot":  null,
+    "weight":  0.3,
+    "value":  150,
+    "requiredLevel":  20,
+    "stats":  {
+                  "mana":  120
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

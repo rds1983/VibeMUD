@@ -1,0 +1,17 @@
+﻿{
+    "id":  "tower_shield",
+    "name":  "Tower Shield",
+    "type":  "armor",
+    "subtype":  "shield",
+    "slot":  "off-hand",
+    "weight":  6.0,
+    "value":  180,
+    "requiredLevel":  20,
+    "stats":  {
+                  "armor":  20
+              },
+    "resistances":  {
+                        "physical":  0.1
+                    },
+    "damageType":  null
+}

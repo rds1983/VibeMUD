@@ -1,0 +1,17 @@
+﻿{
+    "id":  "minor_mana_potion",
+    "name":  "Minor Mana Potion",
+    "type":  "consumable",
+    "subtype":  "potion",
+    "slot":  null,
+    "weight":  0.3,
+    "value":  25,
+    "requiredLevel":  5,
+    "stats":  {
+                  "mana":  30
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

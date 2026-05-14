@@ -1,0 +1,13 @@
+﻿{
+    "id":  "holy_bolt",
+    "name":  "Holy Bolt",
+    "description":  "Fires a bolt of holy light at the target dealing light damage",
+    "manaCost":  40,
+    "cooldownSeconds":  3,
+    "damage":  48,
+    "damageType":  "light",
+    "isOffensive":  true,
+    "isHealing":  false,
+    "healAmount":  0,
+    "requiredLevel":  10
+}

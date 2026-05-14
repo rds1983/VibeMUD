@@ -1,0 +1,17 @@
+﻿{
+    "id":  "longsword",
+    "name":  "Longsword",
+    "type":  "weapon",
+    "subtype":  "sword",
+    "slot":  "main-hand",
+    "weight":  4.5,
+    "value":  250,
+    "requiredLevel":  25,
+    "stats":  {
+                  "damage":  32
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  "physical"
+}

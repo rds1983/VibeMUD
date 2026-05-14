@@ -1,0 +1,17 @@
+﻿{
+    "id":  "shield",
+    "name":  "Wooden Shield",
+    "type":  "armor",
+    "subtype":  "shield",
+    "slot":  "off-hand",
+    "weight":  3.0,
+    "value":  30,
+    "requiredLevel":  1,
+    "stats":  {
+                  "armor":  6
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

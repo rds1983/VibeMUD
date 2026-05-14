@@ -1,0 +1,18 @@
+﻿{
+    "id":  "steel_helm",
+    "name":  "Steel Helm",
+    "type":  "armor",
+    "subtype":  "head",
+    "slot":  "head",
+    "weight":  3.0,
+    "value":  120,
+    "requiredLevel":  20,
+    "stats":  {
+                  "armor":  12,
+                  "bonus_wisdom":  1
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

@@ -1,0 +1,13 @@
+﻿{
+    "id":  "lightning_strike",
+    "name":  "Lightning Strike",
+    "description":  "Calls down a lightning strike on enemies",
+    "manaCost":  45,
+    "cooldownSeconds":  4,
+    "damage":  55,
+    "damageType":  "lightning",
+    "isOffensive":  true,
+    "isHealing":  false,
+    "healAmount":  0,
+    "requiredLevel":  12
+}

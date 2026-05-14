@@ -1,0 +1,17 @@
+﻿{
+    "id":  "elixir_of_intelligence",
+    "name":  "Elixir of Intelligence",
+    "type":  "consumable",
+    "subtype":  "potion",
+    "slot":  null,
+    "weight":  0.3,
+    "value":  100,
+    "requiredLevel":  15,
+    "stats":  {
+                  "bonus_intelligence":  4
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

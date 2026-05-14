@@ -1,0 +1,18 @@
+﻿{
+    "id":  "warhammer",
+    "name":  "Warhammer",
+    "type":  "weapon",
+    "subtype":  "hammer",
+    "slot":  "main-hand",
+    "weight":  5.0,
+    "value":  200,
+    "requiredLevel":  20,
+    "stats":  {
+                  "damage":  28,
+                  "bonus_strength":  2
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  "physical"
+}

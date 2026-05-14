@@ -1,0 +1,13 @@
+﻿{
+    "id":  "frostbolt",
+    "name":  "Frostbolt",
+    "description":  "Launches a bolt of magical ice at the target",
+    "manaCost":  35,
+    "cooldownSeconds":  3,
+    "damage":  45,
+    "damageType":  "ice",
+    "isOffensive":  true,
+    "isHealing":  false,
+    "healAmount":  0,
+    "requiredLevel":  6
+}

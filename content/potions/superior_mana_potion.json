@@ -1,0 +1,17 @@
+﻿{
+    "id":  "superior_mana_potion",
+    "name":  "Superior Mana Potion",
+    "type":  "consumable",
+    "subtype":  "potion",
+    "slot":  null,
+    "weight":  0.3,
+    "value":  300,
+    "requiredLevel":  35,
+    "stats":  {
+                  "mana":  200
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

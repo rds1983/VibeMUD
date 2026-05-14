@@ -1,134 +1,16 @@
 {
-  "skills": [
-    {
-      "id": "fireball",
-      "name": "Fireball",
-      "description": "Hurls a massive fireball at the target dealing fire damage",
-      "manaCost": 40,
-      "cooldownSeconds": 3,
-      "damage": 50,
-      "damageType": "fire",
-      "isOffensive": true,
-      "isHealing": false,
-      "healAmount": 0,
-      "requiredLevel": 8
-    },
-    {
-      "id": "frostbolt",
-      "name": "Frostbolt",
-      "description": "Launches a bolt of magical ice at the target",
-      "manaCost": 35,
-      "cooldownSeconds": 3,
-      "damage": 45,
-      "damageType": "ice",
-      "isOffensive": true,
-      "isHealing": false,
-      "healAmount": 0,
-      "requiredLevel": 6
-    },
-    {
-      "id": "lightning_strike",
-      "name": "Lightning Strike",
-      "description": "Calls down a lightning strike on enemies",
-      "manaCost": 45,
-      "cooldownSeconds": 4,
-      "damage": 55,
-      "damageType": "lightning",
-      "isOffensive": true,
-      "isHealing": false,
-      "healAmount": 0,
-      "requiredLevel": 12
-    },
-    {
-      "id": "holy_bolt",
-      "name": "Holy Bolt",
-      "description": "Fires a bolt of holy light at the target dealing light damage",
-      "manaCost": 40,
-      "cooldownSeconds": 3,
-      "damage": 48,
-      "damageType": "light",
-      "isOffensive": true,
-      "isHealing": false,
-      "healAmount": 0,
-      "requiredLevel": 10
-    },
-    {
-      "id": "heal",
-      "name": "Heal",
-      "description": "Restore health to self or an ally",
-      "manaCost": 30,
-      "cooldownSeconds": 2,
-      "damage": 0,
-      "damageType": "physical",
-      "isOffensive": false,
-      "isHealing": true,
-      "healAmount": 40,
-      "requiredLevel": 5
-    },
-    {
-      "id": "greater_heal",
-      "name": "Greater Heal",
-      "description": "Restore significant health",
-      "manaCost": 60,
-      "cooldownSeconds": 4,
-      "damage": 0,
-      "damageType": "physical",
-      "isOffensive": false,
-      "isHealing": true,
-      "healAmount": 80,
-      "requiredLevel": 15
-    },
-    {
-      "id": "power_strike",
-      "name": "Power Strike",
-      "description": "A powerful melee attack with increased damage",
-      "manaCost": 20,
-      "cooldownSeconds": 2,
-      "damage": 60,
-      "damageType": "physical",
-      "isOffensive": true,
-      "isHealing": false,
-      "healAmount": 0,
-      "requiredLevel": 10
-    },
-    {
-      "id": "whirlwind",
-      "name": "Whirlwind",
-      "description": "Spin rapidly attacking all around you",
-      "manaCost": 35,
-      "cooldownSeconds": 3,
-      "damage": 45,
-      "damageType": "physical",
-      "isOffensive": true,
-      "isHealing": false,
-      "healAmount": 0,
-      "requiredLevel": 12
-    },
-    {
-      "id": "shadow_strike",
-      "name": "Shadow Strike",
-      "description": "A sneaky strike from the shadows dealing extra damage",
-      "manaCost": 15,
-      "cooldownSeconds": 2,
-      "damage": 55,
-      "damageType": "physical",
-      "isOffensive": true,
-      "isHealing": false,
-      "healAmount": 0,
-      "requiredLevel": 8
-    },
-    {
-      "id": "entangle",
-      "name": "Entangle",
-      "description": "Bind target with nature magic reducing their combat ability",
-      "manaCost": 25,
-      "cooldownSeconds": 3,
-      "damage": 20,
-      "damageType": "physical",
-      "isOffensive": true,
-      "isHealing": false,
-      "healAmount": 0,
-      "requiredLevel": 7
-    }
-  ]
+  "skillsIndex": "Individual skills are stored in the 'skills/' subdirectory. Each skill has its own JSON file named after the skill ID.",
+  "totalSkills": 10,
+  "skillsByType": {
+    "offensive": ["fireball", "frostbolt", "lightning_strike", "holy_bolt", "shadow_strike", "power_strike", "whirlwind", "entangle"],
+    "healing": ["heal", "holy_light"]
+  },
+  "skillsByDamageType": {
+    "fire": ["fireball"],
+    "ice": ["frostbolt", "entangle"],
+    "lightning": ["lightning_strike"],
+    "light": ["holy_bolt", "holy_light"],
+    "physical": ["shadow_strike", "power_strike", "whirlwind"],
+    "healing": ["heal"]
+  }
 }

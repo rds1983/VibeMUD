@@ -1,0 +1,48 @@
+﻿{
+    "id":  "fire_elemental",
+    "name":  "Fire Elemental",
+    "description":  "A swirling mass of flames and heat",
+    "level":  12,
+    "health":  35,
+    "maxHealth":  35,
+    "mana":  40,
+    "maxMana":  40,
+    "strength":  10,
+    "dexterity":  8,
+    "constitution":  13,
+    "intelligence":  12,
+    "wisdom":  9,
+    "charisma":  7,
+    "behavior":  "aggressive",
+    "patrolPath":  [
+
+                   ],
+    "skillIds":  [
+                     "fireball"
+                 ],
+    "specialAttackIds":  [
+
+                         ],
+    "flags":  [
+
+              ],
+    "goldMin":  30,
+    "goldMax":  60,
+    "lootTable":  {
+                      "steel_sword":  0.1,
+                      "fire_amulet":  0.08,
+                      "superior_healing_potion":  0.12
+                  },
+    "resistances":  {
+                        "physical":  0,
+                        "fire":  0.5,
+                        "ice":  -0.3,
+                        "lightning":  0,
+                        "light":  0
+                    },
+    "damageTypes":  [
+                        "physical",
+                        "fire"
+                    ],
+    "respawnTimeSeconds":  700
+}

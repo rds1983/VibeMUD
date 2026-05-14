@@ -1,0 +1,18 @@
+﻿{
+    "id":  "arcane_staff",
+    "name":  "Arcane Staff",
+    "type":  "weapon",
+    "subtype":  "staff",
+    "slot":  "main-hand",
+    "weight":  2.5,
+    "value":  180,
+    "requiredLevel":  20,
+    "stats":  {
+                  "damage":  18,
+                  "bonus_intelligence":  3
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  "physical"
+}

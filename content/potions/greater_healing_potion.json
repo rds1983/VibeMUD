@@ -1,0 +1,17 @@
+﻿{
+    "id":  "greater_healing_potion",
+    "name":  "Greater Healing Potion",
+    "type":  "consumable",
+    "subtype":  "potion",
+    "slot":  null,
+    "weight":  0.3,
+    "value":  120,
+    "requiredLevel":  15,
+    "stats":  {
+                  "heal":  120
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

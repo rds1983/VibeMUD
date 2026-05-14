@@ -1,0 +1,17 @@
+﻿{
+    "id":  "iron_helm",
+    "name":  "Iron Helm",
+    "type":  "armor",
+    "subtype":  "head",
+    "slot":  "head",
+    "weight":  2.5,
+    "value":  60,
+    "requiredLevel":  10,
+    "stats":  {
+                  "armor":  8
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

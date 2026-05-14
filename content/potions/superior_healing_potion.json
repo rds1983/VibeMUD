@@ -1,0 +1,17 @@
+﻿{
+    "id":  "superior_healing_potion",
+    "name":  "Superior Healing Potion",
+    "type":  "consumable",
+    "subtype":  "potion",
+    "slot":  null,
+    "weight":  0.3,
+    "value":  250,
+    "requiredLevel":  30,
+    "stats":  {
+                  "heal":  200
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

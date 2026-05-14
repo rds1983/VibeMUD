@@ -1,0 +1,17 @@
+﻿{
+    "id":  "minor_healing_potion",
+    "name":  "Minor Healing Potion",
+    "type":  "consumable",
+    "subtype":  "potion",
+    "slot":  null,
+    "weight":  0.3,
+    "value":  20,
+    "requiredLevel":  1,
+    "stats":  {
+                  "heal":  30
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  null
+}

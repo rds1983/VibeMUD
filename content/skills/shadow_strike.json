@@ -1,0 +1,13 @@
+﻿{
+    "id":  "shadow_strike",
+    "name":  "Shadow Strike",
+    "description":  "A sneaky strike from the shadows dealing extra damage",
+    "manaCost":  15,
+    "cooldownSeconds":  2,
+    "damage":  55,
+    "damageType":  "physical",
+    "isOffensive":  true,
+    "isHealing":  false,
+    "healAmount":  0,
+    "requiredLevel":  8
+}

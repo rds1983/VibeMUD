@@ -1,0 +1,18 @@
+﻿{
+    "id":  "scroll_whirlwind",
+    "name":  "Scroll of Whirlwind",
+    "type":  "consumable",
+    "subtype":  "scroll",
+    "slot":  null,
+    "weight":  0.1,
+    "value":  60,
+    "requiredLevel":  12,
+    "stats":  {
+                  "spell":  "whirlwind",
+                  "damage":  45
+              },
+    "resistances":  {
+
+                    },
+    "damageType":  "physical"
+}
