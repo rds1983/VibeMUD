@@ -100,5 +100,11 @@ public class CommandHandler
         RegisterCommand(new UnequipCommand());
         RegisterCommand(new DropCommand());
         RegisterCommand(new TakeCommand());
+
+        // Combat
+        RegisterCommand(new AttackCommand());
+        RegisterCommand(new CastCommand());
+        RegisterCommand(new UseCommand());
+        RegisterCommand(new FleeCommand());
     }
 }
