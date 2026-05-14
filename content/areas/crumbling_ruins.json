@@ -1,0 +1,478 @@
+{
+  "areas": [
+    {
+      "id": "crumbling_ruins",
+      "name": "Crumbling Ruins",
+      "description": "Ancient ruins of a forgotten civilization, now decaying and inhabited by undead creatures. The crumbling architecture hints at a once-great culture.",
+      "levelRange": {
+        "min": 15,
+        "max": 25
+      },
+      "spawnPoint": null,
+      "hasShop": false,
+      "shopId": null,
+      "rooms": [
+        {
+          "id": "ruins_entrance",
+          "title": "Ruins Entrance",
+          "description": "You stand before a massive stone archway, cracked and worn by countless ages. Beyond lies the crumbling remains of an ancient city. The air is cold and carries the faint smell of decay.",
+          "exits": {
+            "north": {
+              "areaId": "crumbling_ruins",
+              "roomId": "grand_plaza"
+            },
+            "south": {
+              "areaId": "forest_of_whispers",
+              "roomId": "overgrown_path"
+            },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "ruins"
+        },
+        {
+          "id": "grand_plaza",
+          "title": "Grand Plaza",
+          "description": "An enormous plaza with broken fountains and toppled statues. The ground is cracked and uneven, and skeletal remains litter the floor.",
+          "exits": {
+            "south": {
+              "areaId": "crumbling_ruins",
+              "roomId": "ruins_entrance"
+            },
+            "north": {
+              "areaId": "crumbling_ruins",
+              "roomId": "temple_entrance"
+            },
+            "east": {
+              "areaId": "crumbling_ruins",
+              "roomId": "market_district"
+            },
+            "west": {
+              "areaId": "crumbling_ruins",
+              "roomId": "residential_district"
+            },
+            "up": null,
+            "down": null
+          },
+          "npcs": ["skeleton"],
+          "items": [],
+          "terrain": "ruins"
+        },
+        {
+          "id": "temple_entrance",
+          "title": "Temple Entrance",
+          "description": "The grand entrance to what was once an enormous temple. Massive columns stand sentinel, though many have toppled. Undead guardians patrol the entrance.",
+          "exits": {
+            "south": {
+              "areaId": "crumbling_ruins",
+              "roomId": "grand_plaza"
+            },
+            "north": {
+              "areaId": "crumbling_ruins",
+              "roomId": "temple_nave"
+            },
+            "east": {
+              "areaId": "crumbling_ruins",
+              "roomId": "temple_treasury"
+            },
+            "west": {
+              "areaId": "crumbling_ruins",
+              "roomId": "temple_crypt"
+            },
+            "up": null,
+            "down": null
+          },
+          "npcs": ["skeleton", "zombie"],
+          "items": [],
+          "terrain": "ruins"
+        },
+        {
+          "id": "temple_nave",
+          "title": "Temple Nave",
+          "description": "The main chamber of the temple, a vast hall with a vaulted ceiling. The altar has been desecrated, and the pews are rotting wood.",
+          "exits": {
+            "south": {
+              "areaId": "crumbling_ruins",
+              "roomId": "temple_entrance"
+            },
+            "north": {
+              "areaId": "crumbling_ruins",
+              "roomId": "inner_sanctum"
+            },
+            "east": {
+              "areaId": "crumbling_ruins",
+              "roomId": "temple_treasury"
+            },
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["skeleton"],
+          "items": [],
+          "terrain": "ruins"
+        },
+        {
+          "id": "inner_sanctum",
+          "title": "Inner Sanctum",
+          "description": "The holiest place in the old temple, now a den of undead corruption. Dark magic radiates from the consecrated ground.",
+          "exits": {
+            "south": {
+              "areaId": "crumbling_ruins",
+              "roomId": "temple_nave"
+            },
+            "east": {
+              "areaId": "crumbling_ruins",
+              "roomId": "lich_chamber"
+            },
+            "west": null,
+            "north": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["zombie"],
+          "items": [],
+          "terrain": "ruins"
+        },
+        {
+          "id": "lich_chamber",
+          "title": "Lich Chamber",
+          "description": "A dark chamber where a powerful undead sorcerer dwells. The walls are inscribed with arcane runes, and the air crackles with dark magic.",
+          "exits": {
+            "west": {
+              "areaId": "crumbling_ruins",
+              "roomId": "inner_sanctum"
+            },
+            "south": {
+              "areaId": "crumbling_ruins",
+              "roomId": "temple_treasury"
+            },
+            "north": null,
+            "east": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["lich"],
+          "items": [],
+          "terrain": "ruins"
+        },
+        {
+          "id": "temple_treasury",
+          "title": "Temple Treasury",
+          "description": "A secure chamber that once held the temple's wealth. Chests lie broken and scattered, but some treasures remain.",
+          "exits": {
+            "west": {
+              "areaId": "crumbling_ruins",
+              "roomId": "temple_nave"
+            },
+            "south": {
+              "areaId": "crumbling_ruins",
+              "roomId": "temple_entrance"
+            },
+            "north": {
+              "areaId": "crumbling_ruins",
+              "roomId": "lich_chamber"
+            },
+            "east": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["skeleton"],
+          "items": [],
+          "terrain": "ruins"
+        },
+        {
+          "id": "temple_crypt",
+          "title": "Temple Crypt",
+          "description": "An underground burial chamber beneath the temple. Sarcophagi line the walls, and many have been broken open, their contents disturbed.",
+          "exits": {
+            "east": {
+              "areaId": "crumbling_ruins",
+              "roomId": "temple_entrance"
+            },
+            "north": {
+              "areaId": "crumbling_ruins",
+              "roomId": "burial_chamber"
+            },
+            "south": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["zombie", "skeleton"],
+          "items": [],
+          "terrain": "ruins"
+        },
+        {
+          "id": "burial_chamber",
+          "title": "Burial Chamber",
+          "description": "A smaller burial chamber with richly decorated sarcophagi. The corpses within still rest, though not peacefully.",
+          "exits": {
+            "south": {
+              "areaId": "crumbling_ruins",
+              "roomId": "temple_crypt"
+            },
+            "east": {
+              "areaId": "crumbling_ruins",
+              "roomId": "ossuary"
+            },
+            "west": null,
+            "north": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["zombie"],
+          "items": [],
+          "terrain": "ruins"
+        },
+        {
+          "id": "ossuary",
+          "title": "Ossuary",
+          "description": "A bone-filled chamber where the remains of thousands are stacked. Skeletons of the long-dead are everywhere.",
+          "exits": {
+            "west": {
+              "areaId": "crumbling_ruins",
+              "roomId": "burial_chamber"
+            },
+            "south": {
+              "areaId": "crumbling_ruins",
+              "roomId": "market_district"
+            },
+            "north": null,
+            "east": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "ruins"
+        },
+        {
+          "id": "market_district",
+          "title": "Market District",
+          "description": "Once a bustling marketplace, now a desolate ruin. Broken market stalls and overturned carts litter the ground.",
+          "exits": {
+            "west": {
+              "areaId": "crumbling_ruins",
+              "roomId": "grand_plaza"
+            },
+            "north": {
+              "areaId": "crumbling_ruins",
+              "roomId": "ossuary"
+            },
+            "east": {
+              "areaId": "crumbling_ruins",
+              "roomId": "merchant_house"
+            },
+            "south": {
+              "areaId": "crumbling_ruins",
+              "roomId": "central_avenue"
+            },
+            "up": null,
+            "down": null
+          },
+          "npcs": ["skeleton"],
+          "items": [],
+          "terrain": "ruins"
+        },
+        {
+          "id": "merchant_house",
+          "title": "Merchant House",
+          "description": "A once-grand merchant's house, now crumbling and looted. Fine furnishings are rotted and broken.",
+          "exits": {
+            "west": {
+              "areaId": "crumbling_ruins",
+              "roomId": "market_district"
+            },
+            "south": {
+              "areaId": "crumbling_ruins",
+              "roomId": "central_avenue"
+            },
+            "north": null,
+            "east": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "ruins"
+        },
+        {
+          "id": "central_avenue",
+          "title": "Central Avenue",
+          "description": "A grand avenue that once was the main thoroughfare of the city. Statues of forgotten leaders line the street.",
+          "exits": {
+            "north": {
+              "areaId": "crumbling_ruins",
+              "roomId": "market_district"
+            },
+            "south": {
+              "areaId": "crumbling_ruins",
+              "roomId": "residential_district"
+            },
+            "east": {
+              "areaId": "crumbling_ruins",
+              "roomId": "merchant_house"
+            },
+            "west": {
+              "areaId": "crumbling_ruins",
+              "roomId": "noble_district"
+            },
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "ruins"
+        },
+        {
+          "id": "residential_district",
+          "title": "Residential District",
+          "description": "A district of crumbling homes and tenements. Broken doors hang from hinges, and windows are dark and empty.",
+          "exits": {
+            "north": {
+              "areaId": "crumbling_ruins",
+              "roomId": "central_avenue"
+            },
+            "east": {
+              "areaId": "crumbling_ruins",
+              "roomId": "grand_plaza"
+            },
+            "south": {
+              "areaId": "crumbling_ruins",
+              "roomId": "lower_city"
+            },
+            "west": {
+              "areaId": "crumbling_ruins",
+              "roomId": "noble_district"
+            },
+            "up": null,
+            "down": null
+          },
+          "npcs": ["skeleton"],
+          "items": [],
+          "terrain": "ruins"
+        },
+        {
+          "id": "lower_city",
+          "title": "Lower City",
+          "description": "The poorer district of the ancient city, where the common people once lived. The ruins here are even more dilapidated.",
+          "exits": {
+            "north": {
+              "areaId": "crumbling_ruins",
+              "roomId": "residential_district"
+            },
+            "east": {
+              "areaId": "crumbling_ruins",
+              "roomId": "sewers"
+            },
+            "west": {
+              "areaId": "crumbling_ruins",
+              "roomId": "barracks_ruins"
+            },
+            "south": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["zombie"],
+          "items": [],
+          "terrain": "ruins"
+        },
+        {
+          "id": "sewers",
+          "title": "Ancient Sewers",
+          "description": "Underground sewage tunnels carved from stone. The smell is overwhelming, and creatures have made nests here.",
+          "exits": {
+            "west": {
+              "areaId": "crumbling_ruins",
+              "roomId": "lower_city"
+            },
+            "north": {
+              "areaId": "crumbling_ruins",
+              "roomId": "noble_district"
+            },
+            "south": null,
+            "east": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["zombie"],
+          "items": [],
+          "terrain": "ruins"
+        },
+        {
+          "id": "barracks_ruins",
+          "title": "Barracks Ruins",
+          "description": "The crumbling barracks of the ancient city's military. Rusted weapons still line the broken racks.",
+          "exits": {
+            "east": {
+              "areaId": "crumbling_ruins",
+              "roomId": "lower_city"
+            },
+            "north": {
+              "areaId": "crumbling_ruins",
+              "roomId": "noble_district"
+            },
+            "south": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["skeleton", "skeleton"],
+          "items": [],
+          "terrain": "ruins"
+        },
+        {
+          "id": "noble_district",
+          "title": "Noble District",
+          "description": "Once the most prestigious district, home to the city's elite. Mansions crumble, and gardens have become overgrown jungles.",
+          "exits": {
+            "east": {
+              "areaId": "crumbling_ruins",
+              "roomId": "central_avenue"
+            },
+            "south": {
+              "areaId": "crumbling_ruins",
+              "roomId": "barracks_ruins"
+            },
+            "west": {
+              "areaId": "crumbling_ruins",
+              "roomId": "watchtower"
+            },
+            "north": {
+              "areaId": "crumbling_ruins",
+              "roomId": "sewers"
+            },
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "ruins"
+        },
+        {
+          "id": "watchtower",
+          "title": "Watchtower",
+          "description": "A crumbling watchtower that once guarded the city. Skeletal sentries still stand at their posts, eternally vigilant.",
+          "exits": {
+            "east": {
+              "areaId": "crumbling_ruins",
+              "roomId": "noble_district"
+            },
+            "south": null,
+            "west": null,
+            "north": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["skeleton"],
+          "items": [],
+          "terrain": "ruins"
+        }
+      ]
+    }
+  ]
+}

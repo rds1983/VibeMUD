@@ -10,6 +10,36 @@
         "min": 1,
         "max": 10
       }
+    },
+    {
+      "id": "goblin_caves",
+      "file": "areas/goblin_caves.json",
+      "name": "Goblin Caves",
+      "description": "A sprawling network of caverns inhabited by mischievous goblin tribes",
+      "levelRange": {
+        "min": 5,
+        "max": 15
+      }
+    },
+    {
+      "id": "forest_of_whispers",
+      "file": "areas/forest_of_whispers.json",
+      "name": "Forest of Whispers",
+      "description": "An enchanted forest where whispers seem to come from the trees themselves",
+      "levelRange": {
+        "min": 10,
+        "max": 20
+      }
+    },
+    {
+      "id": "crumbling_ruins",
+      "file": "areas/crumbling_ruins.json",
+      "name": "Crumbling Ruins",
+      "description": "Ancient ruins of a forgotten civilization, now inhabited by undead creatures",
+      "levelRange": {
+        "min": 15,
+        "max": 25
+      }
     }
   ],
   "planned_areas": [

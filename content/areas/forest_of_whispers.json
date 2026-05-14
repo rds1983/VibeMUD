@@ -1,0 +1,421 @@
+{
+  "areas": [
+    {
+      "id": "forest_of_whispers",
+      "name": "Forest of Whispers",
+      "description": "A dense, enchanted forest where whispers seem to come from the trees themselves. Mystical creatures dwell among the ancient woods, and the air shimmers with residual magic.",
+      "levelRange": {
+        "min": 10,
+        "max": 20
+      },
+      "spawnPoint": null,
+      "hasShop": false,
+      "shopId": null,
+      "rooms": [
+        {
+          "id": "forest_entrance",
+          "title": "Forest Entrance",
+          "description": "You stand at the edge of a vast, dense forest. Ancient trees tower overhead, their branches intertwined to form a natural canopy. Soft whispers seem to emanate from the woods themselves, though you can't quite make out the words.",
+          "exits": {
+            "north": {
+              "areaId": "forest_of_whispers",
+              "roomId": "ancient_clearing"
+            },
+            "south": {
+              "areaId": "goblin_caves",
+              "roomId": "cave_entrance"
+            },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "forest"
+        },
+        {
+          "id": "ancient_clearing",
+          "title": "Ancient Clearing",
+          "description": "A large clearing in the forest where ancient trees form a natural amphitheater. The ground is soft with centuries of fallen leaves, and the air tingles with magic.",
+          "exits": {
+            "south": {
+              "areaId": "forest_of_whispers",
+              "roomId": "forest_entrance"
+            },
+            "north": {
+              "areaId": "forest_of_whispers",
+              "roomId": "sprite_grove"
+            },
+            "east": {
+              "areaId": "forest_of_whispers",
+              "roomId": "whispering_trees"
+            },
+            "west": {
+              "areaId": "forest_of_whispers",
+              "roomId": "mossy_grove"
+            },
+            "up": null,
+            "down": null
+          },
+          "npcs": ["forest_sprite"],
+          "items": [],
+          "terrain": "forest"
+        },
+        {
+          "id": "sprite_grove",
+          "title": "Sprite Grove",
+          "description": "A magical grove where forest sprites dance among glowing flowers. The air shimmers with faint iridescence, and you feel welcomed by the ethereal beings.",
+          "exits": {
+            "south": {
+              "areaId": "forest_of_whispers",
+              "roomId": "ancient_clearing"
+            },
+            "north": {
+              "areaId": "forest_of_whispers",
+              "roomId": "moonlit_glade"
+            },
+            "east": {
+              "areaId": "forest_of_whispers",
+              "roomId": "crystal_spring"
+            },
+            "west": {
+              "areaId": "forest_of_whispers",
+              "roomId": "enchanted_thicket"
+            },
+            "up": null,
+            "down": null
+          },
+          "npcs": ["forest_sprite", "forest_sprite"],
+          "items": [],
+          "terrain": "forest"
+        },
+        {
+          "id": "moonlit_glade",
+          "title": "Moonlit Glade",
+          "description": "A serene glade bathed in silvery moonlight, even though the sun should be shining. Magical flowers bloom here constantly, releasing a sweet fragrance.",
+          "exits": {
+            "south": {
+              "areaId": "forest_of_whispers",
+              "roomId": "sprite_grove"
+            },
+            "north": {
+              "areaId": "forest_of_whispers",
+              "roomId": "ancient_shrine"
+            },
+            "east": {
+              "areaId": "forest_of_whispers",
+              "roomId": "star_pool"
+            },
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "forest"
+        },
+        {
+          "id": "ancient_shrine",
+          "title": "Ancient Shrine",
+          "description": "Crumbling stone structures form the remains of an ancient shrine. Vines grow over the stonework, and magical runes are still faintly visible on the walls.",
+          "exits": {
+            "south": {
+              "areaId": "forest_of_whispers",
+              "roomId": "moonlit_glade"
+            },
+            "east": {
+              "areaId": "forest_of_whispers",
+              "roomId": "sacred_temple"
+            },
+            "west": {
+              "areaId": "forest_of_whispers",
+              "roomId": "overgrown_path"
+            },
+            "north": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "forest"
+        },
+        {
+          "id": "sacred_temple",
+          "title": "Sacred Temple",
+          "description": "A magnificent temple carved from living wood. The trees themselves form walls, columns, and ornate decorations. An altar stands at the center, still radiating divine power.",
+          "exits": {
+            "west": {
+              "areaId": "forest_of_whispers",
+              "roomId": "ancient_shrine"
+            },
+            "south": {
+              "areaId": "forest_of_whispers",
+              "roomId": "star_pool"
+            },
+            "north": null,
+            "east": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["forest_sprite"],
+          "items": [],
+          "terrain": "forest"
+        },
+        {
+          "id": "star_pool",
+          "title": "Star Pool",
+          "description": "A crystalline pool of water so clear it reflects the stars perfectly. The water seems to glow with starlight, and magical creatures drink from its waters.",
+          "exits": {
+            "west": {
+              "areaId": "forest_of_whispers",
+              "roomId": "moonlit_glade"
+            },
+            "north": {
+              "areaId": "forest_of_whispers",
+              "roomId": "sacred_temple"
+            },
+            "south": {
+              "areaId": "forest_of_whispers",
+              "roomId": "crystal_spring"
+            },
+            "east": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "forest"
+        },
+        {
+          "id": "crystal_spring",
+          "title": "Crystal Spring",
+          "description": "A pristine spring surrounded by crystal formations. The water sparkles with magical energy, and the ground is covered with luminous moss.",
+          "exits": {
+            "west": {
+              "areaId": "forest_of_whispers",
+              "roomId": "sprite_grove"
+            },
+            "north": {
+              "areaId": "forest_of_whispers",
+              "roomId": "star_pool"
+            },
+            "south": {
+              "areaId": "forest_of_whispers",
+              "roomId": "whispering_trees"
+            },
+            "east": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "forest"
+        },
+        {
+          "id": "whispering_trees",
+          "title": "Whispering Trees",
+          "description": "An eerie stand of trees whose leaves seem to whisper constantly. The whispers might be warnings, secrets, or just the wind playing tricks on your ears.",
+          "exits": {
+            "west": {
+              "areaId": "forest_of_whispers",
+              "roomId": "ancient_clearing"
+            },
+            "north": {
+              "areaId": "forest_of_whispers",
+              "roomId": "crystal_spring"
+            },
+            "south": {
+              "areaId": "forest_of_whispers",
+              "roomId": "shadow_woods"
+            },
+            "east": {
+              "areaId": "forest_of_whispers",
+              "roomId": "dark_thicket"
+            },
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "forest"
+        },
+        {
+          "id": "shadow_woods",
+          "title": "Shadow Woods",
+          "description": "The forest becomes darker and more oppressive here. Shadows linger even in bright daylight, and the trees seem twisted and gnarled.",
+          "exits": {
+            "north": {
+              "areaId": "forest_of_whispers",
+              "roomId": "whispering_trees"
+            },
+            "south": {
+              "areaId": "forest_of_whispers",
+              "roomId": "corrupted_grove"
+            },
+            "east": {
+              "areaId": "forest_of_whispers",
+              "roomId": "dark_thicket"
+            },
+            "west": {
+              "areaId": "forest_of_whispers",
+              "roomId": "mossy_grove"
+            },
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "forest"
+        },
+        {
+          "id": "dark_thicket",
+          "title": "Dark Thicket",
+          "description": "An impenetrable thicket of thorny plants and twisted vines. The darkness here is almost absolute, and you must pick your way carefully through the undergrowth.",
+          "exits": {
+            "west": {
+              "areaId": "forest_of_whispers",
+              "roomId": "whispering_trees"
+            },
+            "south": {
+              "areaId": "forest_of_whispers",
+              "roomId": "corrupted_grove"
+            },
+            "north": null,
+            "east": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["skeleton"],
+          "items": [],
+          "terrain": "forest"
+        },
+        {
+          "id": "corrupted_grove",
+          "title": "Corrupted Grove",
+          "description": "This once beautiful grove has been twisted by dark magic. The trees are gnarled and black, and the air reeks of decay and corruption.",
+          "exits": {
+            "north": {
+              "areaId": "forest_of_whispers",
+              "roomId": "dark_thicket"
+            },
+            "south": {
+              "areaId": "forest_of_whispers",
+              "roomId": "blighted_forest"
+            },
+            "west": {
+              "areaId": "forest_of_whispers",
+              "roomId": "shadow_woods"
+            },
+            "east": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["skeleton", "zombie"],
+          "items": [],
+          "terrain": "forest"
+        },
+        {
+          "id": "blighted_forest",
+          "title": "Blighted Forest",
+          "description": "A wasteland where trees have died and rotted. The ground is cracked and barren, and the air tastes of ash and despair.",
+          "exits": {
+            "north": {
+              "areaId": "forest_of_whispers",
+              "roomId": "corrupted_grove"
+            },
+            "south": null,
+            "west": {
+              "areaId": "forest_of_whispers",
+              "roomId": "mossy_grove"
+            },
+            "east": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["zombie"],
+          "items": [],
+          "terrain": "forest"
+        },
+        {
+          "id": "mossy_grove",
+          "title": "Mossy Grove",
+          "description": "Ancient trees are covered in thick moss, giving the forest floor a soft, spongy feel. Mushrooms and fungi grow abundantly, releasing strange spores into the air.",
+          "exits": {
+            "east": {
+              "areaId": "forest_of_whispers",
+              "roomId": "ancient_clearing"
+            },
+            "north": {
+              "areaId": "forest_of_whispers",
+              "roomId": "sprite_grove"
+            },
+            "south": {
+              "areaId": "forest_of_whispers",
+              "roomId": "blighted_forest"
+            },
+            "west": {
+              "areaId": "forest_of_whispers",
+              "roomId": "enchanted_thicket"
+            },
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "forest"
+        },
+        {
+          "id": "enchanted_thicket",
+          "title": "Enchanted Thicket",
+          "description": "A magical thicket where plants seem alive and conscious. Vines and branches move on their own, and flowers bloom in impossible colors.",
+          "exits": {
+            "east": {
+              "areaId": "forest_of_whispers",
+              "roomId": "sprite_grove"
+            },
+            "south": {
+              "areaId": "forest_of_whispers",
+              "roomId": "mossy_grove"
+            },
+            "north": {
+              "areaId": "forest_of_whispers",
+              "roomId": "ancient_shrine"
+            },
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "forest"
+        },
+        {
+          "id": "overgrown_path",
+          "title": "Overgrown Path",
+          "description": "An old stone path overgrown with moss and vines. Nature has reclaimed it, but you can still make out the careful stonework beneath the plants.",
+          "exits": {
+            "east": {
+              "areaId": "forest_of_whispers",
+              "roomId": "ancient_shrine"
+            },
+            "south": {
+              "areaId": "forest_of_whispers",
+              "roomId": "shadow_woods"
+            },
+            "north": {
+              "areaId": "crumbling_ruins",
+              "roomId": "ruins_entrance"
+            },
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "forest"
+        }
+      ]
+    }
+  ]
+}

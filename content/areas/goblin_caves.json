@@ -1,0 +1,468 @@
+{
+  "areas": [
+    {
+      "id": "goblin_caves",
+      "name": "Goblin Caves",
+      "description": "A sprawling network of caverns inhabited by mischievous goblin tribes. The caves are damp and narrow, with phosphorescent fungi providing eerie illumination.",
+      "levelRange": {
+        "min": 5,
+        "max": 15
+      },
+      "spawnPoint": null,
+      "hasShop": false,
+      "shopId": null,
+      "rooms": [
+        {
+          "id": "cave_entrance",
+          "title": "Cave Entrance",
+          "description": "You stand at the entrance of a large cavern. The opening yawns before you like a gaping maw, cold air rushing from the depths. You can hear the sounds of goblins echoing within.",
+          "exits": {
+            "north": {
+              "areaId": "goblin_caves",
+              "roomId": "entrance_chamber"
+            },
+            "south": {
+              "areaId": "starter_city",
+              "roomId": "guards_post"
+            },
+            "east": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "cave"
+        },
+        {
+          "id": "entrance_chamber",
+          "title": "Entrance Chamber",
+          "description": "A vast chamber with a high ceiling lost in shadow. Stalactites hang like frozen waterfalls, and the floor is littered with discarded bones and goblin refuse. A foul smell fills the air.",
+          "exits": {
+            "south": {
+              "areaId": "goblin_caves",
+              "roomId": "cave_entrance"
+            },
+            "north": {
+              "areaId": "goblin_caves",
+              "roomId": "goblin_barracks"
+            },
+            "east": {
+              "areaId": "goblin_caves",
+              "roomId": "scout_post"
+            },
+            "west": {
+              "areaId": "goblin_caves",
+              "roomId": "fungal_garden"
+            },
+            "up": null,
+            "down": null
+          },
+          "npcs": ["goblin_warrior"],
+          "items": [],
+          "terrain": "cave"
+        },
+        {
+          "id": "goblin_barracks",
+          "title": "Goblin Barracks",
+          "description": "A cramped barracks filled with crude goblin sleeping quarters and weapon racks. Goblins scurry about, preparing for raids or just loafing about. The sound of their chattering fills the air.",
+          "exits": {
+            "south": {
+              "areaId": "goblin_caves",
+              "roomId": "entrance_chamber"
+            },
+            "north": {
+              "areaId": "goblin_caves",
+              "roomId": "war_room"
+            },
+            "east": {
+              "areaId": "goblin_caves",
+              "roomId": "treasure_vault"
+            },
+            "west": {
+              "areaId": "goblin_caves",
+              "roomId": "barracks_storage"
+            },
+            "up": null,
+            "down": null
+          },
+          "npcs": ["goblin_scout", "goblin_warrior"],
+          "items": [],
+          "terrain": "cave"
+        },
+        {
+          "id": "war_room",
+          "title": "War Room",
+          "description": "A large chamber where goblin leaders gather. Crude maps are scratched on the walls, and various weapons hang from racks. This appears to be where goblin strategy is planned.",
+          "exits": {
+            "south": {
+              "areaId": "goblin_caves",
+              "roomId": "goblin_barracks"
+            },
+            "north": {
+              "areaId": "goblin_caves",
+              "roomId": "chief_quarters"
+            },
+            "east": {
+              "areaId": "goblin_caves",
+              "roomId": "armory"
+            },
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["goblin_warrior", "goblin_scout"],
+          "items": [],
+          "terrain": "cave"
+        },
+        {
+          "id": "chief_quarters",
+          "title": "Chief's Quarters",
+          "description": "The personal chambers of the goblin chief. Furs and trophies hang from the walls, and an imposing wooden throne sits at the center. The air reeks of goblin perfume and stale ale.",
+          "exits": {
+            "south": {
+              "areaId": "goblin_caves",
+              "roomId": "war_room"
+            },
+            "east": {
+              "areaId": "goblin_caves",
+              "roomId": "chief_vault"
+            },
+            "west": null,
+            "north": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["goblin_warrior"],
+          "items": [],
+          "terrain": "cave"
+        },
+        {
+          "id": "chief_vault",
+          "title": "Chief's Vault",
+          "description": "A secure chamber containing the chief's personal treasure hoard. Gold coins, gems, and valuable artifacts are scattered about. This is clearly heavily guarded.",
+          "exits": {
+            "west": {
+              "areaId": "goblin_caves",
+              "roomId": "chief_quarters"
+            },
+            "south": {
+              "areaId": "goblin_caves",
+              "roomId": "armory"
+            },
+            "north": null,
+            "east": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["goblin_warrior"],
+          "items": [],
+          "terrain": "cave"
+        },
+        {
+          "id": "armory",
+          "title": "Armory",
+          "description": "A chamber filled with weapons and armor, mostly crude goblin-sized equipment. Racks of swords, axes, and shields line the walls. The metallic smell of worked iron fills the air.",
+          "exits": {
+            "west": {
+              "areaId": "goblin_caves",
+              "roomId": "war_room"
+            },
+            "south": {
+              "areaId": "goblin_caves",
+              "roomId": "treasure_vault"
+            },
+            "north": {
+              "areaId": "goblin_caves",
+              "roomId": "chief_vault"
+            },
+            "east": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["goblin_scout"],
+          "items": [],
+          "terrain": "cave"
+        },
+        {
+          "id": "treasure_vault",
+          "title": "Treasure Vault",
+          "description": "A heavily guarded vault filled with goblin treasure. Piles of coins, jewels, and stolen goods fill the chamber. Several guard posts suggest this location is well-protected.",
+          "exits": {
+            "west": {
+              "areaId": "goblin_caves",
+              "roomId": "goblin_barracks"
+            },
+            "north": {
+              "areaId": "goblin_caves",
+              "roomId": "armory"
+            },
+            "south": {
+              "areaId": "goblin_caves",
+              "roomId": "storage_chamber"
+            },
+            "east": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["goblin_warrior", "goblin_warrior"],
+          "items": [],
+          "terrain": "cave"
+        },
+        {
+          "id": "storage_chamber",
+          "title": "Storage Chamber",
+          "description": "A large chamber used to store supplies and provisions. Barrels of food, water, and other necessities are stacked throughout. The smell of aged provisions fills the air.",
+          "exits": {
+            "north": {
+              "areaId": "goblin_caves",
+              "roomId": "treasure_vault"
+            },
+            "south": {
+              "areaId": "goblin_caves",
+              "roomId": "scout_post"
+            },
+            "west": {
+              "areaId": "goblin_caves",
+              "roomId": "barracks_storage"
+            },
+            "east": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["goblin_scout"],
+          "items": [],
+          "terrain": "cave"
+        },
+        {
+          "id": "barracks_storage",
+          "title": "Barracks Storage",
+          "description": "A cramped storage area adjacent to the barracks. Various supplies, blankets, and equipment are haphazardly organized. The space is barely navigable.",
+          "exits": {
+            "east": {
+              "areaId": "goblin_caves",
+              "roomId": "goblin_barracks"
+            },
+            "south": {
+              "areaId": "goblin_caves",
+              "roomId": "fungal_garden"
+            },
+            "north": null,
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "cave"
+        },
+        {
+          "id": "scout_post",
+          "title": "Scout Post",
+          "description": "A strategic observation point with multiple exits leading to different parts of the cave network. Scout goblins monitor these passages constantly.",
+          "exits": {
+            "west": {
+              "areaId": "goblin_caves",
+              "roomId": "entrance_chamber"
+            },
+            "north": {
+              "areaId": "goblin_caves",
+              "roomId": "storage_chamber"
+            },
+            "east": {
+              "areaId": "goblin_caves",
+              "roomId": "spider_lair"
+            },
+            "south": {
+              "areaId": "goblin_caves",
+              "roomId": "tunnel_passage"
+            },
+            "up": null,
+            "down": null
+          },
+          "npcs": ["goblin_scout"],
+          "items": [],
+          "terrain": "cave"
+        },
+        {
+          "id": "spider_lair",
+          "title": "Spider Lair",
+          "description": "A dark, Web-filled chamber where giant cave spiders make their home. The webs cling to everything, and the air is thick with the smell of spider silk and decay.",
+          "exits": {
+            "west": {
+              "areaId": "goblin_caves",
+              "roomId": "scout_post"
+            },
+            "north": {
+              "areaId": "goblin_caves",
+              "roomId": "deep_cavern"
+            },
+            "south": {
+              "areaId": "goblin_caves",
+              "roomId": "narrow_passage"
+            },
+            "east": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": ["cave_spider", "cave_spider"],
+          "items": [],
+          "terrain": "cave"
+        },
+        {
+          "id": "deep_cavern",
+          "title": "Deep Cavern",
+          "description": "A vast cavern far below the main goblin settlements. The ceiling is so high it's lost in darkness, and strange fungi glow with bioluminescence. An eerie silence pervades the space.",
+          "exits": {
+            "south": {
+              "areaId": "goblin_caves",
+              "roomId": "spider_lair"
+            },
+            "north": {
+              "areaId": "goblin_caves",
+              "roomId": "underground_lake"
+            },
+            "east": {
+              "areaId": "goblin_caves",
+              "roomId": "crystal_chamber"
+            },
+            "west": {
+              "areaId": "goblin_caves",
+              "roomId": "fungal_garden"
+            },
+            "up": null,
+            "down": null
+          },
+          "npcs": ["cave_spider"],
+          "items": [],
+          "terrain": "cave"
+        },
+        {
+          "id": "underground_lake",
+          "title": "Underground Lake",
+          "description": "A vast subterranean lake with crystal clear water. Strange phosphorescent creatures swim in the depths, and the water is so cold it takes your breath away. The echoes of water movement fill the cavern.",
+          "exits": {
+            "south": {
+              "areaId": "goblin_caves",
+              "roomId": "deep_cavern"
+            },
+            "east": {
+              "areaId": "goblin_caves",
+              "roomId": "crystal_chamber"
+            },
+            "west": null,
+            "north": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "cave"
+        },
+        {
+          "id": "crystal_chamber",
+          "title": "Crystal Chamber",
+          "description": "A breathtaking chamber filled with massive crystals that glow with inner light. The walls are covered in crystals of every color, creating a mesmerizing display.",
+          "exits": {
+            "west": {
+              "areaId": "goblin_caves",
+              "roomId": "deep_cavern"
+            },
+            "south": {
+              "areaId": "goblin_caves",
+              "roomId": "narrow_passage"
+            },
+            "north": {
+              "areaId": "goblin_caves",
+              "roomId": "underground_lake"
+            },
+            "east": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "cave"
+        },
+        {
+          "id": "narrow_passage",
+          "title": "Narrow Passage",
+          "description": "A tight, winding passage that forces you to squeeze through. The walls are rough and jagged, and you can barely fit through in places.",
+          "exits": {
+            "north": {
+              "areaId": "goblin_caves",
+              "roomId": "spider_lair"
+            },
+            "east": {
+              "areaId": "goblin_caves",
+              "roomId": "crystal_chamber"
+            },
+            "south": {
+              "areaId": "goblin_caves",
+              "roomId": "tunnel_passage"
+            },
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "cave"
+        },
+        {
+          "id": "tunnel_passage",
+          "title": "Tunnel Passage",
+          "description": "A narrow tunnel that slopes downward into darkness. Strange sounds echo from below, and the air grows colder the deeper you venture.",
+          "exits": {
+            "north": {
+              "areaId": "goblin_caves",
+              "roomId": "scout_post"
+            },
+            "south": {
+              "areaId": "goblin_caves",
+              "roomId": "fungal_garden"
+            },
+            "east": {
+              "areaId": "goblin_caves",
+              "roomId": "narrow_passage"
+            },
+            "west": null,
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "cave"
+        },
+        {
+          "id": "fungal_garden",
+          "title": "Fungal Garden",
+          "description": "An eerie garden of enormous fungi and mushrooms. Some glow with bioluminescence, creating an alien landscape. The smell is pungent and earthy.",
+          "exits": {
+            "east": {
+              "areaId": "goblin_caves",
+              "roomId": "entrance_chamber"
+            },
+            "north": {
+              "areaId": "goblin_caves",
+              "roomId": "barracks_storage"
+            },
+            "south": {
+              "areaId": "goblin_caves",
+              "roomId": "tunnel_passage"
+            },
+            "west": {
+              "areaId": "goblin_caves",
+              "roomId": "deep_cavern"
+            },
+            "up": null,
+            "down": null
+          },
+          "npcs": [],
+          "items": [],
+          "terrain": "cave"
+        }
+      ]
+    }
+  ]
+}
