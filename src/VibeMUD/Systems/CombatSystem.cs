@@ -16,6 +16,7 @@ public class CombatSystem
         public int DamageDealt { get; set; }
         public bool TargetDefeated { get; set; }
         public bool AttackerDefeated { get; set; }
+        public long ExperienceAwarded { get; set; }
     }
 
     /// <summary>
@@ -106,6 +107,10 @@ public class CombatSystem
         if (npcDefeated)
         {
             result.Message += $" The {npc.Name} has been defeated!";
+            long xpReward = ProgressionSystem.CalculateExperienceReward(character, npc);
+            ProgressionSystem.AwardExperience(character, xpReward);
+            result.ExperienceAwarded = xpReward;
+            result.Message += $" You gain {xpReward} experience!";
         }
 
         return result;
@@ -180,6 +185,10 @@ public class CombatSystem
         if (npcDefeated)
         {
             result.Message += $" The {npc.Name} has been defeated!";
+            long xpReward = ProgressionSystem.CalculateExperienceReward(character, npc);
+            ProgressionSystem.AwardExperience(character, xpReward);
+            result.ExperienceAwarded = xpReward;
+            result.Message += $" You gain {xpReward} experience!";
         }
 
         return result;

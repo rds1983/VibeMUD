@@ -383,4 +383,90 @@ public class CombatSystemTests
         Assert.True(result.Success);
         Assert.True(result.DamageDealt > 0);
     }
+
+    [Fact]
+    public void CharacterAttacksNPC_DefeatsNPC_AwardsExperience()
+    {
+        var character = new Character("player1", "Player", "warrior")
+        {
+            Strength = 20,
+            Health = 100,
+            MaxHealth = 100,
+            Level = 5
+        };
+        ProgressionSystem.InitializeCharacter(character);
+        character.Level = 5; // Reset to level 5 after init
+
+        var npc = new NPC("goblin", "Goblin", "desc", 5)
+        {
+            Health = 5,
+            MaxHealth = 5
+        };
+
+        var initialXp = character.ExperiencePoints;
+        var system = new CombatSystem();
+        var result = system.CharacterAttacksNPC(character, npc);
+
+        Assert.True(result.TargetDefeated);
+        Assert.True(result.ExperienceAwarded > 0);
+        Assert.True(character.ExperiencePoints > initialXp);
+        Assert.Contains("experience", result.Message);
+    }
+
+    [Fact]
+    public void UseSkill_DefeatsNPC_AwardsExperience()
+    {
+        var character = new Character("player1", "Player", "mage")
+        {
+            Mana = 50,
+            MaxMana = 50,
+            Intelligence = 18,
+            Health = 80,
+            MaxHealth = 80,
+            Level = 5
+        };
+
+        var skill = new Skill("fireball", "Fireball", "Fire spell", 40, 5, 20, "fire", true);
+        var npc = new NPC("goblin", "Goblin", "desc", 5)
+        {
+            Health = 15,
+            MaxHealth = 15
+        };
+
+        var initialXp = character.ExperiencePoints;
+        var system = new CombatSystem();
+        var result = system.UseSkill(character, npc, skill);
+
+        Assert.True(result.TargetDefeated);
+        Assert.True(result.ExperienceAwarded > 0);
+        Assert.True(character.ExperiencePoints > initialXp);
+        Assert.Contains("experience", result.Message);
+    }
+
+    [Fact]
+    public void CharacterAttacksNPC_WithoutDefeatingNPC_NoExperienceAwarded()
+    {
+        var character = new Character("player1", "Player", "warrior")
+        {
+            Strength = 10,
+            Health = 100,
+            MaxHealth = 100,
+            Level = 5
+        };
+        ProgressionSystem.InitializeCharacter(character);
+
+        var npc = new NPC("goblin", "Goblin", "desc", 5)
+        {
+            Health = 100,
+            MaxHealth = 100
+        };
+
+        var initialXp = character.ExperiencePoints;
+        var system = new CombatSystem();
+        var result = system.CharacterAttacksNPC(character, npc);
+
+        Assert.False(result.TargetDefeated);
+        Assert.Equal(0, result.ExperienceAwarded);
+        Assert.Equal(initialXp, character.ExperiencePoints);
+    }
 }

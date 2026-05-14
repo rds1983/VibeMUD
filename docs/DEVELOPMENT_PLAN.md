@@ -311,11 +311,11 @@ This document outlines the development roadmap for Vibe MUD, breaking the projec
 
 ---
 
-### Phase 7: Game Content - Starter Area (Week 10)
-**Goal**: Create starter city and first few areas
+### Phase 7: Starter City & Networking (Weeks 10-11)
+**Goal**: Create playable game with multiplayer support
 
 #### Milestones
-1. **M7.1**: Starter City
+1. **M7.1**: Starter City Content
    - [ ] Create 10+ starter city rooms
    - [ ] Create starter NPCs and shop
    - [ ] Create starter equipment
@@ -328,6 +328,14 @@ This document outlines the development roadmap for Vibe MUD, breaking the projec
    - [ ] Create area-specific loot tables
    - [ ] Balance difficulty curves
    - [ ] Test player progression
+
+3. **M7.3**: Multiplayer & Networking
+   - [ ] Implement async TCP server
+   - [ ] Implement client-server communication protocol
+   - [ ] Implement player connection management
+   - [ ] Implement shared world state synchronization
+   - [ ] Implement player visibility and updates
+   - [ ] Write server and integration tests
 
 #### Tasks
 ```
@@ -344,17 +352,29 @@ This document outlines the development roadmap for Vibe MUD, breaking the projec
 7.2.4 - Create NPCs and loot for each area
 7.2.5 - Balance difficulty and loot progression
 7.2.6 - Test complete progression through early areas
+
+7.3.1 - Create GameServer class with async TCP listener
+7.3.2 - Implement client connection handling
+7.3.3 - Create message protocol (JSON-based commands/responses)
+7.3.4 - Implement world state synchronization
+7.3.5 - Implement player awareness (see other players in room)
+7.3.6 - Implement player-to-player communication (chat)
+7.3.7 - Write 20+ server and integration tests
+7.3.8 - Test with multiple concurrent players
 ```
 
 #### Deliverables
-- Starter city fully implemented with quests and NPCs
+- Starter city fully implemented with NPCs and shops
 - 3 early-game areas with 120+ rooms
-- Balanced early progression curve
-- Playable game from levels 1-25
+- Balanced early progression curve (levels 1-25)
+- Fully functional TCP game server
+- Multi-player support with player visibility
+- Playable game from levels 1-25 with multiplayer
+- **Game is now playable as a multiplayer experience**
 
 ---
 
-### Phase 8: Mid & Late Game Content (Weeks 11-12)
+### Phase 8: Mid & Late Game Content (Weeks 12-13)
 **Goal**: Create remaining areas and content
 
 #### Milestones
@@ -399,94 +419,59 @@ This document outlines the development roadmap for Vibe MUD, breaking the projec
 
 ---
 
-### Phase 9: Multiplayer & Networking (Week 13)
-**Goal**: Implement multi-player support
-
-#### Milestones
-1. **M9.1**: Network Server
-   - [ ] Implement async TCP server
-   - [ ] Implement client-server communication
-   - [ ] Implement player connection management
-   - [ ] Write server tests
-
-2. **M9.2**: Multi-Player State
-   - [ ] Implement shared world state
-   - [ ] Implement player visibility
-   - [ ] Implement chat system
-   - [ ] Implement party/grouping (optional)
-
-#### Tasks
-```
-9.1.1 - Create TcpGameServer
-9.1.2 - Implement async client handling
-9.1.3 - Implement message protocol
-9.1.4 - Implement connection/disconnection logic
-9.1.5 - Write 15+ server tests
-
-9.2.1 - Synchronize world state across clients
-9.2.2 - Implement player visibility (show other players)
-9.2.3 - Implement chat/communication system
-9.2.4 - Implement party/group system (optional)
-9.2.5 - Write 15+ multiplayer tests
-```
-
-#### Deliverables
-- Working TCP game server
-- Multiple simultaneous connections
-- Shared world state
-- Basic chat functionality
-
----
-
-### Phase 10: Polish & Testing (Week 14)
+### Phase 9: Polish & Testing (Week 14)
 **Goal**: Final testing, bug fixes, and optimization
 
 #### Milestones
-1. **M10.1**: Integration Testing
-   - [ ] Full playthrough tests (1-100)
-   - [ ] Stress testing (multiple players)
-   - [ ] Edge case testing
-   - [ ] Balance verification
+1. **M9.1**: Integration Testing
+   - [ ] Full playthrough tests (1-25 with starter content)
+   - [ ] Stress testing (multiple concurrent players)
+   - [ ] Network stability testing
+   - [ ] Content balance verification
 
-2. **M10.2**: Bug Fixes & Optimization
+2. **M9.2**: Bug Fixes & Optimization
    - [ ] Performance profiling
    - [ ] Memory leak detection
+   - [ ] Network latency optimization
    - [ ] Bug fixes from testing
    - [ ] Documentation updates
 
-3. **M10.3**: Release Preparation
+3. **M9.3**: Release Preparation
    - [ ] Final content review
    - [ ] License file setup
    - [ ] Release notes
-   - [ ] Final commit and tag
+   - [ ] v1.0 milestone release
 
 #### Tasks
 ```
-10.1.1 - Play through game 1-100 multiple times
-10.1.2 - Test multiplayer with concurrent players
-10.1.3 - Test all combat mechanics
-10.1.4 - Test all progression systems
-10.1.5 - Document all bugs found
-10.1.6 - Write 20+ integration tests
+9.1.1 - Play through starter content 1-25 multiple times
+9.1.2 - Test multiplayer with 2-10 concurrent players
+9.1.3 - Test all combat mechanics in multiplayer
+9.1.4 - Test all progression systems
+9.1.5 - Test network reconnection scenarios
+9.1.6 - Document all bugs found
+9.1.7 - Write 20+ integration tests
 
-10.2.1 - Profile game performance
-10.2.2 - Optimize hot paths
-10.2.3 - Fix all reported bugs
-10.2.4 - Update documentation
-10.2.5 - Code cleanup
+9.2.1 - Profile game performance (CPU, memory, network)
+9.2.2 - Optimize hot paths and network messages
+9.2.3 - Fix all reported bugs
+9.2.4 - Stress test with 20+ concurrent players
+9.2.5 - Update all documentation
+9.2.6 - Code cleanup and optimization
 
-10.3.1 - Create LICENSE file (MIT)
-10.3.2 - Create RELEASE_NOTES.md
-10.3.3 - Final version bump
-10.3.4 - Create git tag for v1.0
-10.3.5 - Final documentation review
+9.3.1 - Create LICENSE file (MIT)
+9.3.2 - Create RELEASE_NOTES.md
+9.3.3 - Final version bump to v1.0
+9.3.4 - Create git tag for v1.0
+9.3.5 - Final documentation review
 ```
 
 #### Deliverables
-- Fully tested and stable game
-- 100+ passing tests
+- Fully tested and stable multiplayer game
+- 180+ passing tests
 - Complete documentation
-- v1.0 release ready
+- v1.0 release ready with playable levels 1-25
+- Multiplayer functional and stress-tested
 
 ---
 
