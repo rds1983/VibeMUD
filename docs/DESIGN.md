@@ -81,15 +81,21 @@ VibeMUD/
 │   ├── scrolls.json
 │   ├── shops.json
 ├── docs/
+│   ├── DESIGN.md
+│   ├── DEVELOPMENT_PLAN.md
+│   ├── AGENTS.md
 │   ├── User Guide.md
 │   ├── Developer Guide.md
+├── saves/
+│   ├── player_character_1.json
+│   ├── player_character_2.json
 ├── tests/
 │   ├── CombatSystemTests.cs
 │   ├── ProgressionSystemTests.cs
 │   ├── NPCBehaviorTests.cs
 ├── README.md
-├── DESIGN.md
-├── state.json
+├── state.json (Project state: phases, completion status, test coverage)
+├── CLAUDE.md (Project context for AI agents)
 └── LICENSE
 ```
 
@@ -544,7 +550,8 @@ Final Damage = Base Damage × Stat Multiplier - Armor Reduction ± Resistances
 - Serialize/deserialize using System.Text.Json
 
 ### Persistence
-- Save player characters to JSON (state.json)
+- Save player characters to individual JSON files in `saves/` directory
+- Track project development state in `state.json` (phases, completion status, test counts)
 - Save game world state for respawns and NPC positions
 - Implement transaction-like save system
 
