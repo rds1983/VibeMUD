@@ -1,302 +1,87 @@
 {
+  "areasIndex": "This file serves as documentation. Individual areas are stored in the 'areas/' subdirectory.",
   "areas": [
     {
       "id": "starter_city",
+      "file": "areas/starter_city.json",
       "name": "Starter City",
       "description": "A welcoming city for new adventurers, bustling with activity and opportunity",
       "levelRange": {
         "min": 1,
         "max": 10
-      },
-      "spawnPoint": {
-        "areaId": "starter_city",
-        "roomId": "city_center"
-      },
-      "hasShop": true,
-      "shopId": "starter_shop",
-      "rooms": [
-        {
-          "id": "city_center",
-          "title": "City Center",
-          "description": "You stand in the heart of the bustling city. Merchants call out their wares, travelers hurry between districts, and the occasional adventurer gears up for a journey. A tall town crier stands on a platform in the center, announcing news and important information.",
-          "exits": {
-            "north": {
-              "areaId": "starter_city",
-              "roomId": "town_square"
-            },
-            "south": {
-              "areaId": "starter_city",
-              "roomId": "market"
-            },
-            "east": {
-              "areaId": "starter_city",
-              "roomId": "inn"
-            },
-            "west": {
-              "areaId": "starter_city",
-              "roomId": "temple"
-            },
-            "up": null,
-            "down": null
-          },
-          "npcs": [
-            "town_crier"
-          ],
-          "items": [],
-          "terrain": "city"
-        },
-        {
-          "id": "town_square",
-          "title": "Town Square",
-          "description": "A large open plaza with cobblestone paths and benches. The town square serves as a gathering place for citizens and adventurers alike. A beautiful fountain stands in the center, and you can see various shops and buildings surrounding the square.",
-          "exits": {
-            "north": {
-              "areaId": "starter_city",
-              "roomId": "barracks"
-            },
-            "south": {
-              "areaId": "starter_city",
-              "roomId": "city_center"
-            },
-            "east": {
-              "areaId": "starter_city",
-              "roomId": "library"
-            },
-            "west": {
-              "areaId": "starter_city",
-              "roomId": "guards_post"
-            },
-            "up": null,
-            "down": null
-          },
-          "npcs": [],
-          "items": [],
-          "terrain": "city"
-        },
-        {
-          "id": "inn",
-          "title": "The Adventurer's Rest",
-          "description": "A cozy inn with warm lighting and the aroma of hearty food and ale. The innkeeper tends to patrons at the bar while travelers gather around tables sharing stories of their adventures. Several doors lead upstairs to private rooms.",
-          "exits": {
-            "north": {
-              "areaId": "starter_city",
-              "roomId": "blacksmith"
-            },
-            "south": {
-              "areaId": "starter_city",
-              "roomId": "stable"
-            },
-            "west": {
-              "areaId": "starter_city",
-              "roomId": "city_center"
-            },
-            "east": null,
-            "up": null,
-            "down": null
-          },
-          "npcs": [
-            "innkeeper"
-          ],
-          "items": [],
-          "terrain": "interior"
-        },
-        {
-          "id": "temple",
-          "title": "Temple of Light",
-          "description": "A serene sanctuary with high arches and stained glass windows. The temple is filled with the scent of incense and the soft sound of prayers. Priests in white robes move about their sacred duties. An altar stands at the far end, radiating a sense of divine protection.",
-          "exits": {
-            "east": {
-              "areaId": "starter_city",
-              "roomId": "city_center"
-            },
-            "north": {
-              "areaId": "starter_city",
-              "roomId": "library"
-            },
-            "south": null,
-            "west": null,
-            "up": null,
-            "down": null
-          },
-          "npcs": [
-            "high_priest"
-          ],
-          "items": [],
-          "terrain": "interior"
-        },
-        {
-          "id": "barracks",
-          "title": "City Guard Barracks",
-          "description": "A sturdy building filled with weapons racks, training dummies, and the sounds of soldiers drilling. Guards move about in organized formations, maintaining the city's security. The scent of leather and metal fills the air.",
-          "exits": {
-            "south": {
-              "areaId": "starter_city",
-              "roomId": "town_square"
-            },
-            "east": {
-              "areaId": "starter_city",
-              "roomId": "library"
-            },
-            "west": {
-              "areaId": "starter_city",
-              "roomId": "guards_post"
-            },
-            "north": null,
-            "up": null,
-            "down": null
-          },
-          "npcs": [
-            "guard_captain"
-          ],
-          "items": [],
-          "terrain": "interior"
-        },
-        {
-          "id": "guards_post",
-          "title": "Guards Post",
-          "description": "A fortified checkpoint at the western edge of the city. Armored guards stand watch, checking those who enter and leave. A large wooden gate stands behind the guards, leading out toward the wilds.",
-          "exits": {
-            "east": {
-              "areaId": "starter_city",
-              "roomId": "barracks"
-            },
-            "south": {
-              "areaId": "starter_city",
-              "roomId": "town_square"
-            },
-            "north": null,
-            "west": null,
-            "up": null,
-            "down": null
-          },
-          "npcs": [
-            "sentry"
-          ],
-          "items": [],
-          "terrain": "city"
-        },
-        {
-          "id": "library",
-          "title": "City Library",
-          "description": "A vast repository of knowledge with towering shelves filled with ancient tomes and scrolls. The air is thick with the smell of old parchment and leather bindings. A librarian tends to the collection from behind a wooden desk, silently cataloging new additions.",
-          "exits": {
-            "west": {
-              "areaId": "starter_city",
-              "roomId": "barracks"
-            },
-            "south": {
-              "areaId": "starter_city",
-              "roomId": "town_square"
-            },
-            "north": {
-              "areaId": "starter_city",
-              "roomId": "fountain"
-            },
-            "east": null,
-            "up": null,
-            "down": null
-          },
-          "npcs": [
-            "librarian"
-          ],
-          "items": [],
-          "terrain": "interior"
-        },
-        {
-          "id": "market",
-          "title": "The Marketplace",
-          "description": "A bustling marketplace filled with vendor stalls and the constant chatter of merchants hawking their goods. The air is filled with exotic smells - fresh bread, spices, leather, and metals. Adventurers and townsfolk browse the wares or haggle over prices.",
-          "exits": {
-            "north": {
-              "areaId": "starter_city",
-              "roomId": "city_center"
-            },
-            "east": {
-              "areaId": "starter_city",
-              "roomId": "stable"
-            },
-            "west": {
-              "areaId": "starter_city",
-              "roomId": "blacksmith"
-            },
-            "south": null,
-            "up": null,
-            "down": null
-          },
-          "npcs": [
-            "merchant"
-          ],
-          "items": [],
-          "terrain": "city"
-        },
-        {
-          "id": "blacksmith",
-          "title": "The Blacksmith's Forge",
-          "description": "The hammer-clang of metal on anvil echoes through this workshop. A burly blacksmith works over a roaring forge, sweat dripping down his face as he shapes glowing metal. The shop is filled with weapons, armor, and tools of all kinds.",
-          "exits": {
-            "south": {
-              "areaId": "starter_city",
-              "roomId": "inn"
-            },
-            "west": {
-              "areaId": "starter_city",
-              "roomId": "market"
-            },
-            "east": null,
-            "north": null,
-            "up": null,
-            "down": null
-          },
-          "npcs": [
-            "blacksmith"
-          ],
-          "items": [],
-          "terrain": "interior"
-        },
-        {
-          "id": "stable",
-          "title": "The City Stable",
-          "description": "A large wooden building housing horses and other beasts of burden. Hay and straw cover the floor, and the air is filled with the sounds and smells of livestock. A stable master moves between stalls, tending to the animals.",
-          "exits": {
-            "north": {
-              "areaId": "starter_city",
-              "roomId": "inn"
-            },
-            "west": {
-              "areaId": "starter_city",
-              "roomId": "market"
-            },
-            "east": null,
-            "south": null,
-            "up": null,
-            "down": null
-          },
-          "npcs": [
-            "stable_master"
-          ],
-          "items": [],
-          "terrain": "interior"
-        },
-        {
-          "id": "fountain",
-          "title": "Central Fountain",
-          "description": "A grand fountain sits in a quiet courtyard garden. Crystal clear water flows from a central sculpture depicting a phoenix rising from flames. The sound of the water is soothing, and benches around the fountain offer respite from the busy city streets.",
-          "exits": {
-            "south": {
-              "areaId": "starter_city",
-              "roomId": "library"
-            },
-            "west": null,
-            "east": null,
-            "north": null,
-            "up": null,
-            "down": null
-          },
-          "npcs": [],
-          "items": [],
-          "terrain": "city"
-        }
-      ]
+      }
+    }
+  ],
+  "planned_areas": [
+    {
+      "id": "goblin_caves",
+      "name": "Goblin Caves",
+      "levelRange": { "min": 5, "max": 15 }
+    },
+    {
+      "id": "forest_of_whispers",
+      "name": "Forest of Whispers",
+      "levelRange": { "min": 10, "max": 20 }
+    },
+    {
+      "id": "crumbling_ruins",
+      "name": "Crumbling Ruins",
+      "levelRange": { "min": 15, "max": 25 }
+    },
+    {
+      "id": "mountain_pass",
+      "name": "Mountain Pass",
+      "levelRange": { "min": 20, "max": 30 }
+    },
+    {
+      "id": "swamplands",
+      "name": "Swamplands",
+      "levelRange": { "min": 25, "max": 35 }
+    },
+    {
+      "id": "dark_forest",
+      "name": "Dark Forest",
+      "levelRange": { "min": 30, "max": 40 }
+    },
+    {
+      "id": "underground_mines",
+      "name": "Underground Mines",
+      "levelRange": { "min": 35, "max": 45 }
+    },
+    {
+      "id": "volcanic_wastes",
+      "name": "Volcanic Wastes",
+      "levelRange": { "min": 40, "max": 50 }
+    },
+    {
+      "id": "ice_caverns",
+      "name": "Ice Caverns",
+      "levelRange": { "min": 45, "max": 55 }
+    },
+    {
+      "id": "haunted_castle",
+      "name": "Haunted Castle",
+      "levelRange": { "min": 50, "max": 60 }
+    },
+    {
+      "id": "abyssal_chasm",
+      "name": "Abyssal Chasm",
+      "levelRange": { "min": 55, "max": 65 }
+    },
+    {
+      "id": "celestial_tower",
+      "name": "Celestial Tower",
+      "levelRange": { "min": 60, "max": 70 }
+    },
+    {
+      "id": "lichs_tomb",
+      "name": "Lich's Tomb",
+      "levelRange": { "min": 70, "max": 80 }
+    },
+    {
+      "id": "void_realm",
+      "name": "Void Realm",
+      "levelRange": { "min": 80, "max": 100 }
     }
   ]
 }
