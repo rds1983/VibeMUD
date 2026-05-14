@@ -36,7 +36,6 @@
 - **Language**: C# (.NET 8.0)
 - **Data Format**: JSON for all game content
 - **Threading**: Async/await for multiplayer handling
-- **Testing**: xUnit for unit tests
 
 ### Project Structure
 ```
@@ -83,12 +82,7 @@ VibeMUD/
 ├── docs/
 │   ├── User Guide.md
 │   ├── Developer Guide.md
-├── tests/
-│   ├── CombatSystemTests.cs
-│   ├── ProgressionSystemTests.cs
-│   ├── NPCBehaviorTests.cs
 ├── README.md
-├── DESIGN.md
 ├── state.json
 └── LICENSE
 ```
@@ -552,11 +546,6 @@ Final Damage = Base Damage × Stat Multiplier - Armor Reduction ± Resistances
 - Use async/await for player connections
 - Thread-safe access to shared game state
 - Proper locking for combat and NPC updates
-
-### Testing Strategy
-- Unit tests for each system (combat, progression, etc.)
-- Integration tests for full game flows
-- Mock data fixtures for testing
 
 ---
 
