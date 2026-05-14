@@ -1,7 +1,7 @@
 {
   "projectName": "Vibe MUD",
-  "version": "0.5.0",
-  "status": "npc_behavior_system_implemented",
+  "version": "0.6.0",
+  "status": "loot_and_economy_systems_implemented",
   "lastUpdated": "2026-05-15",
   "description": "A text-based fantasy medieval Multi-User Dungeon built with C# and .NET 8.0",
 
@@ -24,7 +24,7 @@
       "combat_system": true,
       "progression_system": true,
       "npc_behavior_system": true,
-      "loot_system": false,
+      "loot_system": true,
       "data_loading": true,
       "save_system": true,
       "command_system": true,
@@ -50,7 +50,7 @@
     }
   },
 
-  "currentPhase": "Phase 5 Complete - Ready for Phase 6",
+  "currentPhase": "Phase 6 Complete - Ready for Phase 7",
   "nextSteps": [
     "Implement progression system (Phase 4)",
     "Implement experience and leveling (Phase 4)",
@@ -82,7 +82,7 @@
   },
 
   "notes": {
-    "phase5Completion": "✓ Phase 5 complete with NPC behavior system and 220 passing tests",
+    "phase6Completion": "✓ Phase 6 complete with loot and economy systems and 278 passing tests",
     "accomplishments": [
       "✓ Phase 1: Core models and data systems (94 tests)",
       "✓ Phase 2: Game engine with commands (139 tests)",
@@ -107,7 +107,16 @@
       "✓ NPC respawn system: Configurable respawn times with cooldowns",
       "✓ Behavior validation: Ensures NPC configurations are valid",
       "✓ Dynamic behavior: NPCs hunt, patrol, or wander based on configuration",
-      "✓ 25 comprehensive behavior tests covering all systems"
+      "✓ 25 comprehensive behavior tests covering all systems",
+      "✓ Phase 6: Loot and economy systems (278 tests)",
+      "✓ LootSystem: Item rarity classification (Common, Uncommon, Rare, VeryRare, Legendary)",
+      "✓ Level-based pricing: Items more expensive when underleveled, cheaper when overleveled",
+      "✓ ShopSystem: Full buy/sell mechanics with margin-based pricing",
+      "✓ Shop inventory management: Stock tracking, restocking, inventory queries",
+      "✓ Bulk transactions: Support for buying/selling multiple items",
+      "✓ Loot validation: Validates NPC loot tables for consistency",
+      "✓ Currency system: Gold-based transactions with flexible pricing",
+      "✓ 58 comprehensive economy/loot tests covering all systems"
     ],
     "designDecisions": [
       "JSON for all game content enables easy modification and distribution",
