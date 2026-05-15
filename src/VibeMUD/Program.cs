@@ -59,6 +59,25 @@ catch (Exception ex)
     Environment.Exit(1);
 }
 
+// Spawn NPCs into the world
+Console.WriteLine("[Startup] Spawning NPCs...");
+var npcCount = 0;
+foreach (var area in gameState.Areas.Values)
+{
+    foreach (var room in area.Rooms.Values)
+    {
+        foreach (var npcTemplateId in room.NPCIds.ToList())
+        {
+            var spawnedNpc = gameState.SpawnNPC(npcTemplateId, area.Id, room.Id);
+            if (spawnedNpc != null)
+            {
+                npcCount++;
+            }
+        }
+    }
+}
+Console.WriteLine($"[Startup] Spawned {npcCount} NPCs into the world");
+
 // Initialize command handler
 var commandHandler = new CommandHandler();
 
