@@ -16,10 +16,18 @@ public class ClientConnection
     private Character? _character;
     private bool _isConnected = true;
     private readonly CancellationTokenSource _cancellationTokenSource = new();
+    private LoginState _loginState = LoginState.AskingName;
+    private string _attemptedCharacterName = string.Empty;
+    private string _passwordAttempt = string.Empty;
+    private int _wrongPasswordAttempts = 0;
 
     public string ClientId => _clientId;
     public Character? Character => _character;
     public bool IsConnected => _isConnected;
+    public LoginState LoginState => _loginState;
+    public string AttemptedCharacterName => _attemptedCharacterName;
+    public string PasswordAttempt => _passwordAttempt;
+    public int WrongPasswordAttempts => _wrongPasswordAttempts;
 
     public event Func<string, Task>? OnDisconnect;
     public event Func<string, Task>? OnCommandReceived;
@@ -38,6 +46,40 @@ public class ClientConnection
     public void SetCharacter(Character character)
     {
         _character = character;
+        _loginState = LoginState.Authenticated;
+    }
+
+    public void SetLoginState(LoginState state)
+    {
+        _loginState = state;
+    }
+
+    public void SetAttemptedCharacterName(string name)
+    {
+        _attemptedCharacterName = name;
+    }
+
+    public void SetPasswordAttempt(string password)
+    {
+        _passwordAttempt = password;
+    }
+
+    public void IncrementWrongPasswordAttempts()
+    {
+        _wrongPasswordAttempts++;
+    }
+
+    public void ResetLoginState()
+    {
+        _loginState = LoginState.AskingName;
+        _attemptedCharacterName = string.Empty;
+        _passwordAttempt = string.Empty;
+        _wrongPasswordAttempts = 0;
+    }
+
+    public bool IsAuthenticatedCharacter()
+    {
+        return _loginState == LoginState.Authenticated && _character != null;
     }
 
     /// <summary>

@@ -1,0 +1,32 @@
+
+  ╔═══════════════════════════════════════════════════════════════════════════╗
+  ║                                                                           ║
+  ║     ██╗   ██╗██╗██████╗ ███████╗███╗   ███╗██╗   ██╗██████╗             ║
+  ║     ██║   ██║██║██╔══██╗██╔════╝████╗ ████║██║   ██║██╔══██╗            ║
+  ║     ██║   ██║██║██████╔╝█████╗  ██╔████╔██║██║   ██║██║  ██║            ║
+  ║     ╚██╗ ██╔╝██║██╔══██╗██╔══╝  ██║╚██╔╝██║██║   ██║██║  ██║            ║
+  ║      ╚████╔╝ ██║██████╔╝███████╗██║ ╚═╝ ██║╚██████╔╝██████╔╝            ║
+  ║       ╚═══╝  ╚═╝╚═════╝ ╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚═════╝             ║
+  ║                                                                           ║
+  ║                    A Multi-User Dungeon Experience                       ║
+  ║                                                                           ║
+  ╠═══════════════════════════════════════════════════════════════════════════╣
+  ║                                                                           ║
+  ║  Version 0.7.3                                                           ║
+  ║                                                                           ║
+  ║  Welcome, adventurer! You stand at the threshold of VibeMUD, a realm     ║
+  ║  of endless possibilities and perilous encounters. Create your character ║
+  ║  and embark on an epic journey through lands of magic and mystery.       ║
+  ║                                                                           ║
+  ║  Classes: Warrior • Thief • Mage • Cleric • Monk • Druid                ║
+  ║                                                                           ║
+  ║  ═══════════════════════════════════════════════════════════════════    ║
+  ║  Server Status: Online                                                  ║
+  ║  Players Online: Connecting...                                          ║
+  ║  ═══════════════════════════════════════════════════════════════════    ║
+  ║                                                                           ║
+  ║  Type 'help' once in-game for a list of commands.                       ║
+  ║  Type 'quit' to disconnect and save your progress.                      ║
+  ║                                                                           ║
+  ╚═══════════════════════════════════════════════════════════════════════════╝
+

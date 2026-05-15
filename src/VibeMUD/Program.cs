@@ -3,9 +3,22 @@ using VibeMUD.Core;
 using VibeMUD.Data;
 using VibeMUD.Networking;
 
-// Initialize game
-Console.WriteLine("VibeMUD Server v0.7.3");
-Console.WriteLine("===================");
+// Display splash screen
+try
+{
+    var splashPath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "content", "Splash.txt");
+    if (File.Exists(splashPath))
+    {
+        var splash = File.ReadAllText(splashPath);
+        Console.WriteLine(splash);
+    }
+}
+catch
+{
+    // If splash fails to load, just continue with text startup
+    Console.WriteLine("VibeMUD Server v0.7.3");
+    Console.WriteLine("===================");
+};
 
 // Load game content
 var gameState = new GameState();
@@ -30,8 +43,13 @@ catch (Exception ex)
 // Initialize command handler
 var commandHandler = new CommandHandler();
 
+// Initialize save manager for character persistence
+var playerSavePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "players");
+var saveManager = new SaveManager(playerSavePath);
+Console.WriteLine("[Startup] Character persistence path: " + playerSavePath);
+
 // Create and start server
-var server = new GameServer(gameState, commandHandler);
+var server = new GameServer(gameState, commandHandler, saveManager);
 
 // Handle shutdown gracefully
 var cts = new CancellationTokenSource();

@@ -8,6 +8,8 @@ public class Character
     public string Id { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
     public string Class { get; set; } = string.Empty; // warrior, thief, mage, cleric, monk, druid
+    public string PasswordHash { get; set; } = string.Empty;
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public int Level { get; set; } = 1;
     public long ExperiencePoints { get; set; }
     public int Health { get; set; }

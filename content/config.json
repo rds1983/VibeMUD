@@ -1,0 +1,39 @@
+{
+  "game": {
+    "name": "VibeMUD",
+    "version": "0.7.3",
+    "description": "A multi-user dungeon experience"
+  },
+  "server": {
+    "port": 9999,
+    "host": "0.0.0.0",
+    "maxConnections": 100,
+    "commandTimeoutSeconds": 300,
+    "idleTimeoutSeconds": 1800
+  },
+  "gameplay": {
+    "startingArea": "starter_city",
+    "startingRoom": "city_center",
+    "maxInventoryWeight": 100.0,
+    "characterNameMinLength": 3,
+    "characterNameMaxLength": 20,
+    "passwordMinLength": 4,
+    "maxLoginAttempts": 3
+  },
+  "security": {
+    "bcryptWorkFactor": 12,
+    "enableAccountLogging": true,
+    "enableCommandLogging": false
+  },
+  "database": {
+    "type": "json",
+    "playerDataPath": "players",
+    "contentPath": "content"
+  },
+  "features": {
+    "enablePvP": true,
+    "enableTrading": true,
+    "enableGuilds": false,
+    "enableQuests": false
+  }
+}

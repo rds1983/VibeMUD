@@ -7,6 +7,7 @@ using VibeMUD.Commands;
 using VibeMUD.Core;
 using VibeMUD.Data;
 using VibeMUD.Models;
+using VibeMUD.Utilities;
 
 /// <summary>
 /// Main game server that handles TCP connections and game state (plain text protocol)
@@ -16,15 +17,18 @@ public class GameServer
     private readonly GameState _gameState;
     private readonly CommandHandler _commandHandler;
     private readonly ServerGameState _serverGameState;
+    private readonly SaveManager _saveManager;
+    private readonly PasswordHasher _passwordHasher = new();
     private TcpListener? _listener;
     private bool _isRunning;
     private int _port = 9999;
     private readonly Dictionary<string, ClientConnection> _clientConnections = new();
 
-    public GameServer(GameState gameState, CommandHandler commandHandler)
+    public GameServer(GameState gameState, CommandHandler commandHandler, SaveManager saveManager)
     {
         _gameState = gameState ?? throw new ArgumentNullException(nameof(gameState));
         _commandHandler = commandHandler ?? throw new ArgumentNullException(nameof(commandHandler));
+        _saveManager = saveManager ?? throw new ArgumentNullException(nameof(saveManager));
         _serverGameState = new ServerGameState(_gameState, _commandHandler);
     }
 
@@ -91,9 +95,7 @@ public class GameServer
             await connection.SendAsync("");
             await connection.SendAsync("=== WELCOME TO VIBEMUD ===");
             await connection.SendAsync("");
-            await connection.SendAsync("Type 'create <name> <class>' to create a character");
-            await connection.SendAsync("Example: create Aragorn warrior");
-            await connection.SendAsync("Classes: warrior, thief, mage, cleric, monk, druid");
+            await connection.SendAsync("Please enter your character name:");
             await connection.SendAsync("");
             await connection.SendAsync("> ");
 
@@ -118,20 +120,18 @@ public class GameServer
     {
         try
         {
-            var character = connection.Character;
-
-            // Handle character creation
-            if (character == null && commandLine.StartsWith("create ", StringComparison.OrdinalIgnoreCase))
+            // Route based on login state
+            if (connection.LoginState != LoginState.Authenticated)
             {
-                await HandleCharacterCreationAsync(clientId, connection, commandLine);
+                await HandleLoginFlowAsync(clientId, connection, commandLine);
                 return;
             }
 
-            // Check if authenticated
+            var character = connection.Character;
             if (character == null)
             {
-                await connection.SendAsync("[ERROR] You must create a character first. Type: create <name> <class>");
-                await connection.SendAsync("> ");
+                await connection.SendAsync("[ERROR] Authentication lost. Disconnecting.");
+                await connection.DisconnectAsync();
                 return;
             }
 
@@ -160,6 +160,9 @@ public class GameServer
                 connection.SetCharacter(updatedChar);
             }
 
+            // Save character periodically (on any command that might change state)
+            _saveManager.SaveCharacter(character);
+
             await connection.SendAsync("> ");
         }
         catch (Exception ex)
@@ -171,71 +174,241 @@ public class GameServer
     }
 
     /// <summary>
-    /// Handles character creation
+    /// Routes login flow based on current state
     /// </summary>
-    private async Task HandleCharacterCreationAsync(string clientId, ClientConnection connection, string commandLine)
+    private async Task HandleLoginFlowAsync(string clientId, ClientConnection connection, string input)
     {
         try
         {
-            var parts = commandLine.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            if (parts.Length < 3)
+            switch (connection.LoginState)
             {
-                await connection.SendAsync("[ERROR] Usage: create <name> <class>");
-                await connection.SendAsync("> ");
-                return;
+                case LoginState.AskingName:
+                    await HandleAskingNameAsync(connection, input);
+                    break;
+
+                case LoginState.AskingPassword:
+                    await HandleAskingPasswordAsync(connection, input);
+                    break;
+
+                case LoginState.AskingCreateConfirmation:
+                    await HandleCreateConfirmationAsync(connection, input);
+                    break;
+
+                case LoginState.AskingNewPassword:
+                    await HandleNewPasswordAsync(connection, input);
+                    break;
+
+                case LoginState.ConfirmingPassword:
+                    await HandleConfirmPasswordAsync(connection, input);
+                    break;
+
+                case LoginState.AskingClass:
+                    await HandleClassSelectionAsync(clientId, connection, input);
+                    break;
+
+                default:
+                    await connection.SendAsync("[ERROR] Unknown login state");
+                    await connection.DisconnectAsync();
+                    break;
             }
-
-            var playerName = parts[1];
-            var playerClass = parts[2].ToLower();
-
-            var validClasses = new[] { "warrior", "thief", "mage", "cleric", "monk", "druid" };
-            if (!validClasses.Contains(playerClass))
-            {
-                await connection.SendAsync("[ERROR] Invalid class. Choose: warrior, thief, mage, cleric, monk, druid");
-                await connection.SendAsync("> ");
-                return;
-            }
-
-            var playerId = clientId;
-            var character = new Character(playerId, playerName, playerClass)
-            {
-                Health = 100,
-                MaxHealth = 100,
-                Mana = 50,
-                MaxMana = 50,
-                Level = 1,
-                Strength = 10,
-                Dexterity = 10,
-                Constitution = 10,
-                Intelligence = 10,
-                Wisdom = 10,
-                Charisma = 10,
-                CurrentAreaId = "starter_city",
-                CurrentRoomId = "city_center"
-            };
-
-            await _serverGameState.AddCharacterAsync(character);
-            var room = _serverGameState.GetRoom("starter_city", "city_center");
-            if (room != null)
-            {
-                room.AddPlayer(playerId);
-            }
-
-            connection.SetCharacter(character);
-            _serverGameState.RegisterPlayerConnection(playerId, connection);
-
-            await connection.SendAsync($"\nWelcome, {playerName}! You are in the game.\n");
-            await BroadcastRoomStateAsync("starter_city", "city_center");
-            await connection.SendAsync("> ");
-
-            Console.WriteLine($"[GameServer] Player {playerName} ({playerId}) created");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[GameServer] Error in character creation: {ex.Message}");
+            Console.WriteLine($"[GameServer] Error in login flow: {ex.Message}");
             await connection.SendAsync($"[ERROR] {ex.Message}");
+            await connection.DisconnectAsync();
+        }
+    }
+
+    private async Task HandleAskingNameAsync(ClientConnection connection, string input)
+    {
+        var characterName = input.Trim();
+
+        if (string.IsNullOrWhiteSpace(characterName) || characterName.Length < 3 || characterName.Length > 20)
+        {
+            await connection.SendAsync("[ERROR] Character name must be 3-20 characters");
+            await connection.SendAsync("Please enter your character name:");
+            await connection.SendAsync("> ");
+            return;
+        }
+
+        connection.SetAttemptedCharacterName(characterName);
+
+        if (_saveManager.CharacterExistsByName(characterName))
+        {
+            await connection.SendAsync($"Welcome back, {characterName}!");
+            await connection.SendAsync("Please enter your password:");
+            connection.SetLoginState(LoginState.AskingPassword);
             await connection.SendAsync("> ");
         }
+        else
+        {
+            await connection.SendAsync($"No character named '{characterName}' found.");
+            await connection.SendAsync("Would you like to create a new character? (yes/no)");
+            connection.SetLoginState(LoginState.AskingCreateConfirmation);
+            await connection.SendAsync("> ");
+        }
+    }
+
+    private async Task HandleAskingPasswordAsync(ClientConnection connection, string input)
+    {
+        var password = input;
+        var characterName = connection.AttemptedCharacterName;
+        var character = _saveManager.LoadCharacterByName(characterName);
+
+        if (character == null)
+        {
+            await connection.SendAsync("[ERROR] Character not found");
+            connection.ResetLoginState();
+            await connection.SendAsync("Please enter your character name:");
+            await connection.SendAsync("> ");
+            return;
+        }
+
+        if (!_passwordHasher.VerifyPassword(password, character.PasswordHash))
+        {
+            connection.IncrementWrongPasswordAttempts();
+
+            if (connection.WrongPasswordAttempts >= 3)
+            {
+                await connection.SendAsync("[ERROR] Too many wrong password attempts. Disconnecting.");
+                await connection.DisconnectAsync();
+                return;
+            }
+
+            await connection.SendAsync($"[ERROR] Wrong password. ({3 - connection.WrongPasswordAttempts} attempts remaining)");
+            await connection.SendAsync("Please enter your password:");
+            await connection.SendAsync("> ");
+            return;
+        }
+
+        // Password correct - load character into game
+        await LoadCharacterIntoGameAsync(character, connection);
+    }
+
+    private async Task HandleCreateConfirmationAsync(ClientConnection connection, string input)
+    {
+        var response = input.Trim().ToLower();
+
+        if (response == "yes")
+        {
+            await connection.SendAsync("Please enter a password for your new character:");
+            connection.SetLoginState(LoginState.AskingNewPassword);
+            await connection.SendAsync("> ");
+        }
+        else if (response == "no")
+        {
+            connection.ResetLoginState();
+            await connection.SendAsync("Please enter your character name:");
+            await connection.SendAsync("> ");
+        }
+        else
+        {
+            await connection.SendAsync("Please answer 'yes' or 'no'");
+            await connection.SendAsync("> ");
+        }
+    }
+
+    private async Task HandleNewPasswordAsync(ClientConnection connection, string input)
+    {
+        var password = input;
+
+        if (string.IsNullOrWhiteSpace(password) || password.Length < 4)
+        {
+            await connection.SendAsync("[ERROR] Password must be at least 4 characters");
+            await connection.SendAsync("Please enter a password for your new character:");
+            await connection.SendAsync("> ");
+            return;
+        }
+
+        connection.SetPasswordAttempt(password);
+        await connection.SendAsync("Please confirm your password:");
+        connection.SetLoginState(LoginState.ConfirmingPassword);
+        await connection.SendAsync("> ");
+    }
+
+    private async Task HandleConfirmPasswordAsync(ClientConnection connection, string input)
+    {
+        var confirmPassword = input;
+        var originalPassword = connection.PasswordAttempt;
+
+        if (confirmPassword != originalPassword)
+        {
+            await connection.SendAsync("[ERROR] Passwords do not match");
+            await connection.SendAsync("Please enter a password for your new character:");
+            connection.SetLoginState(LoginState.AskingNewPassword);
+            connection.SetPasswordAttempt(string.Empty);
+            await connection.SendAsync("> ");
+            return;
+        }
+
+        await connection.SendAsync("Select your class:");
+        await connection.SendAsync("  warrior, thief, mage, cleric, monk, druid");
+        connection.SetLoginState(LoginState.AskingClass);
+        await connection.SendAsync("> ");
+    }
+
+    private async Task HandleClassSelectionAsync(string clientId, ClientConnection connection, string input)
+    {
+        var playerClass = input.Trim().ToLower();
+        var validClasses = new[] { "warrior", "thief", "mage", "cleric", "monk", "druid" };
+
+        if (!validClasses.Contains(playerClass))
+        {
+            await connection.SendAsync("[ERROR] Invalid class. Choose: warrior, thief, mage, cleric, monk, druid");
+            await connection.SendAsync("> ");
+            return;
+        }
+
+        // Create the character
+        var playerName = connection.AttemptedCharacterName;
+        var password = connection.PasswordAttempt;
+        var passwordHash = _passwordHasher.HashPassword(password);
+
+        var character = new Character(clientId, playerName, playerClass)
+        {
+            PasswordHash = passwordHash,
+            CreatedAt = DateTime.UtcNow,
+            Health = 100,
+            MaxHealth = 100,
+            Mana = 50,
+            MaxMana = 50,
+            Level = 1,
+            Strength = 10,
+            Dexterity = 10,
+            Constitution = 10,
+            Intelligence = 10,
+            Wisdom = 10,
+            Charisma = 10,
+            CurrentAreaId = "starter_city",
+            CurrentRoomId = "city_center"
+        };
+
+        // Save character to disk
+        _saveManager.SaveCharacter(character);
+
+        // Add to game
+        await _serverGameState.AddCharacterAsync(character);
+        var room = _serverGameState.GetRoom("starter_city", "city_center");
+        if (room != null)
+        {
+            room.AddPlayer(clientId);
+        }
+
+        // Load into connection
+        await LoadCharacterIntoGameAsync(character, connection);
+
+        Console.WriteLine($"[GameServer] Player {playerName} ({clientId}) created");
+    }
+
+    private async Task LoadCharacterIntoGameAsync(Character character, ClientConnection connection)
+    {
+        connection.SetCharacter(character);
+        _serverGameState.RegisterPlayerConnection(character.Id, connection);
+
+        await connection.SendAsync($"\nWelcome, {character.Name}! You are now in the game.\n");
+        await BroadcastRoomStateAsync(character.CurrentAreaId!, character.CurrentRoomId!);
+        await connection.SendAsync("> ");
     }
 
     /// <summary>
@@ -324,6 +497,9 @@ public class GameServer
                 if (character != null)
                 {
                     Console.WriteLine($"[GameServer] Player {character.Name} ({character.Id}) disconnected");
+
+                    // Save character to disk before removing
+                    _saveManager.SaveCharacter(character);
 
                     // Remove from room
                     if (!string.IsNullOrEmpty(character.CurrentAreaId) && !string.IsNullOrEmpty(character.CurrentRoomId))

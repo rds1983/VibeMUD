@@ -23,18 +23,19 @@ public class SaveManager
 
     public void SaveCharacter(Character character)
     {
-        if (string.IsNullOrEmpty(character.Id))
-            throw new ArgumentException("Character must have an ID to save");
+        if (string.IsNullOrEmpty(character.Name))
+            throw new ArgumentException("Character must have a Name to save");
 
         try
         {
-            var filePath = Path.Combine(_savePath, $"{character.Id}.json");
+            var safeFileName = SanitizeFileName(character.Name);
+            var filePath = Path.Combine(_savePath, $"{safeFileName}.json");
             var json = JsonSerializer.Serialize(character, JsonOptions);
             File.WriteAllText(filePath, json);
         }
         catch (Exception ex)
         {
-            throw new InvalidOperationException($"Failed to save character {character.Id}", ex);
+            throw new InvalidOperationException($"Failed to save character {character.Name}", ex);
         }
     }
 
@@ -56,10 +57,49 @@ public class SaveManager
         }
     }
 
+    public Character? LoadCharacterByName(string characterName)
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(characterName))
+                return null;
+
+            var safeFileName = SanitizeFileName(characterName);
+            var filePath = Path.Combine(_savePath, $"{safeFileName}.json");
+
+            if (!File.Exists(filePath))
+                return null;
+
+            var json = File.ReadAllText(filePath);
+            return JsonSerializer.Deserialize<Character>(json, JsonOptions);
+        }
+        catch (Exception ex)
+        {
+            throw new InvalidOperationException($"Failed to load character {characterName}", ex);
+        }
+    }
+
     public bool CharacterExists(string characterId)
     {
         var filePath = Path.Combine(_savePath, $"{characterId}.json");
         return File.Exists(filePath);
+    }
+
+    public bool CharacterExistsByName(string characterName)
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(characterName))
+                return false;
+
+            var safeFileName = SanitizeFileName(characterName);
+            var filePath = Path.Combine(_savePath, $"{safeFileName}.json");
+            return File.Exists(filePath);
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     public List<string> GetAllCharacterIds()
@@ -99,5 +139,10 @@ public class SaveManager
         {
             throw new InvalidOperationException($"Failed to delete character {characterId}", ex);
         }
+    }
+
+    private static string SanitizeFileName(string name)
+    {
+        return name.ToLower().Replace(" ", "_").Trim();
     }
 }
