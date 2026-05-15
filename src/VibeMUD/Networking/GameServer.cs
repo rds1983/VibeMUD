@@ -22,6 +22,7 @@ public class GameServer
     private TcpListener? _listener;
     private bool _isRunning;
     private int _port = 9999;
+    private string _splashScreen = string.Empty;
     private readonly Dictionary<string, ClientConnection> _clientConnections = new();
 
     public GameServer(GameState gameState, CommandHandler commandHandler, SaveManager saveManager)
@@ -45,6 +46,20 @@ public class GameServer
 
         try
         {
+            // Load splash screen
+            try
+            {
+                var splashPath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "content", "Splash.txt");
+                if (File.Exists(splashPath))
+                {
+                    _splashScreen = File.ReadAllText(splashPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[GameServer] Warning: Could not load splash screen: {ex.Message}");
+            }
+
             _listener = new TcpListener(IPAddress.Any, _port);
             _listener.Start();
             Console.WriteLine($"[GameServer] Server started on port {_port}");
@@ -91,10 +106,20 @@ public class GameServer
 
             _clientConnections[clientId] = connection;
 
-            // Send welcome message
-            await connection.SendAsync("");
-            await connection.SendAsync("=== WELCOME TO VIBEMUD ===");
-            await connection.SendAsync("");
+            // Send splash screen
+            if (!string.IsNullOrEmpty(_splashScreen))
+            {
+                await connection.SendAsync(_splashScreen);
+            }
+            else
+            {
+                // Fallback if splash screen failed to load
+                await connection.SendAsync("");
+                await connection.SendAsync("=== WELCOME TO VIBEMUD ===");
+                await connection.SendAsync("");
+            }
+
+            // Send login prompt
             await connection.SendAsync("Please enter your character name:");
             await connection.SendAsync("");
             await connection.SendAsync("> ");
