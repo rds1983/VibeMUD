@@ -86,6 +86,7 @@ public class CommandHandler
         RegisterCommand(new HelpCommand());
         RegisterCommand(new LookCommand());
         RegisterCommand(new InfoCommand());
+        RegisterCommand(new WhoCommand());
 
         // Movement
         RegisterCommand(new NorthCommand());
