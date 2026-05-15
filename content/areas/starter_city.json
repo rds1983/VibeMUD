@@ -40,7 +40,8 @@
             "down": null
           },
           "npcs": [
-            "town_crier"
+            "town_crier",
+            "sentry"
           ],
           "items": [],
           "terrain": "city"
