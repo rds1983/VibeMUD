@@ -72,24 +72,37 @@ public class ClientConnection
     }
 
     /// <summary>
-    /// Receives a message from the client
+    /// Receives a message from the client (line-based for telnet compatibility)
     /// </summary>
     private async Task<ClientMessage?> ReceiveMessageAsync()
     {
         try
         {
             using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(300)); // 5 min timeout
-            var buffer = new byte[4096];
-            var bytesRead = await _stream.ReadAsync(buffer, 0, buffer.Length, cts.Token);
+            using var reader = new StreamReader(_stream, Encoding.UTF8, leaveOpen: true);
 
-            if (bytesRead == 0)
+            var line = await reader.ReadLineAsync(cts.Token);
+
+            if (string.IsNullOrEmpty(line))
             {
                 return null; // Client disconnected
             }
 
-            var json = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-            var message = ServerProtocol.DeserializeClientMessage(json);
-            return message;
+            // Try to parse as JSON if it starts with {
+            if (line.TrimStart().StartsWith("{"))
+            {
+                var message = ServerProtocol.DeserializeClientMessage(line);
+                return message;
+            }
+
+            // Otherwise, treat as a simple text command for telnet
+            return new ClientMessage
+            {
+                MessageId = Guid.NewGuid().ToString(),
+                Type = MessageType.Command,
+                PlayerId = _character?.Id ?? "unknown",
+                Command = line.Trim()
+            };
         }
         catch (OperationCanceledException)
         {

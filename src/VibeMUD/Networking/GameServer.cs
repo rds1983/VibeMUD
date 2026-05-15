@@ -87,9 +87,22 @@ public class GameServer
             _clientConnections[clientId] = connection;
             _serverGameState.RegisterPlayerConnection(clientId, connection);
 
-            // Send welcome message
-            var welcome = ServerProtocol.CreateResponse(clientId, true, "Welcome to VibeMUD! Send character data to login.");
-            await connection.SendMessageAsync(welcome);
+            // Send welcome message (telnet-friendly)
+            await connection.SendJsonAsync(@"
+=== WELCOME TO VIBEMUD ===
+
+To login, enter your character as JSON:
+{
+  ""type"": ""connect"",
+  ""playerId"": ""your-id"",
+  ""playerName"": ""YourName"",
+  ""characterClass"": ""warrior""
+}
+
+Or start with a simple command!
+Type 'help' for commands.
+
+> ");
 
             // Start listening for messages from this client
             await connection.StartAsync();
@@ -151,8 +164,7 @@ public class GameServer
 
         if (string.IsNullOrEmpty(playerId) || string.IsNullOrEmpty(playerName))
         {
-            var error = ServerProtocol.CreateError(clientId, "Invalid player data");
-            await connection.SendMessageAsync(error);
+            await connection.SendJsonAsync("[ERROR] Invalid player data. Please provide playerId and playerName.\n\n> ");
             return;
         }
 
@@ -200,9 +212,8 @@ public class GameServer
 
             connection.SetCharacter(character);
 
-            // Send success response
-            var response = ServerProtocol.CreateResponse(playerId, true, $"Welcome, {playerName}!");
-            await connection.SendMessageAsync(response);
+            // Send success response (telnet-friendly)
+            await connection.SendJsonAsync($"\nWelcome, {playerName}! You are in the game.\n\n> ");
 
             // Broadcast initial room state
             await BroadcastRoomStateAsync(character.CurrentAreaId!, character.CurrentRoomId!);
@@ -214,8 +225,7 @@ public class GameServer
         catch (Exception ex)
         {
             Console.WriteLine($"[GameServer] Error in player connect: {ex.Message}");
-            var error = ServerProtocol.CreateError(clientId, "Failed to connect player");
-            await connection.SendMessageAsync(error);
+            await connection.SendJsonAsync($"[ERROR] Failed to connect player: {ex.Message}\n\n> ");
         }
     }
 
@@ -227,15 +237,13 @@ public class GameServer
         var character = connection.Character;
         if (character == null)
         {
-            var error = ServerProtocol.CreateError(clientId, "You must be connected first");
-            await connection.SendMessageAsync(error);
+            await connection.SendJsonAsync("[ERROR] You must be connected first\n\n> ");
             return;
         }
 
         if (string.IsNullOrEmpty(message.Command))
         {
-            var error = ServerProtocol.CreateError(clientId, "No command specified");
-            await connection.SendMessageAsync(error);
+            await connection.SendJsonAsync("[ERROR] No command specified\n\n> ");
             return;
         }
 
@@ -251,9 +259,9 @@ public class GameServer
             // Execute command
             var result = await _serverGameState.ExecuteCommandAsync(character.Id, commandStr);
 
-            // Send result to player
-            var response = ServerProtocol.CreateResponse(character.Id, result.Success, result.Message);
-            await connection.SendMessageAsync(response);
+            // Send result to player (telnet-friendly text format)
+            var prefix = result.Success ? "" : "[ERROR] ";
+            await connection.SendJsonAsync($"{prefix}{result.Message}\n> ");
 
             // Broadcast room state changes
             if (result.Success)
@@ -287,8 +295,7 @@ public class GameServer
         catch (Exception ex)
         {
             Console.WriteLine($"[GameServer] Error executing command: {ex.Message}");
-            var error = ServerProtocol.CreateError(character.Id, "Error executing command");
-            await connection.SendMessageAsync(error);
+            await connection.SendJsonAsync($"[ERROR] Error executing command: {ex.Message}\n\n> ");
         }
     }
 
@@ -300,24 +307,30 @@ public class GameServer
         var character = connection.Character;
         if (character == null)
         {
-            var error = ServerProtocol.CreateError(clientId, "You must be connected first");
-            await connection.SendMessageAsync(error);
+            await connection.SendJsonAsync("[ERROR] You must be connected first\n\n> ");
             return;
         }
 
         var scope = message.Scope ?? "room";
-        var chatMessage = ServerProtocol.CreateChatMessage(character.Id, character.Name, message.Message ?? "", scope);
+        var chatText = $"[{scope.ToUpper()}] {character.Name}: {message.Message ?? ""}";
 
         try
         {
             switch (scope.ToLower())
             {
                 case "room":
-                    await _serverGameState.NotifyPlayersInRoomAsync(character.CurrentAreaId!, character.CurrentRoomId!, chatMessage);
+                    var roomPlayers = _serverGameState.GetPlayersInRoom(character.CurrentAreaId!, character.CurrentRoomId!);
+                    foreach (var player in roomPlayers)
+                    {
+                        var conn = _serverGameState.GetPlayerConnection(player.Id);
+                        if (conn != null)
+                        {
+                            await conn.SendJsonAsync($"{chatText}\n\n> ");
+                        }
+                    }
                     break;
 
                 case "area":
-                    // Get all players in the area
                     var areaPlayers = _serverGameState.GetGameState().Characters.Values
                         .Where(c => c.CurrentAreaId == character.CurrentAreaId)
                         .ToList();
@@ -326,30 +339,27 @@ public class GameServer
                         var conn = _serverGameState.GetPlayerConnection(player.Id);
                         if (conn != null)
                         {
-                            await conn.SendMessageAsync(chatMessage);
+                            await conn.SendJsonAsync($"{chatText}\n\n> ");
                         }
                     }
                     break;
 
                 case "global":
-                    // Broadcast to all connected players
                     foreach (var conn in _clientConnections.Values)
                     {
-                        await conn.SendMessageAsync(chatMessage);
+                        await conn.SendJsonAsync($"{chatText}\n\n> ");
                     }
                     break;
 
                 default:
-                    var error = ServerProtocol.CreateError(character.Id, "Invalid chat scope");
-                    await connection.SendMessageAsync(error);
+                    await connection.SendJsonAsync("[ERROR] Invalid chat scope (room, area, or global)\n\n> ");
                     break;
             }
         }
         catch (Exception ex)
         {
             Console.WriteLine($"[GameServer] Error handling chat: {ex.Message}");
-            var error = ServerProtocol.CreateError(character.Id, "Error sending chat message");
-            await connection.SendMessageAsync(error);
+            await connection.SendJsonAsync($"[ERROR] Error sending chat message\n\n> ");
         }
     }
 
