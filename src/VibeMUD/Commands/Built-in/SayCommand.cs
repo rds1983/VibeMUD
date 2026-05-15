@@ -12,7 +12,7 @@ public class SayCommand : Command
     {
         Name = "say";
         Description = "Say something in the room: say <message>";
-        Aliases = new() { "s" };
+        Aliases = new();
     }
 
     public override CommandResult Execute(Character character, GameState gameState, string[] args)
