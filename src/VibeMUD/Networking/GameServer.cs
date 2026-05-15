@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using VibeMUD.Commands;
+using VibeMUD.Config;
 using VibeMUD.Core;
 using VibeMUD.Data;
 using VibeMUD.Models;
@@ -18,6 +19,7 @@ public class GameServer
     private readonly CommandHandler _commandHandler;
     private readonly ServerGameState _serverGameState;
     private readonly SaveManager _saveManager;
+    private readonly ServerConfig _config;
     private readonly PasswordHasher _passwordHasher = new();
     private TcpListener? _listener;
     private bool _isRunning;
@@ -25,12 +27,18 @@ public class GameServer
     private string _splashScreen = string.Empty;
     private readonly Dictionary<string, ClientConnection> _clientConnections = new();
 
-    public GameServer(GameState gameState, CommandHandler commandHandler, SaveManager saveManager)
+    public GameServer(GameState gameState, CommandHandler commandHandler, SaveManager saveManager, ServerConfig? config = null)
     {
         _gameState = gameState ?? throw new ArgumentNullException(nameof(gameState));
         _commandHandler = commandHandler ?? throw new ArgumentNullException(nameof(commandHandler));
         _saveManager = saveManager ?? throw new ArgumentNullException(nameof(saveManager));
+        _config = config ?? new ServerConfig();
         _serverGameState = new ServerGameState(_gameState, _commandHandler);
+    }
+
+    public void SetSplashScreen(string splashContent)
+    {
+        _splashScreen = splashContent;
     }
 
     /// <summary>
@@ -46,24 +54,10 @@ public class GameServer
 
         try
         {
-            // Load splash screen
-            try
-            {
-                var splashPath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "content", "Splash.txt");
-                if (File.Exists(splashPath))
-                {
-                    _splashScreen = File.ReadAllText(splashPath);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"[GameServer] Warning: Could not load splash screen: {ex.Message}");
-            }
-
             _listener = new TcpListener(IPAddress.Any, _port);
             _listener.Start();
             Console.WriteLine($"[GameServer] Server started on port {_port}");
-            Console.WriteLine("[GameServer] Connect with: telnet localhost 9999");
+            Console.WriteLine($"[GameServer] Connect with: telnet localhost {_port}");
 
             while (_isRunning)
             {

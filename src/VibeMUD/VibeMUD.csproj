@@ -11,4 +11,12 @@
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ContentFiles Include="../../content/**" />
+  </ItemGroup>
+
+  <Target Name="CopyContent" BeforeTargets="Build">
+    <Copy SourceFiles="@(ContentFiles)" DestinationFolder="$(OutDir)content/%(RecursiveDir)" />
+  </Target>
+
 </Project>
