@@ -140,53 +140,6 @@ public class ServerGameStateTests
     }
 
     [Fact]
-    public void CreateRoomStateUpdate_IncludesPlayersExceptSelf()
-    {
-        var serverGameState = CreateTestServerGameState();
-        var character = serverGameState.GetCharacter("test_player");
-
-        var update = serverGameState.CreateRoomStateUpdate(character!);
-
-        Assert.Equal("test_area", update.AreaId);
-        Assert.Equal("test_room", update.RoomId);
-        Assert.Empty(update.PlayersInRoom); // Should not include self
-    }
-
-    [Fact]
-    public void CreateRoomStateUpdate_IncludesRoomDetails()
-    {
-        var serverGameState = CreateTestServerGameState();
-        var character = serverGameState.GetCharacter("test_player");
-
-        var update = serverGameState.CreateRoomStateUpdate(character!);
-
-        Assert.Equal("Test Room", update.RoomTitle);
-        Assert.Equal("A test room", update.RoomDescription);
-        Assert.NotNull(update.Exits);
-    }
-
-    [Fact]
-    public async Task BroadcastRoomStateAsync_CompletesBothered()
-    {
-        var serverGameState = CreateTestServerGameState();
-        // Broadcast to empty room (no connections registered)
-        await serverGameState.BroadcastRoomStateAsync("test_area", "test_room");
-        // Should complete without error
-        Assert.True(true);
-    }
-
-    [Fact]
-    public async Task NotifyPlayersInRoomAsync_CompletesFine()
-    {
-        var serverGameState = CreateTestServerGameState();
-        var message = ServerProtocol.CreateNotification("test_player", "Test notification");
-        // Notify empty room (no connections)
-        await serverGameState.NotifyPlayersInRoomAsync("test_area", "test_room", message);
-        // Should complete without error
-        Assert.True(true);
-    }
-
-    [Fact]
     public void GetGameState_ReturnsUnderlyingGameState()
     {
         var serverGameState = CreateTestServerGameState();

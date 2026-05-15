@@ -2,13 +2,14 @@ namespace VibeMUD.Networking;
 
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 using VibeMUD.Commands;
 using VibeMUD.Core;
 using VibeMUD.Data;
 using VibeMUD.Models;
 
 /// <summary>
-/// Main game server that handles TCP connections and game state
+/// Main game server that handles TCP connections and game state (plain text protocol)
 /// </summary>
 public class GameServer
 {
@@ -43,6 +44,7 @@ public class GameServer
             _listener = new TcpListener(IPAddress.Any, _port);
             _listener.Start();
             Console.WriteLine($"[GameServer] Server started on port {_port}");
+            Console.WriteLine("[GameServer] Connect with: telnet localhost 9999");
 
             while (_isRunning)
             {
@@ -53,7 +55,7 @@ public class GameServer
                 }
                 catch (ObjectDisposedException)
                 {
-                    break; // Server stopped
+                    break;
                 }
                 catch (Exception ex)
                 {
@@ -80,31 +82,22 @@ public class GameServer
 
         try
         {
-            // Expect first message to be player login/creation
-            connection.OnMessageReceived += async (message) => await HandleClientMessageAsync(clientId, connection, message);
+            connection.OnCommandReceived += async (command) => await HandleCommandAsync(clientId, connection, command);
             connection.OnDisconnect += async (id) => await HandleClientDisconnectAsync(id);
 
             _clientConnections[clientId] = connection;
-            _serverGameState.RegisterPlayerConnection(clientId, connection);
 
-            // Send welcome message (telnet-friendly)
-            await connection.SendJsonAsync(@"
-=== WELCOME TO VIBEMUD ===
+            // Send welcome message
+            await connection.SendAsync("");
+            await connection.SendAsync("=== WELCOME TO VIBEMUD ===");
+            await connection.SendAsync("");
+            await connection.SendAsync("Type 'create <name> <class>' to create a character");
+            await connection.SendAsync("Example: create Aragorn warrior");
+            await connection.SendAsync("Classes: warrior, thief, mage, cleric, monk, druid");
+            await connection.SendAsync("");
+            await connection.SendAsync("> ");
 
-To login, enter your character as JSON:
-{
-  ""type"": ""connect"",
-  ""playerId"": ""your-id"",
-  ""playerName"": ""YourName"",
-  ""characterClass"": ""warrior""
-}
-
-Or start with a simple command!
-Type 'help' for commands.
-
-> ");
-
-            // Start listening for messages from this client
+            // Start listening for commands from this client
             await connection.StartAsync();
         }
         catch (Exception ex)
@@ -119,247 +112,129 @@ Type 'help' for commands.
     }
 
     /// <summary>
-    /// Handles a message from a client
+    /// Handles a command from a client
     /// </summary>
-    private async Task HandleClientMessageAsync(string clientId, ClientConnection connection, ClientMessage message)
+    private async Task HandleCommandAsync(string clientId, ClientConnection connection, string commandLine)
     {
         try
         {
-            switch (message.Type)
+            var character = connection.Character;
+
+            // Handle character creation
+            if (character == null && commandLine.StartsWith("create ", StringComparison.OrdinalIgnoreCase))
             {
-                case MessageType.Connect:
-                    await HandlePlayerConnectAsync(clientId, connection, message);
-                    break;
-
-                case MessageType.Command:
-                    await HandleCommandAsync(clientId, connection, message);
-                    break;
-
-                case MessageType.Chat:
-                    await HandleChatAsync(clientId, connection, message);
-                    break;
-
-                default:
-                    var error = ServerProtocol.CreateError(clientId, $"Unknown message type: {message.Type}");
-                    await connection.SendMessageAsync(error);
-                    break;
+                await HandleCharacterCreationAsync(clientId, connection, commandLine);
+                return;
             }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"[GameServer] Error handling message from {clientId}: {ex.Message}");
-            var error = ServerProtocol.CreateError(clientId, "Internal server error");
-            await connection.SendMessageAsync(error);
-        }
-    }
 
-    /// <summary>
-    /// Handles player connection/login
-    /// </summary>
-    private async Task HandlePlayerConnectAsync(string clientId, ClientConnection connection, ClientMessage message)
-    {
-        var playerId = message.PlayerId;
-        var playerName = message.PlayerName;
-        var playerClass = message.CharacterClass;
-
-        if (string.IsNullOrEmpty(playerId) || string.IsNullOrEmpty(playerName))
-        {
-            await connection.SendJsonAsync("[ERROR] Invalid player data. Please provide playerId and playerName.\n\n> ");
-            return;
-        }
-
-        try
-        {
-            // Check if character exists
-            var existingChar = _serverGameState.GetCharacter(playerId);
-
-            Character character;
-            if (existingChar != null)
+            // Check if authenticated
+            if (character == null)
             {
-                // Load existing character
-                character = existingChar;
-                Console.WriteLine($"[GameServer] Player {playerName} ({playerId}) logged in");
+                await connection.SendAsync("[ERROR] You must create a character first. Type: create <name> <class>");
+                await connection.SendAsync("> ");
+                return;
+            }
+
+            // Execute game command
+            var result = _commandHandler.ExecuteCommand(character, _gameState, commandLine);
+
+            // Send response
+            if (result.Success)
+            {
+                await connection.SendAsync(result.Message);
             }
             else
             {
-                // Create new character
-                character = new Character(playerId, playerName, playerClass ?? "warrior")
-                {
-                    Health = 100,
-                    MaxHealth = 100,
-                    Mana = 50,
-                    MaxMana = 50,
-                    Level = 1,
-                    Strength = 10,
-                    Dexterity = 10,
-                    Constitution = 10,
-                    Intelligence = 10,
-                    Wisdom = 10,
-                    Charisma = 10,
-                    CurrentAreaId = "starter_city",
-                    CurrentRoomId = "city_center"
-                };
-
-                await _serverGameState.AddCharacterAsync(character);
-                var room = _serverGameState.GetRoom("starter_city", "city_center");
-                if (room != null)
-                {
-                    room.AddPlayer(playerId);
-                }
-
-                Console.WriteLine($"[GameServer] New player {playerName} ({playerId}) created");
+                await connection.SendAsync($"[ERROR] {result.Message}");
             }
 
-            connection.SetCharacter(character);
-
-            // Send success response (telnet-friendly)
-            await connection.SendJsonAsync($"\nWelcome, {playerName}! You are in the game.\n\n> ");
-
-            // Broadcast initial room state
-            await BroadcastRoomStateAsync(character.CurrentAreaId!, character.CurrentRoomId!);
-
-            // Notify room that player joined
-            var notification = ServerProtocol.CreateNotification(string.Empty, $"{playerName} has joined the game");
-            await _serverGameState.NotifyPlayersInRoomAsync(character.CurrentAreaId!, character.CurrentRoomId!, notification);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"[GameServer] Error in player connect: {ex.Message}");
-            await connection.SendJsonAsync($"[ERROR] Failed to connect player: {ex.Message}\n\n> ");
-        }
-    }
-
-    /// <summary>
-    /// Handles a game command from a player
-    /// </summary>
-    private async Task HandleCommandAsync(string clientId, ClientConnection connection, ClientMessage message)
-    {
-        var character = connection.Character;
-        if (character == null)
-        {
-            await connection.SendJsonAsync("[ERROR] You must be connected first\n\n> ");
-            return;
-        }
-
-        if (string.IsNullOrEmpty(message.Command))
-        {
-            await connection.SendJsonAsync("[ERROR] No command specified\n\n> ");
-            return;
-        }
-
-        try
-        {
-            // Build command string from command and args
-            var commandStr = message.Command;
-            if (message.Args != null && message.Args.Length > 0)
+            // Send room state if player moved
+            var updatedChar = _serverGameState.GetCharacter(character.Id);
+            if (updatedChar != null && (updatedChar.CurrentAreaId != character.CurrentAreaId || updatedChar.CurrentRoomId != character.CurrentRoomId))
             {
-                commandStr += " " + string.Join(" ", message.Args);
+                connection.SetCharacter(updatedChar);
+                await BroadcastRoomStateAsync(updatedChar.CurrentAreaId!, updatedChar.CurrentRoomId!);
             }
-
-            // Execute command
-            var result = await _serverGameState.ExecuteCommandAsync(character.Id, commandStr);
-
-            // Send result to player (telnet-friendly text format)
-            var prefix = result.Success ? "" : "[ERROR] ";
-            await connection.SendJsonAsync($"{prefix}{result.Message}\n> ");
-
-            // Broadcast room state changes
-            if (result.Success)
+            else if (updatedChar != null)
             {
-                // Check if player moved
-                var newChar = _serverGameState.GetCharacter(character.Id);
-                if (newChar != null && (newChar.CurrentAreaId != character.CurrentAreaId || newChar.CurrentRoomId != character.CurrentRoomId))
-                {
-                    // Player moved - notify old and new rooms
-                    if (!string.IsNullOrEmpty(character.CurrentAreaId) && !string.IsNullOrEmpty(character.CurrentRoomId))
-                    {
-                        var oldRoomNotif = ServerProtocol.CreateNotification(string.Empty, $"{character.Name} has left");
-                        await _serverGameState.NotifyPlayersInRoomAsync(character.CurrentAreaId, character.CurrentRoomId, oldRoomNotif);
-                    }
-
-                    await BroadcastRoomStateAsync(newChar.CurrentAreaId!, newChar.CurrentRoomId!);
-
-                    var newRoomNotif = ServerProtocol.CreateNotification(string.Empty, $"{newChar.Name} has arrived");
-                    await _serverGameState.NotifyPlayersInRoomAsync(newChar.CurrentAreaId!, newChar.CurrentRoomId!, newRoomNotif);
-
-                    // Update local reference
-                    connection.SetCharacter(newChar);
-                }
-                else
-                {
-                    // Player stayed in same room - broadcast room state
-                    await BroadcastRoomStateAsync(character.CurrentAreaId!, character.CurrentRoomId!);
-                }
+                connection.SetCharacter(updatedChar);
             }
+
+            await connection.SendAsync("> ");
         }
         catch (Exception ex)
         {
             Console.WriteLine($"[GameServer] Error executing command: {ex.Message}");
-            await connection.SendJsonAsync($"[ERROR] Error executing command: {ex.Message}\n\n> ");
+            await connection.SendAsync($"[ERROR] {ex.Message}");
+            await connection.SendAsync("> ");
         }
     }
 
     /// <summary>
-    /// Handles chat messages from a player
+    /// Handles character creation
     /// </summary>
-    private async Task HandleChatAsync(string clientId, ClientConnection connection, ClientMessage message)
+    private async Task HandleCharacterCreationAsync(string clientId, ClientConnection connection, string commandLine)
     {
-        var character = connection.Character;
-        if (character == null)
-        {
-            await connection.SendJsonAsync("[ERROR] You must be connected first\n\n> ");
-            return;
-        }
-
-        var scope = message.Scope ?? "room";
-        var chatText = $"[{scope.ToUpper()}] {character.Name}: {message.Message ?? ""}";
-
         try
         {
-            switch (scope.ToLower())
+            var parts = commandLine.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length < 3)
             {
-                case "room":
-                    var roomPlayers = _serverGameState.GetPlayersInRoom(character.CurrentAreaId!, character.CurrentRoomId!);
-                    foreach (var player in roomPlayers)
-                    {
-                        var conn = _serverGameState.GetPlayerConnection(player.Id);
-                        if (conn != null)
-                        {
-                            await conn.SendJsonAsync($"{chatText}\n\n> ");
-                        }
-                    }
-                    break;
-
-                case "area":
-                    var areaPlayers = _serverGameState.GetGameState().Characters.Values
-                        .Where(c => c.CurrentAreaId == character.CurrentAreaId)
-                        .ToList();
-                    foreach (var player in areaPlayers)
-                    {
-                        var conn = _serverGameState.GetPlayerConnection(player.Id);
-                        if (conn != null)
-                        {
-                            await conn.SendJsonAsync($"{chatText}\n\n> ");
-                        }
-                    }
-                    break;
-
-                case "global":
-                    foreach (var conn in _clientConnections.Values)
-                    {
-                        await conn.SendJsonAsync($"{chatText}\n\n> ");
-                    }
-                    break;
-
-                default:
-                    await connection.SendJsonAsync("[ERROR] Invalid chat scope (room, area, or global)\n\n> ");
-                    break;
+                await connection.SendAsync("[ERROR] Usage: create <name> <class>");
+                await connection.SendAsync("> ");
+                return;
             }
+
+            var playerName = parts[1];
+            var playerClass = parts[2].ToLower();
+
+            var validClasses = new[] { "warrior", "thief", "mage", "cleric", "monk", "druid" };
+            if (!validClasses.Contains(playerClass))
+            {
+                await connection.SendAsync("[ERROR] Invalid class. Choose: warrior, thief, mage, cleric, monk, druid");
+                await connection.SendAsync("> ");
+                return;
+            }
+
+            var playerId = clientId;
+            var character = new Character(playerId, playerName, playerClass)
+            {
+                Health = 100,
+                MaxHealth = 100,
+                Mana = 50,
+                MaxMana = 50,
+                Level = 1,
+                Strength = 10,
+                Dexterity = 10,
+                Constitution = 10,
+                Intelligence = 10,
+                Wisdom = 10,
+                Charisma = 10,
+                CurrentAreaId = "starter_city",
+                CurrentRoomId = "city_center"
+            };
+
+            await _serverGameState.AddCharacterAsync(character);
+            var room = _serverGameState.GetRoom("starter_city", "city_center");
+            if (room != null)
+            {
+                room.AddPlayer(playerId);
+            }
+
+            connection.SetCharacter(character);
+            _serverGameState.RegisterPlayerConnection(playerId, connection);
+
+            await connection.SendAsync($"\nWelcome, {playerName}! You are in the game.\n");
+            await BroadcastRoomStateAsync("starter_city", "city_center");
+            await connection.SendAsync("> ");
+
+            Console.WriteLine($"[GameServer] Player {playerName} ({playerId}) created");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[GameServer] Error handling chat: {ex.Message}");
-            await connection.SendJsonAsync($"[ERROR] Error sending chat message\n\n> ");
+            Console.WriteLine($"[GameServer] Error in character creation: {ex.Message}");
+            await connection.SendAsync($"[ERROR] {ex.Message}");
+            await connection.SendAsync("> ");
         }
     }
 
@@ -370,7 +245,65 @@ Type 'help' for commands.
     {
         try
         {
-            await _serverGameState.BroadcastRoomStateAsync(areaId, roomId);
+            var players = _serverGameState.GetPlayersInRoom(areaId, roomId);
+            var room = _serverGameState.GetRoom(areaId, roomId);
+
+            if (room == null)
+                return;
+
+            var roomInfo = new StringBuilder();
+            roomInfo.AppendLine("");
+            roomInfo.AppendLine($"=== {room.Title} ===");
+            roomInfo.AppendLine(room.Description);
+            roomInfo.AppendLine("");
+
+            // Show NPCs
+            var npcs = _serverGameState.GetNPCsInRoom(areaId, roomId);
+            if (npcs.Any())
+            {
+                roomInfo.AppendLine("NPCs here:");
+                foreach (var npc in npcs)
+                {
+                    roomInfo.AppendLine($"  {npc.Name} (Level {npc.Level})");
+                }
+                roomInfo.AppendLine("");
+            }
+
+            // Show other players
+            var otherPlayers = players.Where(p => _serverGameState.GetPlayerConnection(p.Id) != null).ToList();
+            if (otherPlayers.Any())
+            {
+                roomInfo.AppendLine("Players here:");
+                foreach (var player in otherPlayers)
+                {
+                    roomInfo.AppendLine($"  {player.Name} (Level {player.Level} {player.Class})");
+                }
+                roomInfo.AppendLine("");
+            }
+
+            // Show exits
+            var exits = new List<string>();
+            foreach (var dir in new[] { "north", "south", "east", "west", "up", "down" })
+            {
+                if (room.HasExit(dir))
+                    exits.Add(dir.Substring(0, 1).ToUpper() + dir.Substring(1));
+            }
+            if (exits.Any())
+            {
+                roomInfo.AppendLine($"Exits: {string.Join(", ", exits)}");
+            }
+
+            var output = roomInfo.ToString();
+
+            // Send to all players in room
+            foreach (var player in players)
+            {
+                var conn = _serverGameState.GetPlayerConnection(player.Id);
+                if (conn != null)
+                {
+                    await conn.SendAsync(output);
+                }
+            }
         }
         catch (Exception ex)
         {
@@ -392,21 +325,17 @@ Type 'help' for commands.
                 {
                     Console.WriteLine($"[GameServer] Player {character.Name} ({character.Id}) disconnected");
 
-                    // Notify room that player left
+                    // Remove from room
                     if (!string.IsNullOrEmpty(character.CurrentAreaId) && !string.IsNullOrEmpty(character.CurrentRoomId))
                     {
-                        var notification = ServerProtocol.CreateNotification(string.Empty, $"{character.Name} has disconnected");
-                        await _serverGameState.NotifyPlayersInRoomAsync(character.CurrentAreaId, character.CurrentRoomId, notification);
-
-                        // Remove player from room
                         var room = _serverGameState.GetRoom(character.CurrentAreaId, character.CurrentRoomId);
                         room?.RemovePlayer(character.Id);
 
-                        // Broadcast room state change
+                        // Notify others in room
                         await BroadcastRoomStateAsync(character.CurrentAreaId, character.CurrentRoomId);
                     }
 
-                    // Remove character from game
+                    // Remove from game
                     await _serverGameState.RemoveCharacterAsync(character.Id);
                 }
             }
@@ -430,7 +359,6 @@ Type 'help' for commands.
 
         try
         {
-            // Disconnect all clients
             var clients = _clientConnections.Values.ToList();
             foreach (var client in clients)
             {

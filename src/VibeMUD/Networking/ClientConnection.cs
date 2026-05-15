@@ -5,12 +5,13 @@ using System.Text;
 using VibeMUD.Models;
 
 /// <summary>
-/// Manages a single client connection to the game server
+/// Manages a single client connection to the game server (plain text only)
 /// </summary>
 public class ClientConnection
 {
     private readonly TcpClient _client;
-    private readonly NetworkStream _stream;
+    private readonly StreamReader _reader;
+    private readonly StreamWriter _writer;
     private readonly string _clientId;
     private Character? _character;
     private bool _isConnected = true;
@@ -21,12 +22,13 @@ public class ClientConnection
     public bool IsConnected => _isConnected;
 
     public event Func<string, Task>? OnDisconnect;
-    public event Func<ClientMessage, Task>? OnMessageReceived;
+    public event Func<string, Task>? OnCommandReceived;
 
     public ClientConnection(TcpClient client, string clientId)
     {
         _client = client ?? throw new ArgumentNullException(nameof(client));
-        _stream = _client.GetStream();
+        _reader = new StreamReader(_client.GetStream(), Encoding.UTF8);
+        _writer = new StreamWriter(_client.GetStream(), Encoding.UTF8) { AutoFlush = true };
         _clientId = clientId ?? throw new ArgumentNullException(nameof(clientId));
     }
 
@@ -39,7 +41,7 @@ public class ClientConnection
     }
 
     /// <summary>
-    /// Starts listening for messages from the client
+    /// Starts listening for commands from the client
     /// </summary>
     public async Task StartAsync()
     {
@@ -47,16 +49,16 @@ public class ClientConnection
         {
             while (_isConnected && !_cancellationTokenSource.Token.IsCancellationRequested)
             {
-                var message = await ReceiveMessageAsync();
-                if (message == null)
+                var command = await ReceiveCommandAsync();
+                if (command == null)
                 {
                     _isConnected = false;
                     break;
                 }
 
-                if (OnMessageReceived != null)
+                if (OnCommandReceived != null)
                 {
-                    await OnMessageReceived(message);
+                    await OnCommandReceived(command);
                 }
             }
         }
@@ -72,93 +74,47 @@ public class ClientConnection
     }
 
     /// <summary>
-    /// Receives a message from the client (line-based for telnet compatibility)
+    /// Receives a command line from the client
     /// </summary>
-    private async Task<ClientMessage?> ReceiveMessageAsync()
+    private async Task<string?> ReceiveCommandAsync()
     {
         try
         {
-            using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(300)); // 5 min timeout
-            using var reader = new StreamReader(_stream, Encoding.UTF8, leaveOpen: true);
-
-            var line = await reader.ReadLineAsync(cts.Token);
-
-            if (string.IsNullOrEmpty(line))
-            {
-                return null; // Client disconnected
-            }
-
-            // Try to parse as JSON if it starts with {
-            if (line.TrimStart().StartsWith("{"))
-            {
-                var message = ServerProtocol.DeserializeClientMessage(line);
-                return message;
-            }
-
-            // Otherwise, treat as a simple text command for telnet
-            return new ClientMessage
-            {
-                MessageId = Guid.NewGuid().ToString(),
-                Type = MessageType.Command,
-                PlayerId = _character?.Id ?? "unknown",
-                Command = line.Trim()
-            };
+            using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(300));
+            var line = await _reader.ReadLineAsync(cts.Token);
+            return string.IsNullOrEmpty(line) ? null : line.Trim();
         }
         catch (OperationCanceledException)
         {
-            return null; // Timeout
+            return null;
         }
         catch (IOException)
         {
-            return null; // Connection lost
+            return null;
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[ClientConnection] Error receiving message in {_clientId}: {ex.Message}");
+            Console.WriteLine($"[ClientConnection] Error receiving command in {_clientId}: {ex.Message}");
             return null;
         }
     }
 
     /// <summary>
-    /// Sends a message to the client
+    /// Sends text to the client
     /// </summary>
-    public async Task SendMessageAsync(ServerMessage message)
+    public async Task SendAsync(string text)
     {
         if (!_isConnected)
             return;
 
         try
         {
-            var json = ServerProtocol.SerializeMessage(message);
-            var bytes = Encoding.UTF8.GetBytes(json + "\n");
-
-            await _stream.WriteAsync(bytes, 0, bytes.Length);
-            await _stream.FlushAsync();
+            await _writer.WriteLineAsync(text);
+            await _writer.FlushAsync();
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[ClientConnection] Error sending message to {_clientId}: {ex.Message}");
-            _isConnected = false;
-        }
-    }
-
-    /// <summary>
-    /// Sends a raw JSON message to the client
-    /// </summary>
-    public async Task SendJsonAsync(string json)
-    {
-        if (!_isConnected)
-            return;
-
-        try
-        {
-            var bytes = Encoding.UTF8.GetBytes(json + "\n");
-            await _stream.WriteAsync(bytes, 0, bytes.Length);
-            await _stream.FlushAsync();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"[ClientConnection] Error sending JSON to {_clientId}: {ex.Message}");
+            Console.WriteLine($"[ClientConnection] Error sending to {_clientId}: {ex.Message}");
             _isConnected = false;
         }
     }
@@ -175,7 +131,8 @@ public class ClientConnection
 
         try
         {
-            _stream?.Dispose();
+            _writer?.Dispose();
+            _reader?.Dispose();
             _client?.Close();
             _client?.Dispose();
             _cancellationTokenSource?.Cancel();
