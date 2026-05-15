@@ -384,6 +384,7 @@ public class JsonDataLoader
         return npc;
     }
 
+    /* TODO: Implement Potion class
     public Dictionary<string, Potion> LoadPotions(string filename = "potions.json")
     {
         var potions = new Dictionary<string, Potion>();
@@ -442,7 +443,9 @@ public class JsonDataLoader
 
         return potions;
     }
+    */
 
+    /* TODO: Implement Scroll class
     public Dictionary<string, Scroll> LoadScrolls(string filename = "scrolls.json")
     {
         var scrolls = new Dictionary<string, Scroll>();
@@ -501,7 +504,9 @@ public class JsonDataLoader
 
         return scrolls;
     }
+    */
 
+    /* TODO: Implement Shop class
     public Dictionary<string, Shop> LoadShops(string filename = "shops.json")
     {
         var shops = new Dictionary<string, Shop>();
@@ -560,6 +565,7 @@ public class JsonDataLoader
 
         return shops;
     }
+    */
 
     public bool ValidateJsonFile(string filename)
     {

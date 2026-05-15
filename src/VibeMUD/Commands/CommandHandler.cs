@@ -1,5 +1,6 @@
 namespace VibeMUD.Commands;
 
+using VibeMUD.Commands.Built_in;
 using VibeMUD.Core;
 using VibeMUD.Models;
 
@@ -106,5 +107,9 @@ public class CommandHandler
         RegisterCommand(new CastCommand());
         RegisterCommand(new UseCommand());
         RegisterCommand(new FleeCommand());
+
+        // Communication
+        RegisterCommand(new SayCommand());
+        RegisterCommand(new ChatCommand());
     }
 }
